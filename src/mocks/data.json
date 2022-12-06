@@ -1,0 +1,60 @@
+{
+  "foods": [
+    {
+      "id": 1,
+      "title": "hello"
+    }
+  ],
+  "users": [
+    {
+      "name": "typicode",
+      "surname": "",
+      "gender": "",
+      "age:": "",
+      "phone": "",
+      "mobile": "",
+      "email": "",
+      "metrics": {
+        "weight": "",
+        "heigth": "",
+        "bmi": "",
+        "bodyFat": "",
+        "nonFatMass": "",
+        "vf": "",
+        "w": "",
+        "biseps": "",
+        "chest": "",
+        "waist": "",
+        "belly": "",
+        "pelvis": "",
+        "thigh": "",
+        "calves": ""
+      }
+    },
+    {
+      "name": "typicode",
+      "surname": "",
+      "gender": "",
+      "age:": "",
+      "phone": "",
+      "mobile": "",
+      "email": "",
+      "metrics": {
+        "weight": "",
+        "heigth": "",
+        "bmi": "",
+        "bodyFat": "",
+        "nonFatMass": "",
+        "vf": "",
+        "w": "",
+        "biseps": "",
+        "chest": "",
+        "waist": "",
+        "belly": "",
+        "pelvis": "",
+        "thigh": "",
+        "calves": ""
+      }
+    }
+  ]
+}
