@@ -6,10 +6,11 @@ export interface User {
   phone: string;
   mobile: string;
   email: string;
-  metrics: Metrics;
+  metrics?: Metrics;
 }
 
 export interface Metrics {
+  date: string;
   weight: string;
   heigth: string;
   bmi: string;

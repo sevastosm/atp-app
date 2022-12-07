@@ -33,6 +33,9 @@ const Transactions = Loader(
 const UserProfile = Loader(
   lazy(() => import('src/content/applications/Users/profile'))
 );
+const UserAccounts = Loader(
+  lazy(() => import('src/content/applications/Users/accounts'))
+);
 const UserSettings = Loader(
   lazy(() => import('src/content/applications/Users/settings'))
 );
@@ -138,37 +141,41 @@ const routes: RouteObject[] = [
       }
     ]
   },
-  // {
-  //   path: 'management',
-  //   element: <SidebarLayout />,
-  //   children: [
-  //     {
-  //       path: '',
-  //       element: <Navigate to="transactions" replace />
-  //     },
-  //     {
-  //       path: 'transactions',
-  //       element: <Transactions />
-  //     },
-  //     {
-  //       path: 'profile',
-  //       children: [
-  //         {
-  //           path: '',
-  //           element: <Navigate to="details" replace />
-  //         },
-  //         {
-  //           path: 'details',
-  //           element: <UserProfile />
-  //         },
-  //         {
-  //           path: 'settings',
-  //           element: <UserSettings />
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // },
+  {
+    path: 'management',
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: '',
+        element: <Navigate to="transactions" replace />
+      },
+      {
+        path: 'transactions',
+        element: <Transactions />
+      },
+      {
+        path: 'profile',
+        children: [
+          {
+            path: '',
+            element: <Navigate to="details" replace />
+          },
+          {
+            path: 'accounts',
+            element: <UserAccounts />
+          },
+          {
+            path: 'details',
+            element: <UserProfile />
+          },
+          {
+            path: 'settings',
+            element: <UserSettings />
+          }
+        ]
+      }
+    ]
+  },
   {
     path: '/components',
     element: <SidebarLayout />,

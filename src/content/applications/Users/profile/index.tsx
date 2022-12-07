@@ -1,8 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from 'src/components/Footer';
-
 import { Grid, Container } from '@mui/material';
-
 import ProfileCover from './ProfileCover';
 import RecentActivity from './RecentActivity';
 import Feed from './Feed';
