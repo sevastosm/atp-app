@@ -78,6 +78,7 @@ const UserDetails = () => {
       alignItems="stretch"
       spacing={3}
       width={'100%'}
+      sx={{ mt: 2, mb: 4 }}
     >
       <Grid
         container

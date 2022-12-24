@@ -27,7 +27,7 @@ const headCells: readonly HeadCell[] = [
   {
     id: 'name',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Dessert (100g serving)'
   },
   {
@@ -67,6 +67,7 @@ interface EnhancedTableProps {
   order: Order;
   orderBy: string;
   rowCount: number;
+  withSelect: boolean;
 }
 
 export default function EnhancedTableHead(props: EnhancedTableProps) {
@@ -76,7 +77,8 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
     orderBy,
     numSelected,
     rowCount,
-    onRequestSort
+    onRequestSort,
+    withSelect = false
   } = props;
   const createSortHandler =
     (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
@@ -86,17 +88,19 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts'
-            }}
-          />
-        </TableCell>
+        {withSelect && (
+          <TableCell padding="checkbox">
+            <Checkbox
+              color="primary"
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={rowCount > 0 && numSelected === rowCount}
+              onChange={onSelectAllClick}
+              inputProps={{
+                'aria-label': 'select all desserts'
+              }}
+            />
+          </TableCell>
+        )}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}

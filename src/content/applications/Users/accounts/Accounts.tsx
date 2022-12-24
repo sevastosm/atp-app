@@ -40,13 +40,19 @@ export default function Accounts() {
   };
 
   const [selectValue, setSelectValue] = React.useState('');
+  const [viewDetails, setViewDetails] = React.useState(false);
 
   const handleSelectChange = (event: SelectChangeEvent) => {
     setSelectValue(event.target.value as string);
   };
 
+  const onRowClick = (index) => {
+    console.log(index);
+    setViewDetails(true);
+  };
+
   return (
-    <Container maxWidth={false}>
+    <Container maxWidth={false} sx={{ mt: 2 }}>
       <Grid
         container
         direction="row"
@@ -55,11 +61,13 @@ export default function Accounts() {
         spacing={3}
       >
         <Grid item xs={12}>
-          <MultyTable />
+          <MultyTable onRowClick={onRowClick} />
         </Grid>
-        <Grid item xs={12}>
-          <UserDetails />
-        </Grid>
+        {viewDetails && (
+          <Grid item xs={12}>
+            <UserDetails />
+          </Grid>
+        )}
       </Grid>
     </Container>
   );
