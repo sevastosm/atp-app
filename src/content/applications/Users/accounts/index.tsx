@@ -9,7 +9,7 @@ import EditProfileTab from '../settings/EditProfileTab';
 import NotificationsTab from '../settings/NotificationsTab';
 import PageHeader from './PageHeader';
 import SecurityTab from '../settings/SecurityTab';
-import Profile from './Profile';
+import Profile from './Accounts';
 
 const TabsWrapper = styled(Tabs)(
   () => `
@@ -41,13 +41,14 @@ function ManagementUserSettings() {
       <PageTitleWrapper>
         <PageHeader />
       </PageTitleWrapper>
-      <Container maxWidth="lg">
+      <Container maxWidth={false}>
         <Grid
           container
           direction="row"
           justifyContent="center"
           alignItems="stretch"
           spacing={3}
+          className="dsfsdfsdfdsf"
         >
           <Grid item xs={12}>
             {/* <TabsWrapper
@@ -63,7 +64,7 @@ function ManagementUserSettings() {
               ))}
             </TabsWrapper> */}
           </Grid>
-          <Grid item xs={12}>
+          <Grid container xs={12}>
             {currentTab === 'users' && <Profile />}
             {/* {currentTab === 'profile' && <EditProfileTab />} */}
             {/* {currentTab === 'notifications' && <NotificationsTab />} */}

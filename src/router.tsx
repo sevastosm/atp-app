@@ -6,6 +6,9 @@ import SidebarLayout from 'src/layouts/SidebarLayout';
 import BaseLayout from 'src/layouts/BaseLayout';
 
 import SuspenseLoader from 'src/components/SuspenseLoader';
+import Products from './content/applications/Users/accounts/Products';
+import Accounts from './content/applications/Users/accounts/Accounts';
+import UserProfile from './content/applications/Users/accounts/UserProfie';
 
 const Loader = (Component) => (props) =>
   (
@@ -20,7 +23,7 @@ const Overview = Loader(lazy(() => import('src/content/overview')));
 
 // Dashboards
 
-const Crypto = Loader(lazy(() => import('src/content/dashboards/Crypto')));
+// const Crypto = Loader(lazy(() => import('src/content/dashboards/Crypto')));
 
 // Applications
 
@@ -30,15 +33,15 @@ const Messenger = Loader(
 const Transactions = Loader(
   lazy(() => import('src/content/applications/Transactions'))
 );
-const UserProfile = Loader(
-  lazy(() => import('src/content/applications/Users/profile'))
-);
-const UserAccounts = Loader(
-  lazy(() => import('src/content/applications/Users/accounts'))
-);
-const UserSettings = Loader(
-  lazy(() => import('src/content/applications/Users/settings'))
-);
+// const UserProfile = Loader(
+//   lazy(() => import('src/content/applications/Users/profile'))
+// );
+// const UserAccounts = Loader(
+//   lazy(() => import('src/content/applications/Users/accounts'))
+// );
+// const UserSettings = Loader(
+//   lazy(() => import('src/content/applications/Users/settings'))
+// );
 
 // Components
 
@@ -123,102 +126,46 @@ const routes: RouteObject[] = [
       }
     ]
   },
-  {
-    path: 'dashboards',
-    element: <SidebarLayout />,
-    children: [
-      {
-        path: '',
-        element: <Navigate to="crypto" replace />
-      },
-      {
-        path: 'crypto',
-        element: <Crypto />
-      },
-      {
-        path: 'messenger',
-        element: <Messenger />
-      }
-    ]
-  },
+
   {
     path: 'management',
     element: <SidebarLayout />,
     children: [
+      ,
       {
-        path: '',
-        element: <Navigate to="transactions" replace />
-      },
-      {
-        path: 'transactions',
-        element: <Transactions />
-      },
-      {
-        path: 'profile',
+        path: 'accounts',
         children: [
           {
             path: '',
-            element: <Navigate to="details" replace />
+            element: <Navigate to="accounts" replace />
           },
           {
             path: 'accounts',
-            element: <UserAccounts />
+            element: <Accounts />
           },
           {
-            path: 'details',
+            path: 'user',
             element: <UserProfile />
-          },
-          {
-            path: 'settings',
-            element: <UserSettings />
           }
+          // {
+          //   path: 'settings',
+          //   element: <UserSettings />
+          // }
         ]
       }
     ]
   },
   {
-    path: '/components',
+    path: '/nutrition',
     element: <SidebarLayout />,
     children: [
       {
         path: '',
-        element: <Navigate to="buttons" replace />
+        element: <Navigate to="products" replace />
       },
       {
-        path: 'buttons',
-        element: <Buttons />
-      },
-      {
-        path: 'modals',
-        element: <Modals />
-      },
-      {
-        path: 'accordions',
-        element: <Accordions />
-      },
-      {
-        path: 'tabs',
-        element: <Tabs />
-      },
-      {
-        path: 'badges',
-        element: <Badges />
-      },
-      {
-        path: 'tooltips',
-        element: <Tooltips />
-      },
-      {
-        path: 'avatars',
-        element: <Avatars />
-      },
-      {
-        path: 'cards',
-        element: <Cards />
-      },
-      {
-        path: 'forms',
-        element: <Forms />
+        path: 'products',
+        element: <Products />
       }
     ]
   }
