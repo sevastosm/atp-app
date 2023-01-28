@@ -2,7 +2,7 @@ export interface User {
   name: string;
   surname: string;
   gender: string;
-  age: string;
+  age: number;
   phone: string;
   mobile: string;
   email: string;
@@ -10,19 +10,21 @@ export interface User {
 }
 
 export interface Metrics {
+  metabolicAge: number;
   date: string;
-  weight: string;
-  heigth: string;
-  bmi: string;
-  bodyFat: string;
-  nonFatMass: string;
-  vf: string;
-  w: string;
-  biseps: string;
-  chest: string;
-  waist: string;
-  belly: string;
-  pelvis: string;
-  thigh: string;
-  calves: string;
+  weight: number;
+  height: number;
+  bmi: number;
+  bodyFat: number;
+  nonFatMass: number;
+  boneMass: number;
+  vf: number;
+  bodyWater: number;
+  biseps: number;
+  chest: number;
+  waist: number;
+  belly: number;
+  pelvis: number;
+  thigh: number;
+  calves: number;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactEventHandler, useContext, useState } from 'react';
 import {
   Toolbar,
   alpha,
@@ -19,12 +19,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Box } from '@mui/system';
 import SimpleDialog from './AddRecordDialog';
+import TableContext from '../TableContext';
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
+  setSearch?: (string) => void;
 }
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected } = props;
+  const { handleDelete } = useContext(TableContext);
+
+  const { numSelected, setSearch } = props;
   const [open, setOpen] = useState(false);
   const handleOnClose = () => setOpen(false);
   return (
@@ -59,7 +63,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           <OutlinedInput
             id="search"
             // value={values.amount}
-            // onChange={handleChange('amount')}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Search"
             startAdornment={
               <InputAdornment position="start">
@@ -71,7 +75,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         </FormControl>
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-            <IconButton>
+            <IconButton onClick={handleDelete}>
               <DeleteIcon />
             </IconButton>
           </Tooltip>

@@ -21,6 +21,7 @@ import React, { useState } from 'react';
 import { User } from 'src/models/user';
 import UserDetails from './UserDetails';
 import MultyTable from 'src/components/multyTable';
+import DietCalculator from 'src/components/DietCalculator';
 
 type Props = {};
 
@@ -53,6 +54,7 @@ export default function Accounts() {
 
   return (
     <Container maxWidth={false} sx={{ mt: 2 }}>
+      <DietCalculator />
       <Grid
         container
         direction="row"

@@ -16,6 +16,8 @@ import {
 import { LocalizationProvider, DesktopDatePicker } from '@mui/x-date-pickers';
 import moment from 'moment';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import DietCalculator from 'src/components/DietCalculator';
+import { users } from 'src/mocks/users';
 
 type Props = {};
 interface IProfileFields {
@@ -28,7 +30,7 @@ const profileFields = [
   { name: 'surname', label: 'ΕΠΩΝΥΜΟ' },
   { name: 'gender', label: 'ΦΥΛΟ', type: 'select', values: [''] },
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
-  { name: 'moblie', label: 'ΚΙΝΗΤΟ' },
+  { name: 'mobile', label: 'ΚΙΝΗΤΟ' },
   { name: 'email', label: 'EMAIL' },
   { name: 'age', label: 'ΗΛΙΚΙΑ' }
 ];
@@ -70,6 +72,9 @@ const UserDetails = () => {
   const handleSelectChange = (event: SelectChangeEvent) => {
     setSelectValue(event.target.value as string);
   };
+
+  console.log(users[0]);
+  const user = users[0];
   return (
     <Grid
       container
@@ -80,14 +85,8 @@ const UserDetails = () => {
       width={'100%'}
       sx={{ mt: 2, mb: 4 }}
     >
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="stretch"
-        spacing={3}
-      ></Grid>
       <Grid item xs={12} lg={8}>
+        <DietCalculator user={user} />
         <Card>
           <CardHeader title={TITLE} />
           <Divider />
@@ -114,7 +113,7 @@ const UserDetails = () => {
                     required
                     id={field.name}
                     label={field.label}
-                    defaultValue=""
+                    defaultValue={user[field.name]}
                     disabled={false}
                     onChange={handleInputChange}
                     size="small"
@@ -202,7 +201,7 @@ const UserDetails = () => {
                               required
                               id={field.name}
                               label={field.label}
-                              defaultValue=""
+                              defaultValue={user.metrics[field.name]}
                               disabled={false}
                               onChange={handleInputChange}
                               size="small"
@@ -267,7 +266,7 @@ const UserDetails = () => {
                               required
                               id={field.name}
                               label={field.label}
-                              defaultValue=""
+                              defaultValue={user.metrics[field.name]}
                               disabled={false}
                               onChange={handleInputChange}
                               size="small"
