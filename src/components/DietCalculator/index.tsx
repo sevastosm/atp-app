@@ -18,6 +18,8 @@ import {
   Box
 } from '@mui/material';
 import { User } from 'src/models/user';
+import { AppContext } from 'src/contexts/AppContext';
+import React from 'react';
 
 type Props = { user: User };
 
@@ -79,7 +81,7 @@ function DietCalculator({ user }: Props) {
                   size="small"
                   id="outlined-read-only-input"
                   label={CAlCULATION_BMR}
-                  defaultValue={user.gender === 'Male' ? bmrMale : bmrFemale}
+                  value={user.gender === 'Male' ? bmrMale : bmrFemale}
                   InputProps={{
                     readOnly: true
                   }}
@@ -89,7 +91,7 @@ function DietCalculator({ user }: Props) {
                   size="small"
                   id="outlined-read-only-input"
                   label={workoutDencity.RARE}
-                  defaultValue={rareDencity}
+                  value={rareDencity}
                   InputProps={{
                     readOnly: true
                   }}
@@ -98,7 +100,7 @@ function DietCalculator({ user }: Props) {
                   size="small"
                   id="outlined-read-only-input"
                   label={workoutDencity.MEDIUM}
-                  defaultValue={mediumDencity}
+                  value={mediumDencity}
                   InputProps={{
                     readOnly: true
                   }}
@@ -107,7 +109,7 @@ function DietCalculator({ user }: Props) {
                   size="small"
                   id="outlined-read-only-input"
                   label={workoutDencity.INTENCE}
-                  defaultValue={intenceDencity}
+                  value={intenceDencity}
                   InputProps={{
                     readOnly: true
                   }}
@@ -116,7 +118,7 @@ function DietCalculator({ user }: Props) {
                   size="small"
                   id="outlined-read-only-input"
                   label={workoutDencity.EVERYDAY}
-                  defaultValue={evetydayDencity}
+                  value={evetydayDencity}
                   InputProps={{
                     readOnly: true
                   }}
@@ -125,7 +127,7 @@ function DietCalculator({ user }: Props) {
                   size="small"
                   id="outlined-read-only-input"
                   label={workoutDencity.EVERYDAY_INTENCE}
-                  defaultValue={user.gender === 'Male' ? bmrMale : bmrFemale}
+                  value={user.gender === 'Male' ? bmrMale : bmrFemale}
                   InputProps={{
                     readOnly: true
                   }}

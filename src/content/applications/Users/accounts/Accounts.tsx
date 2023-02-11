@@ -1,27 +1,11 @@
-import {
-  Container,
-  Grid,
-  Card,
-  CardHeader,
-  Divider,
-  CardContent,
-  Box,
-  TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent
-} from '@mui/material';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { LocalizationProvider, DesktopDatePicker } from '@mui/x-date-pickers';
-import moment from 'moment';
-import { string } from 'prop-types';
 import React, { useState } from 'react';
-import { User } from 'src/models/user';
+import { Container, Grid, SelectChangeEvent } from '@mui/material';
+import moment from 'moment';
 import UserDetails from './UserDetails';
 import MultyTable from 'src/components/multyTable';
-import DietCalculator from 'src/components/DietCalculator';
+import { AppBlockingTwoTone } from '@mui/icons-material';
+import { AppContext } from 'src/contexts/AppContext';
+import SimpleDialog from 'src/components/general/SimpleDialog';
 
 type Props = {};
 
@@ -32,6 +16,7 @@ interface IProfileFields {
 }
 
 export default function Accounts() {
+  const { setSelectedRow, customers } = React.useContext(AppContext);
   const [state, setState] = useState({});
   const handleInputChange = (e) => console.log(e);
   const [value, setValue] = React.useState<any | null>(moment(new Date()));
@@ -47,30 +32,40 @@ export default function Accounts() {
     setSelectValue(event.target.value as string);
   };
 
-  const onRowClick = (index) => {
-    console.log(index);
+  const onRowClick = (row) => {
+    setSelectedRow(row);
     setViewDetails(true);
   };
 
   return (
-    <Container maxWidth={false} sx={{ mt: 2 }}>
-      <DietCalculator />
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="stretch"
-        spacing={3}
-      >
-        <Grid item xs={12}>
-          <MultyTable onRowClick={onRowClick} />
-        </Grid>
-        {viewDetails && (
+    <>
+      <Container maxWidth={false} sx={{ mt: 2 }}>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="stretch"
+          spacing={3}
+        >
           <Grid item xs={12}>
-            <UserDetails />
+            {customers && (
+              <MultyTable
+                onRowClick={onRowClick}
+                data={customers}
+                title="customers"
+              />
+            )}
           </Grid>
-        )}
-      </Grid>
-    </Container>
+          {viewDetails && (
+            <Grid item xs={12}>
+              <UserDetails />
+            </Grid>
+          )}
+        </Grid>
+      </Container>
+      <SimpleDialog open={viewDetails} onClose={() => setViewDetails(false)}>
+        <UserDetails />
+      </SimpleDialog>
+    </>
   );
 }

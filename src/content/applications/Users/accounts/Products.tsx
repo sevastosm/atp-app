@@ -14,7 +14,7 @@ export default function Products() {
         spacing={3}
       >
         <Grid item xs={12}>
-          <MultyTable />
+          {/* <MultyTable /> */}
         </Grid>
       </Grid>
     </Container>

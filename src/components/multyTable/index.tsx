@@ -11,6 +11,7 @@ import EnhancedTableToolbar from './head/EnhancedTableToolbar';
 import { Container } from '@mui/material';
 import TableContext from './TableContext';
 import MultyTableBody from './body/MultyTableBody';
+import { users } from 'src/mocks/users';
 
 export interface Data {
   calories: number;
@@ -20,40 +21,60 @@ export interface Data {
   protein: number;
 }
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-): Data {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein
-  };
-}
-
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0)
-];
 type Order = 'asc' | 'desc';
 
-export default function MultyTable({ onRowClick = null, withSelect = false }) {
+const headCells: readonly any[] = [
+  {
+    id: 'name',
+    numeric: false,
+    disablePadding: false,
+    label: 'name'
+  },
+  {
+    id: 'surname',
+    numeric: false,
+    disablePadding: false,
+    label: 'surname'
+  },
+  {
+    id: 'gender',
+    numeric: false,
+    // disablePadding: false,
+    label: 'gender'
+  },
+  {
+    id: 'age',
+    numeric: false,
+    disablePadding: false,
+    label: 'age'
+  },
+  {
+    id: 'phone',
+    numeric: false,
+    disablePadding: false,
+    label: 'phone'
+  },
+  {
+    id: 'mobile',
+    numeric: false,
+    disablePadding: false,
+    label: 'mobile'
+  },
+  {
+    id: 'email',
+    numeric: false,
+    disablePadding: false,
+    label: 'email'
+  }
+];
+
+export default function MultyTable({
+  onRowClick = null,
+  withSelect = false,
+  data,
+  title,
+  cols = null
+}) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -62,7 +83,7 @@ export default function MultyTable({ onRowClick = null, withSelect = false }) {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [selectedRow, setSelectedRow] = React.useState(null);
-  const [data, setData] = React.useState(rows);
+  const [rows, setData] = React.useState(data);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -85,10 +106,9 @@ export default function MultyTable({ onRowClick = null, withSelect = false }) {
   const handleClick = (
     event: React.MouseEvent<unknown>,
     name: string,
-    index: number
+    row: number
   ) => {
     const selectedIndex = selected.indexOf(name);
-    console.log('selected', index);
     let newSelected: readonly string[] = [];
 
     if (selectedIndex === -1) {
@@ -103,10 +123,11 @@ export default function MultyTable({ onRowClick = null, withSelect = false }) {
         selected.slice(selectedIndex + 1)
       );
     }
-    onRowClick(selectedIndex);
 
-    setSelected(newSelected);
-    setSelectedRow(index);
+    const selectedRow: any = withSelect ? [newSelected] : [name];
+    onRowClick(row);
+    setSelected(selectedRow);
+    setSelectedRow(row);
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -128,6 +149,8 @@ export default function MultyTable({ onRowClick = null, withSelect = false }) {
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
+  const excloudedFields = ['metrics'];
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -145,9 +168,12 @@ export default function MultyTable({ onRowClick = null, withSelect = false }) {
         emptyRows,
         dense,
         selectedRow,
+        title,
         isSelected,
         handleClick,
-        handleDelete
+        handleDelete,
+        headCells,
+        excloudedFields
       }}
     >
       <Container maxWidth={false} sx={{ mt: 2 }}>

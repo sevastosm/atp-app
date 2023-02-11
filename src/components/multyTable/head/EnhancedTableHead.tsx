@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   TableHead,
   TableRow,
@@ -7,6 +9,7 @@ import {
   Box
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
+import TableContext from '../TableContext';
 
 interface Data {
   calories: number;
@@ -23,38 +26,6 @@ interface HeadCell {
   numeric: boolean;
 }
 
-const headCells: readonly HeadCell[] = [
-  {
-    id: 'name',
-    numeric: false,
-    disablePadding: false,
-    label: 'Dessert (100g serving)'
-  },
-  {
-    id: 'calories',
-    numeric: true,
-    disablePadding: false,
-    label: 'Calories'
-  },
-  {
-    id: 'fat',
-    numeric: true,
-    disablePadding: false,
-    label: 'Fat (g)'
-  },
-  {
-    id: 'carbs',
-    numeric: true,
-    disablePadding: false,
-    label: 'Carbs (g)'
-  },
-  {
-    id: 'protein',
-    numeric: true,
-    disablePadding: false,
-    label: 'Protein (g)'
-  }
-];
 type Order = 'asc' | 'desc';
 
 interface EnhancedTableProps {
@@ -84,6 +55,8 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
     (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
+
+  const { headCells } = React.useContext(TableContext);
 
   return (
     <TableHead>

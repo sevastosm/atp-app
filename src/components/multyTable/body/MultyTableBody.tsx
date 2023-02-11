@@ -62,6 +62,7 @@ const MultyTableBody = () => {
     dense,
     isSelected,
     handleClick,
+    excloudedFields,
     handleDelete
   } = useContext(TableContext);
   return (
@@ -79,7 +80,6 @@ rows.sort(getComparator(order, orderBy)).slice() */}
 
           return (
             <TableRow
-              hover
               onClick={(event) => handleClick(event, row.name, row)}
               role="checkbox"
               aria-checked={isItemSelected}
@@ -99,7 +99,7 @@ rows.sort(getComparator(order, orderBy)).slice() */}
                 </TableCell>
               )}
               {Object.keys(row).map((key, i) => {
-                // console.log('ddd', row[key]);
+                if (excloudedFields.includes(key)) return;
                 return (
                   <TableCell
                     key={i + key}

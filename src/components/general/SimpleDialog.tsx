@@ -20,8 +20,7 @@ export default function SimpleDialog(props: SimpleDialogProps) {
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle sx={{ m: 0, p: 2 }}>
-        {children}
+      <DialogTitle>
         {onClose ? (
           <IconButton
             aria-label="close"
@@ -37,7 +36,7 @@ export default function SimpleDialog(props: SimpleDialogProps) {
           </IconButton>
         ) : null}
       </DialogTitle>
-      add record
+      {children}
     </Dialog>
   );
 }

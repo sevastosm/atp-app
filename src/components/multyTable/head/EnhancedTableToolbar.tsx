@@ -18,7 +18,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Box } from '@mui/system';
-import SimpleDialog from './AddRecordDialog';
+import SimpleDialog from '../../general/SimpleDialog';
 import TableContext from '../TableContext';
 
 interface EnhancedTableToolbarProps {
@@ -26,14 +26,16 @@ interface EnhancedTableToolbarProps {
   setSearch?: (string) => void;
 }
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { handleDelete } = useContext(TableContext);
+  const { handleDelete, title } = useContext(TableContext);
 
   const { numSelected, setSearch } = props;
   const [open, setOpen] = useState(false);
   const handleOnClose = () => setOpen(false);
   return (
     <>
-      <SimpleDialog open={open} onClose={handleOnClose} />
+      <SimpleDialog open={open} onClose={handleOnClose}>
+        sfsdfsdfsf
+      </SimpleDialog>
       <Toolbar
         sx={{
           pl: { sm: 2 },
@@ -41,7 +43,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         }}
       >
         <Typography sx={{ ml: 2 }} variant="h6" id="tableTitle" component="div">
-          Nutrition
+          {title}
         </Typography>
         <Box sx={{ flex: '1 1 100%', ml: 2 }}>
           <Button onClick={() => setOpen(true)}>
