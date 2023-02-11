@@ -15,6 +15,8 @@ interface IProfileFields {
   type?: string;
 }
 
+const cols = ['name', 'surname', 'gender', 'age', 'phone', 'mobile', 'email'];
+
 export default function Accounts() {
   const { setSelectedRow, customers } = React.useContext(AppContext);
   const [state, setState] = useState({});
@@ -53,18 +55,14 @@ export default function Accounts() {
                 onRowClick={onRowClick}
                 data={customers}
                 title="customers"
+                cols={cols}
               />
             )}
           </Grid>
-          {viewDetails && (
-            <Grid item xs={12}>
-              <UserDetails />
-            </Grid>
-          )}
         </Grid>
       </Container>
       <SimpleDialog open={viewDetails} onClose={() => setViewDetails(false)}>
-        <UserDetails />
+        <UserDetails mode="edit" />
       </SimpleDialog>
     </>
   );

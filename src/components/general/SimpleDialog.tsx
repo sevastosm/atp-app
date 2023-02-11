@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import { IconButton } from '@mui/material';
+import { DialogContent, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 export interface SimpleDialogProps {
@@ -19,16 +19,16 @@ export default function SimpleDialog(props: SimpleDialogProps) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} maxWidth="md">
       <DialogTitle>
         {onClose ? (
           <IconButton
             aria-label="close"
             onClick={onClose}
             sx={{
-              //   position: 'absolute',
-              //   right: 8,
-              //   top: 8,
+              position: 'absolute',
+              right: 8,
+              top: 8,
               color: (theme) => theme.palette.grey[500]
             }}
           >
@@ -36,7 +36,7 @@ export default function SimpleDialog(props: SimpleDialogProps) {
           </IconButton>
         ) : null}
       </DialogTitle>
-      {children}
+      <DialogContent>{children}</DialogContent>
     </Dialog>
   );
 }

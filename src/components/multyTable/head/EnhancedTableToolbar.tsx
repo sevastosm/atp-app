@@ -20,6 +20,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Box } from '@mui/system';
 import SimpleDialog from '../../general/SimpleDialog';
 import TableContext from '../TableContext';
+import UserDetails from 'src/content/applications/Users/accounts/UserDetails';
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
@@ -34,7 +35,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   return (
     <>
       <SimpleDialog open={open} onClose={handleOnClose}>
-        sfsdfsdfsf
+        <UserDetails mode={'add'} />
       </SimpleDialog>
       <Toolbar
         sx={{

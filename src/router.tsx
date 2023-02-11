@@ -54,7 +54,6 @@ const Modals = Loader(
 const Accordions = Loader(
   lazy(() => import('src/content/pages/Components/Accordions'))
 );
-const Tabs = Loader(lazy(() => import('src/content/pages/Components/Tabs')));
 const Badges = Loader(
   lazy(() => import('src/content/pages/Components/Badges'))
 );

@@ -15,7 +15,6 @@ ReactDOM.render(
         <AppContextProvider>
           <App />
         </AppContextProvider>
-        ,
       </BrowserRouter>
     </SidebarProvider>
   </HelmetProvider>,

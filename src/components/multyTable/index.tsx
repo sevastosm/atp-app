@@ -23,50 +23,50 @@ export interface Data {
 
 type Order = 'asc' | 'desc';
 
-const headCells: readonly any[] = [
-  {
-    id: 'name',
-    numeric: false,
-    disablePadding: false,
-    label: 'name'
-  },
-  {
-    id: 'surname',
-    numeric: false,
-    disablePadding: false,
-    label: 'surname'
-  },
-  {
-    id: 'gender',
-    numeric: false,
-    // disablePadding: false,
-    label: 'gender'
-  },
-  {
-    id: 'age',
-    numeric: false,
-    disablePadding: false,
-    label: 'age'
-  },
-  {
-    id: 'phone',
-    numeric: false,
-    disablePadding: false,
-    label: 'phone'
-  },
-  {
-    id: 'mobile',
-    numeric: false,
-    disablePadding: false,
-    label: 'mobile'
-  },
-  {
-    id: 'email',
-    numeric: false,
-    disablePadding: false,
-    label: 'email'
-  }
-];
+// const headCells: readonly any[] = [
+//   {
+//     id: 'name',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'name'
+//   },
+//   {
+//     id: 'surname',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'surname'
+//   },
+//   {
+//     id: 'gender',
+//     numeric: false,
+//     // disablePadding: false,
+//     label: 'gender'
+//   },
+//   {
+//     id: 'age',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'age'
+//   },
+//   {
+//     id: 'phone',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'phone'
+//   },
+//   {
+//     id: 'mobile',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'mobile'
+//   },
+//   {
+//     id: 'email',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'email'
+//   }
+// ];
 
 export default function MultyTable({
   onRowClick = null,
@@ -80,10 +80,19 @@ export default function MultyTable({
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [search, setSearch] = React.useState('');
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [selectedRow, setSelectedRow] = React.useState(null);
   const [rows, setData] = React.useState(data);
+
+  const headCells = cols.map((col) => {
+    return {
+      id: col,
+      numeric: false,
+      disablePadding: false,
+      label: col
+    };
+  });
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -211,10 +220,10 @@ export default function MultyTable({
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Paper>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Switch checked={dense} onChange={handleChangeDense} />}
             label="Dense padding"
-          />
+          /> */}
         </Box>
       </Container>
     </TableContext.Provider>

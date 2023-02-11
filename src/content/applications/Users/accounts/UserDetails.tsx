@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import {
   Grid,
   Card,
@@ -11,7 +11,9 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  SelectChangeEvent
+  SelectChangeEvent,
+  Container,
+  Typography
 } from '@mui/material';
 import { LocalizationProvider, DesktopDatePicker } from '@mui/x-date-pickers';
 import moment from 'moment';
@@ -19,6 +21,8 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import DietCalculator from 'src/components/DietCalculator';
 import { users } from 'src/mocks/users';
 import { AppContext } from 'src/contexts/AppContext';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 type Props = {};
 interface IProfileFields {
@@ -59,7 +63,39 @@ const metricsFieldsRight = [
 const TITLE = 'ΣΤΟΙΧΕΙΑ ΧΡΗΣΤΗ';
 const MERRICS = 'ΜΕΤΡΗΣΕΙΣ';
 
-const UserDetails = () => {
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`
+  };
+}
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+const UserDetails = ({ mode = null }) => {
   const { selectedRow } = React.useContext(AppContext);
 
   const [state, setState] = useState<any>({});
@@ -75,12 +111,16 @@ const UserDetails = () => {
   const handleSelectChange = (event: SelectChangeEvent) => {
     setSelectValue(event.target.value as string);
   };
+  const [tabValue, setTabValue] = useState(0);
+
+  const handleTabChange = (event: SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
+  };
 
   React.useEffect(() => {
     setState(selectedRow);
   }, [selectedRow]);
 
-  console.log('selectedRow', selectedRow);
   return (
     <Grid
       container
@@ -88,206 +128,267 @@ const UserDetails = () => {
       justifyContent="center"
       alignItems="stretch"
       spacing={3}
-      width={'100%'}
+      // width={'100%'}
       sx={{ mt: 2, mb: 4 }}
     >
-      <Grid item xs={12} lg={8}>
-        <DietCalculator user={selectedRow} />
-        <Card>
-          <CardHeader title={TITLE} />
-          <Divider />
-          <CardContent>
-            <Box
-              component="form"
-              sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' }
-              }}
-              noValidate
-              autoComplete="off"
-              onSubmit={() => console.log('Form submited!')}
-            >
-              <Grid
-                container
-                direction="row"
-                //   justifyContent="center"
-                alignItems="stretch"
-                //   spacing={3}
-              >
-                {profileFields.map((field: IProfileFields) => (
-                  <TextField
-                    key={field.name}
-                    required
-                    id={field.name}
-                    label={field.label}
-                    value={selectedRow[field.name]}
-                    disabled={false}
-                    onChange={handleInputChange}
-                    size="small"
-                    fullWidth
-                  />
-                ))}
-              </Grid>
-            </Box>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item xs={12} lg={8}>
-        <Card>
-          <CardHeader title={MERRICS} />
-          <Divider />
-          <CardContent>
-            <Box
-              component="form"
-              sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' }
-              }}
-              noValidate
-              autoComplete="off"
-              onSubmit={() => console.log('Form submited!')}
-            >
-              <Grid
-                className="tests"
-                container
-                direction="row"
-                //   justifyContent="center"
-                alignItems="center"
-                //   spacing={3}
-              >
-                <Grid item xs={12} lg={6}>
-                  {metricsFieldsLeft.map((field: IProfileFields) => {
-                    switch (field.type) {
-                      case 'select':
-                        return (
-                          <Grid item>
-                            <FormControl
-                              fullWidth
-                              style={{ margin: '9px', width: '25ch' }}
-                            >
-                              <InputLabel
-                                id="demo-simple-select-label"
-                                size="small"
-                              >
-                                {field.label}
-                              </InputLabel>
-                              <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={selectValue}
-                                label="fsdfsf"
-                                onChange={handleSelectChange}
-                                size="small"
-                              >
-                                <MenuItem value={1}>ΑΝΔΡΑΣ</MenuItem>
-                                <MenuItem value={0}>ΓΥΝΑΙΚΑ</MenuItem>
-                              </Select>
-                            </FormControl>
-                          </Grid>
-                        );
-                      case 'date':
-                        return (
-                          <Grid item>
-                            <LocalizationProvider dateAdapter={AdapterMoment}>
-                              <DesktopDatePicker
+      <Container maxWidth="lg">
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="stretch"
+          spacing={3}
+        >
+          <Grid item xs={12}>
+            <Card variant="outlined">
+              <CardHeader title="ΚΑΡΤΕΛΑ ΠΕΛΑΤΗ" />
+              <Divider />
+              <CardContent>
+                <Box sx={{ width: '100%' }}>
+                  <Tabs
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    textColor="primary"
+                    indicatorColor="primary"
+                    value={tabValue}
+                    onChange={handleTabChange}
+                    aria-label="basic tabs example"
+                  >
+                    <Tab label="ΣΤΟΙΧΕΙΑ" {...a11yProps(0)} />
+                    <Tab label="ΜΕΤΡΗΣΕΙΣ" {...a11yProps(1)} />
+                    <Tab label="ΔΙΑΤΡΟΦΗ" {...a11yProps(2)} />
+                    <Tab label="ΣΗΜΕΙΩΣΕΙΣ" {...a11yProps(3)} />
+                  </Tabs>
+                  <TabPanel value={tabValue} index={0}>
+                    <>
+                      <Grid>
+                        {/* <Card>
+                          <CardHeader title={TITLE} />
+                          <Divider />
+                          <CardContent> */}
+                        <Box
+                          component="form"
+                          sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' }
+                          }}
+                          noValidate
+                          autoComplete="off"
+                          onSubmit={() => console.log('Form submited!')}
+                        >
+                          <Grid
+                            container
+                            direction="row"
+                            //   justifyContent="center"
+                            alignItems="stretch"
+                            //   spacing={3}
+                          >
+                            {profileFields.map((field: IProfileFields) => (
+                              <TextField
+                                key={field.name}
+                                required
+                                id={field.name}
                                 label={field.label}
-                                inputFormat="d/m/yy"
-                                value={value}
-                                onChange={handleChange}
-                                renderInput={(params) => (
-                                  <TextField size="small" {...params} />
-                                )}
-                              />
-                            </LocalizationProvider>
-                          </Grid>
-                        );
-                      default:
-                        return (
-                          <Grid item>
-                            <TextField
-                              key={field.name}
-                              required
-                              id={field.name}
-                              label={field.label}
-                              value={selectedRow.metrics[field.name]}
-                              disabled={false}
-                              onChange={handleInputChange}
-                              size="small"
-                              fullWidth
-                            />
-                          </Grid>
-                        );
-                    }
-                  })}
-                </Grid>
-                <Grid item xs={12} lg={6}>
-                  {metricsFieldsRight.map((field: IProfileFields) => {
-                    switch (field.type) {
-                      case 'select':
-                        return (
-                          <Grid item>
-                            <FormControl
-                              fullWidth
-                              style={{ margin: '9px', width: '25ch' }}
-                            >
-                              <InputLabel
-                                id="demo-simple-select-label"
+                                value={
+                                  mode === 'edit' ? selectedRow[field.name] : ''
+                                }
+                                disabled={false}
+                                onChange={handleInputChange}
                                 size="small"
-                              >
-                                {field.label}
-                              </InputLabel>
-                              <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={selectValue}
-                                label="fsdfsf"
-                                onChange={handleSelectChange}
-                                size="small"
-                              >
-                                <MenuItem value={1}>ΑΝΔΡΑΣ</MenuItem>
-                                <MenuItem value={0}>ΓΥΝΑΙΚΑ</MenuItem>
-                              </Select>
-                            </FormControl>
-                          </Grid>
-                        );
-                      case 'date':
-                        return (
-                          <Grid item>
-                            <LocalizationProvider dateAdapter={AdapterMoment}>
-                              <DesktopDatePicker
-                                label={field.label}
-                                inputFormat="mm/dd/yyyy"
-                                value={value}
-                                onChange={handleChange}
-                                renderInput={(params) => (
-                                  <TextField size="small" {...params} />
-                                )}
                               />
-                            </LocalizationProvider>
+                            ))}
                           </Grid>
-                        );
-                      default:
-                        return (
+                        </Box>
+                        {/* </CardContent>
+                        </Card> */}
+                      </Grid>
+                    </>
+                  </TabPanel>
+                  <TabPanel value={tabValue} index={1}>
+                    <Grid item>
+                      {/* <Card>
+                        <CardHeader title={MERRICS} /> */}
+                      {/* <Divider />
+                        <CardContent> */}
+                      <Box
+                        component="form"
+                        sx={{
+                          '& .MuiTextField-root': { m: 1, width: '25ch' }
+                        }}
+                        noValidate
+                        autoComplete="off"
+                        onSubmit={() => console.log('Form submited!')}
+                      >
+                        <Grid
+                          className="tests"
+                          container
+                          direction="row"
+                          alignItems="start"
+                        >
                           <Grid item>
-                            <TextField
-                              key={field.name}
-                              required
-                              id={field.name}
-                              label={field.label}
-                              value={selectedRow.metrics[field.name]}
-                              disabled={false}
-                              onChange={handleInputChange}
-                              size="small"
-                              fullWidth
-                            />
+                            {metricsFieldsLeft.map((field: IProfileFields) => {
+                              switch (field.type) {
+                                case 'select':
+                                  return (
+                                    <Grid item>
+                                      <FormControl
+                                        style={{
+                                          margin: '9px',
+                                          width: '25ch'
+                                        }}
+                                      >
+                                        <InputLabel
+                                          id="demo-simple-select-label"
+                                          size="small"
+                                        >
+                                          {field.label}
+                                        </InputLabel>
+                                        <Select
+                                          labelId="demo-simple-select-label"
+                                          id="demo-simple-select"
+                                          value={selectValue}
+                                          label="fsdfsf"
+                                          onChange={handleSelectChange}
+                                          size="small"
+                                        >
+                                          <MenuItem value={1}>ΑΝΔΡΑΣ</MenuItem>
+                                          <MenuItem value={0}>ΓΥΝΑΙΚΑ</MenuItem>
+                                        </Select>
+                                      </FormControl>
+                                    </Grid>
+                                  );
+                                case 'date':
+                                  return (
+                                    <Grid item>
+                                      <LocalizationProvider
+                                        dateAdapter={AdapterMoment}
+                                      >
+                                        <DesktopDatePicker
+                                          label={field.label}
+                                          inputFormat="d/m/yy"
+                                          value={value}
+                                          onChange={handleChange}
+                                          renderInput={(params) => (
+                                            <TextField
+                                              size="small"
+                                              {...params}
+                                            />
+                                          )}
+                                        />
+                                      </LocalizationProvider>
+                                    </Grid>
+                                  );
+                                default:
+                                  return (
+                                    <Grid item>
+                                      <TextField
+                                        key={field.name}
+                                        required
+                                        id={field.name}
+                                        label={field.label}
+                                        value={
+                                          mode === 'edit'
+                                            ? selectedRow.metrics[field.name]
+                                            : ''
+                                        }
+                                        disabled={false}
+                                        onChange={handleInputChange}
+                                        size="small"
+                                      />
+                                    </Grid>
+                                  );
+                              }
+                            })}
                           </Grid>
-                        );
-                    }
-                  })}
-                </Grid>
-              </Grid>
-            </Box>
-          </CardContent>
-        </Card>
-      </Grid>
+                          <Grid item>
+                            {metricsFieldsRight.map((field: IProfileFields) => {
+                              switch (field.type) {
+                                case 'select':
+                                  return (
+                                    <Grid item>
+                                      <FormControl
+                                        style={{
+                                          margin: '9px',
+                                          width: '25ch'
+                                        }}
+                                      >
+                                        <InputLabel
+                                          id="demo-simple-select-label"
+                                          size="small"
+                                        >
+                                          {field.label}
+                                        </InputLabel>
+                                        <Select
+                                          labelId="demo-simple-select-label"
+                                          id="demo-simple-select"
+                                          value={selectValue}
+                                          label="fsdfsf"
+                                          onChange={handleSelectChange}
+                                          size="small"
+                                        >
+                                          <MenuItem value={1}>ΑΝΔΡΑΣ</MenuItem>
+                                          <MenuItem value={0}>ΓΥΝΑΙΚΑ</MenuItem>
+                                        </Select>
+                                      </FormControl>
+                                    </Grid>
+                                  );
+                                case 'date':
+                                  return (
+                                    <Grid item>
+                                      <LocalizationProvider
+                                        dateAdapter={AdapterMoment}
+                                      >
+                                        <DesktopDatePicker
+                                          label={field.label}
+                                          inputFormat="mm/dd/yyyy"
+                                          value={value}
+                                          onChange={handleChange}
+                                          renderInput={(params) => (
+                                            <TextField
+                                              size="small"
+                                              {...params}
+                                            />
+                                          )}
+                                        />
+                                      </LocalizationProvider>
+                                    </Grid>
+                                  );
+                                default:
+                                  return (
+                                    <Grid item>
+                                      <TextField
+                                        key={field.name}
+                                        required
+                                        id={field.name}
+                                        label={field.label}
+                                        value={
+                                          mode === 'edit'
+                                            ? selectedRow.metrics[field.name]
+                                            : ''
+                                        }
+                                        disabled={false}
+                                        onChange={handleInputChange}
+                                        size="small"
+                                      />
+                                    </Grid>
+                                  );
+                              }
+                            })}
+                          </Grid>
+                        </Grid>
+                      </Box>
+                      {/* </CardContent>
+                      </Card> */}
+                    </Grid>
+                  </TabPanel>
+                  <TabPanel value={tabValue} index={2}>
+                    Item Three
+                  </TabPanel>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
     </Grid>
   );
 };
