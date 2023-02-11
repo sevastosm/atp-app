@@ -47,7 +47,9 @@
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\" --config ./.prettierrc",
     "test": "react-scripts test",
-    "mock-server": "npx json-server --watch ./src/mocks/data.json --port 8000"
+    "mock-server": "npx json-server --watch ./src/mocks/data.json --port 8000",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -72,6 +74,8 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.30.0",
     "eslint-plugin-react-hooks": "4.5.0",
+    "gh-pages": "^5.0.0",
     "prettier": "2.6.2"
-  }
+  },
+  "homepage": "https://github.com/sevastosm/atp-app"
 }
