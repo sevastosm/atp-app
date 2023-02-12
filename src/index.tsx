@@ -11,7 +11,7 @@ import { AppContextProvider } from './contexts/AppContext';
 ReactDOM.render(
   <HelmetProvider>
     <SidebarProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <AppContextProvider>
           <App />
         </AppContextProvider>
