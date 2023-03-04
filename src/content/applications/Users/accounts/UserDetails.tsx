@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
+
 import {
   Grid,
   Card,
@@ -13,7 +14,9 @@ import {
   MenuItem,
   SelectChangeEvent,
   Container,
-  Typography
+  Typography,
+  Stack,
+  Paper
 } from '@mui/material';
 import { LocalizationProvider, DesktopDatePicker } from '@mui/x-date-pickers';
 import moment from 'moment';
@@ -23,6 +26,7 @@ import { users } from 'src/mocks/users';
 import { AppContext } from 'src/contexts/AppContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Nutrition from 'src/components/NutritionTable';
 
 type Props = {};
 interface IProfileFields {
@@ -117,9 +121,11 @@ const UserDetails = ({ mode = null }) => {
     setTabValue(newValue);
   };
 
-  React.useEffect(() => {
-    setState(selectedRow);
-  }, [selectedRow]);
+  // React.useEffect(() => {
+  //   setState(selectedRow);
+  // }, [selectedRow]);
+
+  if (!selectedRow) return null;
 
   return (
     <Grid
@@ -131,6 +137,7 @@ const UserDetails = ({ mode = null }) => {
       // width={'100%'}
       sx={{ mt: 2, mb: 4 }}
     >
+      {console.log('selectedRow', selectedRow)}
       <Container maxWidth="lg">
         <Grid
           container
@@ -381,7 +388,7 @@ const UserDetails = ({ mode = null }) => {
                     </Grid>
                   </TabPanel>
                   <TabPanel value={tabValue} index={2}>
-                    Item Three
+                    <Nutrition />
                   </TabPanel>
                 </Box>
               </CardContent>

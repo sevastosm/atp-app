@@ -55,7 +55,7 @@ export default function UserProfie() {
         spacing={3}
       >
         <Grid item xs={12}>
-          <UserDetails />
+          <UserDetails mode="edit" />
         </Grid>
       </Grid>
     </Container>

@@ -100,7 +100,7 @@ function Logo() {
   return (
     <TooltipWrapper title="ATP-app" arrow>
       <LogoWrapper to="/overview">
-        <Badge
+        {/* <Badge
           sx={{
             '.MuiBadge-badge': {
               fontSize: theme.typography.pxToRem(11),
@@ -117,7 +117,8 @@ function Logo() {
               <LogoSignInner />
             </LogoSign>
           </LogoSignWrapper>
-        </Badge>
+        </Badge> */}
+        <img src="https://static.wixstatic.com/media/6569c6_a000a731e7504f7cb9646e628d24e488~mv2.png/v1/fill/w_142,h_36,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ATP-STORE-2021-logo.png" />
       </LogoWrapper>
     </TooltipWrapper>
   );

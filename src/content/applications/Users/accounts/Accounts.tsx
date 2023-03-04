@@ -54,7 +54,7 @@ export default function Accounts() {
               <MultyTable
                 onRowClick={onRowClick}
                 data={customers}
-                title="customers"
+                title="ΠΕΛΑΤΕΣ"
                 cols={cols}
               />
             )}

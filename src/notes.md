@@ -4,3 +4,4 @@
 4 Add nutrition form ui ?
 5 Metrics nutrion as array [] if more than on swow drop down
 6 details from crud functionality
+7 mobile
