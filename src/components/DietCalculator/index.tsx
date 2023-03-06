@@ -86,52 +86,54 @@ function DietCalculator({ user }: Props) {
                     readOnly: true
                   }}
                 />
-                <div>{CAlCULATION}</div>
-                <TextField
-                  size="small"
-                  id="outlined-read-only-input"
-                  label={workoutDencity.RARE}
-                  value={rareDencity}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                />
-                <TextField
-                  size="small"
-                  id="outlined-read-only-input"
-                  label={workoutDencity.MEDIUM}
-                  value={mediumDencity}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                />
-                <TextField
-                  size="small"
-                  id="outlined-read-only-input"
-                  label={workoutDencity.INTENCE}
-                  value={intenceDencity}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                />
-                <TextField
-                  size="small"
-                  id="outlined-read-only-input"
-                  label={workoutDencity.EVERYDAY}
-                  value={evetydayDencity}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                />
-                <TextField
-                  size="small"
-                  id="outlined-read-only-input"
-                  label={workoutDencity.EVERYDAY_INTENCE}
-                  value={user.gender === 'Male' ? bmrMale : bmrFemale}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                />
+                <div>
+                  <div>{CAlCULATION}</div>
+                  <TextField
+                    size="small"
+                    id="outlined-read-only-input"
+                    label={workoutDencity.RARE}
+                    value={rareDencity}
+                    InputProps={{
+                      readOnly: true
+                    }}
+                  />
+                  <TextField
+                    size="small"
+                    id="outlined-read-only-input"
+                    label={workoutDencity.MEDIUM}
+                    value={mediumDencity}
+                    InputProps={{
+                      readOnly: true
+                    }}
+                  />
+                  <TextField
+                    size="small"
+                    id="outlined-read-only-input"
+                    label={workoutDencity.INTENCE}
+                    value={intenceDencity}
+                    InputProps={{
+                      readOnly: true
+                    }}
+                  />
+                  <TextField
+                    size="small"
+                    id="outlined-read-only-input"
+                    label={workoutDencity.EVERYDAY}
+                    value={evetydayDencity}
+                    InputProps={{
+                      readOnly: true
+                    }}
+                  />
+                  <TextField
+                    size="small"
+                    id="outlined-read-only-input"
+                    label={workoutDencity.EVERYDAY_INTENCE}
+                    value={user.gender === 'Male' ? bmrMale : bmrFemale}
+                    InputProps={{
+                      readOnly: true
+                    }}
+                  />
+                </div>
               </Grid>
             </Box>
           </CardContent>

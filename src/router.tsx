@@ -27,12 +27,12 @@ const Overview = Loader(lazy(() => import('src/content/overview')));
 
 // Applications
 
-const Messenger = Loader(
-  lazy(() => import('src/content/applications/Messenger'))
-);
-const Transactions = Loader(
-  lazy(() => import('src/content/applications/Transactions'))
-);
+// const Messenger = Loader(
+//   lazy(() => import('src/content/applications/Messenger'))
+// );
+// const Transactions = Loader(
+//   lazy(() => import('src/content/applications/Transactions'))
+// );
 // const UserProfile = Loader(
 //   lazy(() => import('src/content/applications/Users/profile'))
 // );

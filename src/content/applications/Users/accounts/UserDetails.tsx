@@ -26,7 +26,7 @@ import { users } from 'src/mocks/users';
 import { AppContext } from 'src/contexts/AppContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Nutrition from 'src/components/NutritionTable';
+import Nutrition from 'src/components/Diet';
 
 type Props = {};
 interface IProfileFields {
@@ -388,6 +388,7 @@ const UserDetails = ({ mode = null }) => {
                     </Grid>
                   </TabPanel>
                   <TabPanel value={tabValue} index={2}>
+                    <DietCalculator user={selectedRow} />
                     <Nutrition />
                   </TabPanel>
                 </Box>

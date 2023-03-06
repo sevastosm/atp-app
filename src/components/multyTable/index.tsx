@@ -23,58 +23,23 @@ export interface Data {
 
 type Order = 'asc' | 'desc';
 
-// const headCells: readonly any[] = [
-//   {
-//     id: 'name',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'name'
-//   },
-//   {
-//     id: 'surname',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'surname'
-//   },
-//   {
-//     id: 'gender',
-//     numeric: false,
-//     // disablePadding: false,
-//     label: 'gender'
-//   },
-//   {
-//     id: 'age',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'age'
-//   },
-//   {
-//     id: 'phone',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'phone'
-//   },
-//   {
-//     id: 'mobile',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'mobile'
-//   },
-//   {
-//     id: 'email',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'email'
-//   }
-// ];
+interface Iprops {
+  onRowClick?: (row: any) => void;
+  withSelect?: boolean;
+  data: any;
+  title?: string;
+  cols: { name: string; label: string }[];
+  refersTo?: string;
+}
 
 export default function MultyTable({
   onRowClick = null,
   withSelect = false,
   data,
   title,
-  cols = null
-}) {
+  cols = null,
+  refersTo = ''
+}: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -87,10 +52,10 @@ export default function MultyTable({
 
   const headCells = cols.map((col) => {
     return {
-      id: col,
+      id: col.name,
       numeric: false,
       disablePadding: false,
-      label: col
+      label: col.label
     };
   });
 
@@ -139,6 +104,10 @@ export default function MultyTable({
     setSelectedRow(row);
   };
 
+  const handleEdit = () => {
+    onRowClick(selectedRow);
+  };
+
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -154,7 +123,12 @@ export default function MultyTable({
     setDense(event.target.checked);
   };
 
-  const handleDelete = () => setData(data.filter((row) => row !== selectedRow));
+  const handleDelete = () => setData(rows.filter((row) => row !== selectedRow));
+
+  const addRecord = (newData) => {
+    console.log('newData', newData);
+    setData([...rows, newData]);
+  };
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
@@ -164,10 +138,12 @@ export default function MultyTable({
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+  console.log('DATATA', rows);
+
   return (
     <TableContext.Provider
       value={{
-        data,
+        data: rows,
         withSelect,
         search,
         page,
@@ -181,8 +157,12 @@ export default function MultyTable({
         isSelected,
         handleClick,
         handleDelete,
+        handleEdit,
         headCells,
-        excloudedFields
+        excloudedFields,
+        refersTo,
+        cols,
+        addRecord
       }}
     >
       <Container maxWidth={false} sx={{ mt: 2 }}>
@@ -213,7 +193,7 @@ export default function MultyTable({
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={data.length}
+              count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}

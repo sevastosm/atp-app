@@ -5,17 +5,17 @@ import MultyTable from 'src/components/multyTable';
 import { products } from 'src/mocks/products';
 
 const cols = [
-  'ΟΝΟΜΑ',
-  'Ανα:',
-  'Ενέργεια (kcal)',
-  'Λιπαρά (γρ.)',
-  'Κορεσμένα (γρ.)',
-  'Υδατάνθρακες (γρ.)',
-  'Σάκχαρα (γρ.)',
-  'Εδώδιμες ίνες  (γρ.)',
-  'Πρωτεϊνη (γρ.)',
-  'Αλάτι (γρ.)',
-  'Κωδικός -Κατηγοριας'
+  { name: 'name', label: 'Προιον' },
+  { name: 'by', label: 'Ανα' },
+  { name: 'energy', label: 'Ενέργεια (kcal)' },
+  { name: 'fat', label: 'Λιπαρά (kcal)' },
+  { name: 'kor_fat', label: 'Κορεσμένα (γρ.)' },
+  { name: 'cabs', label: 'Υδατάνθρακες (γρ.)' },
+  { name: 'sugar', label: 'Σάκχαρα (γρ.)' },
+  { name: 'edodomes', label: 'Εδώδιμες ίνες  (γρ.)' },
+  { name: 'protein', label: 'Πρωτεϊνη (γρ.))' },
+  { name: 'salt', label: 'Αλάτι (γρ.)' },
+  { name: 'code', label: 'Κωδικός -Κατηγοριας' }
 ];
 
 export default function Products() {
@@ -29,7 +29,7 @@ export default function Products() {
         spacing={3}
       >
         <Grid item xs={12}>
-          <MultyTable data={products} title="Nutrion List" cols={cols} />
+          <MultyTable data={products} title="Τρόφιμα" cols={cols} />
         </Grid>
       </Grid>
     </Container>

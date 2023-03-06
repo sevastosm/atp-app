@@ -15,7 +15,15 @@ interface IProfileFields {
   type?: string;
 }
 
-const cols = ['name', 'surname', 'gender', 'age', 'phone', 'mobile', 'email'];
+const cols = [
+  { name: 'name', label: 'Όνομα' },
+  { name: 'surname', label: 'Επίθετο' },
+  { name: 'gender', label: 'Φίλο' },
+  { name: 'age', label: 'Ηλικία' },
+  { name: 'phone', label: 'Τηλεφώνο' },
+  { name: 'mobile', label: 'Κινήτο' },
+  { name: 'email', label: 'Εμαιλ' }
+];
 
 export default function Accounts() {
   const { setSelectedRow, customers } = React.useContext(AppContext);
@@ -56,6 +64,7 @@ export default function Accounts() {
                 data={customers}
                 title="ΠΕΛΑΤΕΣ"
                 cols={cols}
+                refersTo={'customers'}
               />
             )}
           </Grid>

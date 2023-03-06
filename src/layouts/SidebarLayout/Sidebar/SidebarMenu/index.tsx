@@ -187,7 +187,7 @@ function SidebarMenu() {
                     </>
                   }
                 >
-                  Accounts
+                  ΠΕΛΑΤΕΣ
                 </Button>
               </ListItem>
               <ListItem component="div">
@@ -198,7 +198,7 @@ function SidebarMenu() {
                   to="/management/accounts/user"
                   startIcon={<AccountCircleTwoToneIcon />}
                 >
-                  User Profile
+                  ΠΡΟΦΙΛ ΧΡΗΣΤΗ
                 </Button>
               </ListItem>
               {/* <ListItem component="div">
@@ -219,7 +219,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Nutrition
+              ΤΡΟΦΗΜΑ
             </ListSubheader>
           }
         >
@@ -237,7 +237,7 @@ function SidebarMenu() {
                     </>
                   }
                 >
-                  Poducts
+                  ΕΙΔΗ
                 </Button>
               </ListItem>
             </List>
