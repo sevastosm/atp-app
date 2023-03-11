@@ -4,9 +4,9 @@ import TableContext from '../TableContext';
 import SaveIcon from '@mui/icons-material/Save';
 type Props = {};
 
-export default function NewRecord({}: Props) {
-  const { cols, addRecord, selectedRow } = useContext(TableContext);
-  const [value, setValue] = React.useState<any>(selectedRow);
+export default function NewRecord({ onSave, editMode }: any) {
+  const { cols, selectedRow } = useContext(TableContext);
+  const [value, setValue] = React.useState<any>(editMode ? selectedRow : '');
 
   const handleInputChange = (e) => {
     const name = e.target.name;
@@ -14,7 +14,9 @@ export default function NewRecord({}: Props) {
     setValue({ ...value, [name]: newValue });
   };
 
-  const handleSave = () => addRecord(value);
+  const handleSave = () => onSave(value);
+
+  console.log('cols', cols);
 
   return (
     <Grid>
@@ -44,7 +46,7 @@ export default function NewRecord({}: Props) {
               required
               id={col.name}
               label={col.label}
-              value={value[col.name]}
+              value={value[col?.name] || ''}
               disabled={false}
               onChange={handleInputChange}
               size="small"

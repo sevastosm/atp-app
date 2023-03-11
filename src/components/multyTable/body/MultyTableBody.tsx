@@ -81,14 +81,14 @@ rows.sort(getComparator(order, orderBy)).slice() */}
           return (
             <TableRow
               onClick={(event) => handleClick(event, row.name, row)}
-              role="checkbox"
+              // role="checkbox"
               aria-checked={isItemSelected}
               tabIndex={-1}
               key={row.name}
               selected={isItemSelected}
             >
               {withSelect && (
-                <TableCell padding="checkbox">
+                <TableCell>
                   <Checkbox
                     color="primary"
                     checked={isItemSelected}
@@ -103,7 +103,7 @@ rows.sort(getComparator(order, orderBy)).slice() */}
                 return (
                   <TableCell
                     key={i + key}
-                    component="th"
+                    // component="th"
                     id={labelId}
                     scope="row"
                   >

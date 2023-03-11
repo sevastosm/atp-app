@@ -1,3 +1,32 @@
+export const products2 = [
+  {
+    name: 'Barilla Integrale Spaghetti/Penne rigate ΟΛΙΚΗΣ ΑΛΕΣΗΣ',
+    by: '100γρ.',
+    energy: 350,
+    fat: 2.5,
+    kor_fat: 0.5,
+    cabs: 65.7,
+    sugar: 3.5,
+    edodomes: 8,
+    protein: 13,
+    salt: 0.013,
+    code: 1
+  },
+  {
+    name: 'Mellisa ΣΠΑΓΓΕΤΙ/ΛΙΓΚΟΥΪΝΙ ΟΛΙΚΗΣ ΑΛΕΣΗΣ',
+    by: '100γρ.',
+    energy: 350,
+    fat: 2.5,
+    kor_fat: 0.5,
+    cabs: 65.7,
+    sugar: 3.5,
+    edodomes: 8,
+    protein: 13,
+    salt: 0.013,
+    code: 1
+  }
+];
+
 export const products = [
   {
     name: 'Barilla Integrale Spaghetti/Penne rigate ΟΛΙΚΗΣ ΑΛΕΣΗΣ',

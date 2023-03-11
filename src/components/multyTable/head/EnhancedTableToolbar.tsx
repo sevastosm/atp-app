@@ -29,15 +29,27 @@ interface EnhancedTableToolbarProps {
   setSearch?: (string) => void;
 }
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { handleDelete, title, refersTo, handleEdit } =
+  const { handleDelete, title, refersTo, handleEdit, addRecord, editRecord } =
     useContext(TableContext);
 
   const { numSelected, setSearch } = props;
   const [open, setOpen] = useState(false);
+  const [editMode, setEditNode] = useState(false);
+
   const handleOnClose = () => setOpen(false);
+  const handleSave = (value) => {
+    if (editMode) {
+      editRecord(value);
+    } else {
+      addRecord(value);
+    }
+    handleOnClose();
+    setEditNode(false);
+  };
 
   const onEdit = () => {
     setOpen(true);
+    setEditNode(true);
     handleEdit();
   };
 
@@ -47,7 +59,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         {refersTo === 'customers' ? (
           <UserDetails mode={'add'} />
         ) : (
-          <NewRecord />
+          <NewRecord onSave={handleSave} editMode={editMode} />
         )}
       </SimpleDialog>
       <Toolbar
@@ -60,9 +72,21 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           {title}
         </Typography>
         <Box sx={{ flex: '1 1 100%', ml: 2 }}>
-          <Button onClick={() => setOpen(true)}>
+          <Button
+            onClick={() => {
+              setEditNode(false);
+              setOpen(true);
+            }}
+          >
             <AddBoxIcon fontSize="large" />
           </Button>
+          {numSelected > 0 && (
+            <Tooltip title="Edit">
+              <IconButton onClick={onEdit}>
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
+          )}
         </Box>
         {numSelected > 0 && (
           <Typography
@@ -94,11 +118,6 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
             <Tooltip title="Delete">
               <IconButton onClick={handleDelete}>
                 <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Edit">
-              <IconButton onClick={onEdit}>
-                <EditIcon />
               </IconButton>
             </Tooltip>
           </>

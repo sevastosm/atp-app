@@ -25,6 +25,7 @@ type Order = 'asc' | 'desc';
 
 interface Iprops {
   onRowClick?: (row: any) => void;
+  onDataChange?: (data: any) => void;
   withSelect?: boolean;
   data: any;
   title?: string;
@@ -33,7 +34,8 @@ interface Iprops {
 }
 
 export default function MultyTable({
-  onRowClick = null,
+  onRowClick = () => false,
+  onDataChange = () => false,
   withSelect = false,
   data,
   title,
@@ -130,6 +132,17 @@ export default function MultyTable({
     setData([...rows, newData]);
   };
 
+  const editRecord = (newData) => {
+    console.log('selectedRowData', selectedRow);
+
+    const index = rows.indexOf(selectedRow);
+
+    rows[index] = newData;
+
+    setData([...rows]);
+    setSelectedRow(null);
+  };
+
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   const excloudedFields = ['metrics'];
@@ -138,7 +151,9 @@ export default function MultyTable({
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  console.log('DATATA', rows);
+  React.useEffect(() => {
+    onDataChange(rows);
+  }, [rows]);
 
   return (
     <TableContext.Provider
@@ -162,7 +177,8 @@ export default function MultyTable({
         excloudedFields,
         refersTo,
         cols,
-        addRecord
+        addRecord,
+        editRecord
       }}
     >
       <Container maxWidth={false} sx={{ mt: 2 }}>

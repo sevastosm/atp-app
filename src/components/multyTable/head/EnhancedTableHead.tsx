@@ -74,12 +74,13 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
             />
           </TableCell>
         )}
-        {headCells.map((headCell) => (
+        {headCells.map((headCell, i) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{ minWidth: i == 0 ? 300 : 'auto' }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}

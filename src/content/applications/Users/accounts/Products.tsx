@@ -1,8 +1,9 @@
 import { Container, Grid, SelectChangeEvent } from '@mui/material';
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import MultyTable from 'src/components/multyTable';
-import { products } from 'src/mocks/products';
+import TableContext from 'src/components/multyTable/TableContext';
+import { products2 } from 'src/mocks/products';
 
 const cols = [
   { name: 'name', label: 'Προιον' },
@@ -19,6 +20,12 @@ const cols = [
 ];
 
 export default function Products() {
+  const { rows } = useContext(TableContext);
+  const getData: any = (data) => {
+    // const tableDAta = getData();
+
+    console.log('onDataChange', data);
+  };
   return (
     <Container maxWidth={false}>
       <Grid
@@ -29,7 +36,12 @@ export default function Products() {
         spacing={3}
       >
         <Grid item xs={12}>
-          <MultyTable data={products} title="Τρόφιμα" cols={cols} />
+          <MultyTable
+            data={products2}
+            title="Τρόφιμα"
+            cols={cols}
+            onDataChange={getData}
+          />
         </Grid>
       </Grid>
     </Container>
