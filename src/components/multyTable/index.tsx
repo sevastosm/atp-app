@@ -33,6 +33,8 @@ interface Iprops {
     column: string;
     values: { value: string; label: string }[];
   }[];
+  selectOpitionLabel?: string;
+  noRecordsFoundText?: string;
 }
 
 export default function MultyTable({
@@ -43,7 +45,9 @@ export default function MultyTable({
   title,
   cols = null,
   filters,
-  refersTo = ''
+  refersTo = '',
+  selectOpitionLabel = 'SELECT',
+  noRecordsFoundText = 'ΔΕΝ ΒΡΕΘΗΚΑΝ ΕΓΓΡΑΦΕΣ'
 }: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
@@ -172,7 +176,8 @@ export default function MultyTable({
         order,
         orderBy,
         emptyRows,
-        noRecordsFound: 'ΔΕΝ ΒΡΕΘΗΚΑΝ ΕΓΓΡΑΦΕΣ',
+        noRecordsFoundText,
+        selectOpitionLabel,
         dense,
         selectedRow,
         title,

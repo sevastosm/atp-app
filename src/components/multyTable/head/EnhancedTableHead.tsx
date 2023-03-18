@@ -11,29 +11,11 @@ import {
 import { visuallyHidden } from '@mui/utils';
 import TableContext from '../TableContext';
 
-interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
-}
-
-interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data;
-  label: string;
-  numeric: boolean;
-}
-
 type Order = 'asc' | 'desc';
 
 interface EnhancedTableProps {
   numSelected: number;
-  onRequestSort: (
-    event: React.MouseEvent<unknown>,
-    property: keyof Data
-  ) => void;
+  onRequestSort: (event: React.MouseEvent<unknown>, property) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
@@ -52,7 +34,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
     withSelect = false
   } = props;
   const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+    (property) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 

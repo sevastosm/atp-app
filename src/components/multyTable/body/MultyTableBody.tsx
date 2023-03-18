@@ -63,7 +63,7 @@ const MultyTableBody = () => {
     handleClick,
     excloudedFields,
     selectedFilters,
-    noRecordsFound
+    noRecordsFoundText
   } = useContext(TableContext);
 
   const fixedData = stableSort(data, getComparator(order, orderBy))
@@ -127,7 +127,7 @@ rows.sort(getComparator(order, orderBy)).slice() */}
         <TableRow>
           <TableCell>
             <Box sx={{ textAlign: 'center', width: '100%' }}>
-              {noRecordsFound}
+              {noRecordsFoundText}
             </Box>
           </TableCell>
         </TableRow>

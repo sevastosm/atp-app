@@ -1,13 +1,10 @@
-import React, { ReactEventHandler, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Toolbar,
-  alpha,
   Typography,
   Tooltip,
   IconButton,
-  Input,
   FormControl,
-  InputLabel,
   OutlinedInput,
   Divider,
   Button
@@ -100,16 +97,6 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           )}
           <Filters />
         </Box>
-        {/* {numSelected > 0 && (
-          <Typography
-            sx={{ flex: '1 1 100%', ml: 2 }}
-            color="inherit"
-            variant="subtitle1"
-            component="div"
-          >
-            {numSelected} selected
-          </Typography>
-        )} */}
         <FormControl sx={{ m: 1, minWidth: 300 }}>
           {/* <InputLabel htmlFor="searcht">{search}</InputLabel> */}
           <OutlinedInput

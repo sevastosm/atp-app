@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { Grid, Box, TextField, Button } from '@mui/material';
 import TableContext from '../TableContext';
 import SaveIcon from '@mui/icons-material/Save';
-type Props = {};
+type Props = any;
 
-export default function NewRecord({ onSave, editMode }: any) {
+export default function NewRecord({ onSave, editMode }: Props) {
   const { cols, selectedRow } = useContext(TableContext);
   const [value, setValue] = React.useState<any>(editMode ? selectedRow : '');
   const [viewSave, setViewSave] = React.useState<any>(false);
@@ -20,10 +20,6 @@ export default function NewRecord({ onSave, editMode }: any) {
 
   return (
     <Grid>
-      {/* <Card>
-    <CardHeader title={TITLE} />
-    <Divider />
-    <CardContent> */}
       <Box
         component="form"
         sx={{

@@ -3,7 +3,6 @@ import {
   FormControl,
   Select,
   MenuItem,
-  FormHelperText,
   Box,
   InputLabel
 } from '@mui/material';
@@ -13,7 +12,8 @@ import TableContext from '../TableContext';
 type Props = {};
 
 const Filters = (props: Props) => {
-  const { setFilters, filters } = React.useContext(TableContext);
+  const { setFilters, filters, selectOpitionLabel } =
+    React.useContext(TableContext);
   console.log(filters);
 
   const [value, setValue] = React.useState('0');
@@ -37,7 +37,7 @@ const Filters = (props: Props) => {
               displayEmpty
               inputProps={{ 'aria-label': 'Without label' }}
             >
-              <MenuItem value="0">SELECT</MenuItem>
+              <MenuItem value="0">{selectOpitionLabel}</MenuItem>
               {filter.values.map((item, i) => (
                 <MenuItem key={i} value={item.value}>
                   {item.label}
