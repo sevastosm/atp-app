@@ -67,8 +67,10 @@ const MultyTableBody = () => {
   } = useContext(TableContext);
 
   const fixedData = stableSort(data, getComparator(order, orderBy))
-    .filter((row: any) =>
-      row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    .filter(
+      (row: any) =>
+        row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+        row.mobile.toLocaleLowerCase().includes(search.toLocaleLowerCase())
     )
     // TO DO add more than one filter
     .filter((row: any) => {

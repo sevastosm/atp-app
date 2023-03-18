@@ -170,10 +170,6 @@ const UserDetails = ({ mode = '' }) => {
                   <TabPanel value={tabValue} index={0}>
                     <>
                       <Grid>
-                        {/* <Card>
-                          <CardHeader title={TITLE} />
-                          <Divider />
-                          <CardContent> */}
                         <Box
                           component="form"
                           sx={{
@@ -196,7 +192,7 @@ const UserDetails = ({ mode = '' }) => {
                                 required
                                 id={field.name}
                                 label={field.label}
-                                value={
+                                defaultValue={
                                   mode === 'edit' ? selectedRow[field.name] : ''
                                 }
                                 disabled={false}
