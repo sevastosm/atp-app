@@ -66,6 +66,7 @@ const MultyTableBody = () => {
     noRecordsFoundText
   } = useContext(TableContext);
 
+  // TO DO dynamic search options
   const fixedData = stableSort(data, getComparator(order, orderBy))
     .filter(
       (row: any) =>
