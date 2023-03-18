@@ -3,10 +3,14 @@ import moment from 'moment';
 import React, { useContext, useState } from 'react';
 import MultyTable from 'src/components/multyTable';
 import TableContext from 'src/components/multyTable/TableContext';
-import { products2 } from 'src/mocks/products';
+import {
+  productFilters,
+  products2,
+  productCategories
+} from 'src/mocks/products';
 
 const cols = [
-  { name: 'name', label: 'Προιον' },
+  { name: 'name', label: 'Προιον', width: '300' },
   { name: 'by', label: 'Ανα' },
   { name: 'energy', label: 'Ενέργεια (kcal)' },
   { name: 'fat', label: 'Λιπαρά (kcal)' },
@@ -18,6 +22,25 @@ const cols = [
   { name: 'salt', label: 'Αλάτι (γρ.)' },
   { name: 'code', label: 'Κωδικός -Κατηγοριας' }
 ];
+
+const getCategoryName = (data) =>
+  productCategories.find((p) => p.value === data);
+
+const data = products2.map((p) => {
+  return { ...p, code: getCategoryName(p.code)?.label };
+});
+
+const filters = [
+  {
+    name: 'ΚΑΤΗΓΟΡΙΕΣ',
+    column: 'code',
+    values: productCategories.map((p) => {
+      return { ...p, value: p.label };
+    })
+  }
+];
+
+console.log('DATA', data);
 
 export default function Products() {
   const { rows } = useContext(TableContext);
@@ -37,10 +60,11 @@ export default function Products() {
       >
         <Grid item xs={12}>
           <MultyTable
-            data={products2}
-            title="Τρόφιμα"
+            data={data}
+            title="ΤΡΟΦΙΜΑ"
             cols={cols}
             onDataChange={getData}
+            filters={filters}
           />
         </Grid>
       </Grid>

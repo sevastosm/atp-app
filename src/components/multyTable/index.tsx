@@ -4,14 +4,11 @@ import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import EnhancedTableHead from './head/EnhancedTableHead';
 import EnhancedTableToolbar from './head/EnhancedTableToolbar';
 import { Container } from '@mui/material';
 import TableContext from './TableContext';
 import MultyTableBody from './body/MultyTableBody';
-import { users } from 'src/mocks/users';
 
 export interface Data {
   calories: number;
@@ -29,8 +26,13 @@ interface Iprops {
   withSelect?: boolean;
   data: any;
   title?: string;
-  cols: { name: string; label: string }[];
+  cols: { name: string; label: string; width?: string }[];
   refersTo?: string;
+  filters?: {
+    name: string;
+    column: string;
+    values: { value: string; label: string }[];
+  }[];
 }
 
 export default function MultyTable({
@@ -40,6 +42,7 @@ export default function MultyTable({
   data,
   title,
   cols = null,
+  filters,
   refersTo = ''
 }: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
@@ -50,6 +53,8 @@ export default function MultyTable({
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [selectedRow, setSelectedRow] = React.useState(null);
+  const [selectedFilters, setFilters] = React.useState(null);
+
   const [rows, setData] = React.useState(data);
 
   const headCells = cols.map((col) => {
@@ -57,7 +62,8 @@ export default function MultyTable({
       id: col.name,
       numeric: false,
       disablePadding: false,
-      label: col.label
+      label: col.label,
+      width: col?.width
     };
   });
 
@@ -166,6 +172,7 @@ export default function MultyTable({
         order,
         orderBy,
         emptyRows,
+        noRecordsFound: 'ΔΕΝ ΒΡΕΘΗΚΑΝ ΕΓΓΡΑΦΕΣ',
         dense,
         selectedRow,
         title,
@@ -177,8 +184,11 @@ export default function MultyTable({
         excloudedFields,
         refersTo,
         cols,
+        filters,
+        setFilters,
         addRecord,
-        editRecord
+        editRecord,
+        selectedFilters
       }}
     >
       <Container maxWidth={false} sx={{ mt: 2 }}>

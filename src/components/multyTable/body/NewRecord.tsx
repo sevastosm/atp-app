@@ -7,16 +7,16 @@ type Props = {};
 export default function NewRecord({ onSave, editMode }: any) {
   const { cols, selectedRow } = useContext(TableContext);
   const [value, setValue] = React.useState<any>(editMode ? selectedRow : '');
+  const [viewSave, setViewSave] = React.useState<any>(false);
 
   const handleInputChange = (e) => {
     const name = e.target.name;
     const newValue = e.target.value;
     setValue({ ...value, [name]: newValue });
+    setViewSave(true);
   };
 
   const handleSave = () => onSave(value);
-
-  console.log('cols', cols);
 
   return (
     <Grid>
@@ -53,9 +53,11 @@ export default function NewRecord({ onSave, editMode }: any) {
             />
           ))}
         </Grid>
-        <Button onClick={handleSave}>
-          <SaveIcon fontSize="large" />
-        </Button>
+        {viewSave && (
+          <Button onClick={handleSave}>
+            <SaveIcon fontSize="large" />
+          </Button>
+        )}
       </Box>
     </Grid>
   );

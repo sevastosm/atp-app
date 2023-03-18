@@ -18,7 +18,7 @@ import {
   Box
 } from '@mui/material';
 import { User } from 'src/models/user';
-import { AppContext } from 'src/contexts/AppContext';
+import { AppContext } from 'src/context/AppContext';
 import React from 'react';
 
 type Props = { user: User };

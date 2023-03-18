@@ -21,13 +21,17 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Box } from '@mui/system';
 import SimpleDialog from '../../general/SimpleDialog';
 import TableContext from '../TableContext';
-import UserDetails from 'src/content/applications/Users/accounts/UserDetails';
+import UserDetails from 'src/content/applications/Users/accounts/userDetails/UserDetails';
 import NewRecord from '../body/NewRecord';
+import Filters from './Filters';
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
   setSearch?: (string) => void;
 }
+
+const search = 'ΑΝΑΖΗΤΗΣΗ';
+
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const { handleDelete, title, refersTo, handleEdit, addRecord, editRecord } =
     useContext(TableContext);
@@ -57,7 +61,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     <>
       <SimpleDialog open={open} onClose={handleOnClose}>
         {refersTo === 'customers' ? (
-          <UserDetails mode={'add'} />
+          <UserDetails mode={editMode ? 'edit' : 'add'} />
         ) : (
           <NewRecord onSave={handleSave} editMode={editMode} />
         )}
@@ -68,10 +72,17 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           pr: { xs: 1, sm: 1 }
         }}
       >
-        <Typography sx={{ ml: 2 }} variant="h6" id="tableTitle" component="div">
-          {title}
-        </Typography>
-        <Box sx={{ flex: '1 1 100%', ml: 2 }}>
+        <Box
+          sx={{ display: 'flex', ml: 2, alignItems: 'center', flexGrow: '1' }}
+        >
+          <Typography
+            sx={{ fontWeight: 'bold' }}
+            variant="h6"
+            id="tableTitle"
+            component="div"
+          >
+            {title}
+          </Typography>
           <Button
             onClick={() => {
               setEditNode(false);
@@ -87,8 +98,9 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
               </IconButton>
             </Tooltip>
           )}
+          <Filters />
         </Box>
-        {numSelected > 0 && (
+        {/* {numSelected > 0 && (
           <Typography
             sx={{ flex: '1 1 100%', ml: 2 }}
             color="inherit"
@@ -97,20 +109,18 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           >
             {numSelected} selected
           </Typography>
-        )}
+        )} */}
         <FormControl sx={{ m: 1, minWidth: 300 }}>
-          <InputLabel htmlFor="searcht">Search</InputLabel>
+          {/* <InputLabel htmlFor="searcht">{search}</InputLabel> */}
           <OutlinedInput
             id="search"
-            // value={values.amount}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search"
+            placeholder={search}
             startAdornment={
               <InputAdornment position="start">
                 <SearchIcon />
               </InputAdornment>
             }
-            label="Amount"
           />
         </FormControl>
         {numSelected > 0 ? (

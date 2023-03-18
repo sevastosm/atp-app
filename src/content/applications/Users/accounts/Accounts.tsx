@@ -1,50 +1,26 @@
-import React, { useState } from 'react';
-import { Container, Grid, SelectChangeEvent } from '@mui/material';
-import moment from 'moment';
-import UserDetails from './UserDetails';
+import React from 'react';
+import { Container, Grid } from '@mui/material';
+import UserDetails from './userDetails/UserDetails';
 import MultyTable from 'src/components/multyTable';
-import { AppBlockingTwoTone } from '@mui/icons-material';
-import { AppContext } from 'src/contexts/AppContext';
+import { AppContext } from 'src/context/AppContext';
 import SimpleDialog from 'src/components/general/SimpleDialog';
 
-type Props = {};
-
-interface IProfileFields {
-  name: string;
-  label: string;
-  type?: string;
-}
-
 const cols = [
-  { name: 'name', label: 'Όνομα' },
-  { name: 'surname', label: 'Επίθετο' },
-  { name: 'gender', label: 'Φίλο' },
-  { name: 'age', label: 'Ηλικία' },
-  { name: 'phone', label: 'Τηλεφώνο' },
-  { name: 'mobile', label: 'Κινήτο' },
-  { name: 'email', label: 'Εμαιλ' }
+  { name: 'name', label: 'ΟΝΟΜΑ' },
+  { name: 'surname', label: 'ΕΠΙΘΕΤΟ' },
+  { name: 'gender', label: 'ΦΙΛΟ' },
+  { name: 'age', label: 'ΗΛΙΚΙΑ' },
+  { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
+  { name: 'mobile', label: 'ΚΙΝΗΤΟ', width: '75' },
+  { name: 'email', label: 'EMAIL' }
 ];
 
 export default function Accounts() {
   const { setSelectedRow, customers } = React.useContext(AppContext);
-  const [state, setState] = useState({});
-  const handleInputChange = (e) => console.log(e);
-  const [value, setValue] = React.useState<any | null>(moment(new Date()));
-
-  const handleChange = (newValue: any | null) => {
-    setValue(newValue);
-  };
-
-  const [selectValue, setSelectValue] = React.useState('');
   const [viewDetails, setViewDetails] = React.useState(false);
-
-  const handleSelectChange = (event: SelectChangeEvent) => {
-    setSelectValue(event.target.value as string);
-  };
 
   const onRowClick = (row) => {
     setSelectedRow(row);
-    setViewDetails(true);
   };
 
   return (

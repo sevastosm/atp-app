@@ -4,9 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import 'nprogress/nprogress.css';
 import App from 'src/App';
-import { SidebarProvider } from 'src/contexts/SidebarContext';
+import { SidebarProvider } from 'src/context/SidebarContext';
 import * as serviceWorker from 'src/serviceWorker';
-import { AppContextProvider } from './contexts/AppContext';
+import { AppContextProvider } from './context/AppContext';
 
 ReactDOM.render(
   <HelmetProvider>

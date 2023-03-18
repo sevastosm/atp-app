@@ -1,3 +1,30 @@
+export const productCategories =  [
+      { value: '1', label: 'ΖΥΜΑΡΙΚΑ' },
+      { value: '2', label: 'ΟΣΠΡΙΑ' },
+      { value: '3', label: 'ΡΥΖΙ' },
+      { value: '4', label: 'ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ' },
+      { value: '5', label: 'ΚΡΕΑΣ-ΨΑΡΙΑ-ΘΑΛΣΣΙΝΑ' },
+      { value: '6', label: 'ΑΛΛΑΝΤΙΚΑ' },
+      { value: '7', label: 'ΤΥΡΙΑ' },
+      { value: '8', label: 'ΔΗΜΗΤΡΙΑΚΑ' },
+      { value: '9', label: 'ΣΙΤΗΡΑ' },
+      { value: '10', label: 'ΣΝΑΚΣ' },
+      { value: '11', label: 'ΦΡΟΥΤΑ' },
+      { value: '12', label: 'ΛΑΧΑΝΚΙΑ' },
+      { value: '13', label: 'ΣΥΜΠΛΗΡΩΜΑΤΑ' }
+    ]
+ 
+
+
+export const productFilters = [
+  {
+    name: 'ΚΑΤΗΓΟΡΙΕΣ',
+    column: 'code',
+    values: productCategories
+  }
+];
+
+
 export const products2 = [
   {
     name: 'Barilla Integrale Spaghetti/Penne rigate ΟΛΙΚΗΣ ΑΛΕΣΗΣ',
@@ -10,10 +37,10 @@ export const products2 = [
     edodomes: 8,
     protein: 13,
     salt: 0.013,
-    code: 1
+    code: "1"
   },
   {
-    name: 'Mellisa ΣΠΑΓΓΕΤΙ/ΛΙΓΚΟΥΪΝΙ ΟΛΙΚΗΣ ΑΛΕΣΗΣ',
+    name: 'Mellisa ΣΠΑΓΓΕΤΙ/ΛΙΓΚΟΥΪΝΙ ΟΛΙΚΗΣ ΑΛΕΣΗΣ  33333',
     by: '100γρ.',
     energy: 350,
     fat: 2.5,
@@ -23,7 +50,33 @@ export const products2 = [
     edodomes: 8,
     protein: 13,
     salt: 0.013,
-    code: 1
+    code: "1"
+  },
+    {
+    name: 'Mellisa ΣΠΑΓΓΕΤΙ/ΛΙΓΚΟΥΪΝΙ sdf',
+    by: '100γρ.',
+    energy: 350,
+    fat: 2.5,
+    kor_fat: 0.5,
+    cabs: 65.7,
+    sugar: 3.5,
+    edodomes: 8,
+    protein: 13,
+    salt: 0.013,
+    code: "6"
+  },
+    {
+    name: 'Mellisa 4',
+    by: '100γρ.',
+    energy: 350,
+    fat: 2.5,
+    kor_fat: 0.5,
+    cabs: 65.7,
+    sugar: 3.5,
+    edodomes: 8,
+    protein: 13,
+    salt: 0.013,
+    code: "4"
   }
 ];
 

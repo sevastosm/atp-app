@@ -45,26 +45,26 @@ const Overview = Loader(lazy(() => import('src/content/overview')));
 
 // Components
 
-const Buttons = Loader(
-  lazy(() => import('src/content/pages/Components/Buttons'))
-);
-const Modals = Loader(
-  lazy(() => import('src/content/pages/Components/Modals'))
-);
-const Accordions = Loader(
-  lazy(() => import('src/content/pages/Components/Accordions'))
-);
-const Badges = Loader(
-  lazy(() => import('src/content/pages/Components/Badges'))
-);
-const Tooltips = Loader(
-  lazy(() => import('src/content/pages/Components/Tooltips'))
-);
-const Avatars = Loader(
-  lazy(() => import('src/content/pages/Components/Avatars'))
-);
-const Cards = Loader(lazy(() => import('src/content/pages/Components/Cards')));
-const Forms = Loader(lazy(() => import('src/content/pages/Components/Forms')));
+// const Buttons = Loader(
+//   lazy(() => import('src/content/pages/Components/Buttons'))
+// );
+// const Modals = Loader(
+//   lazy(() => import('src/content/pages/Components/Modals'))
+// );
+// const Accordions = Loader(
+//   lazy(() => import('src/content/pages/Components/Accordions'))
+// );
+// const Badges = Loader(
+//   lazy(() => import('src/content/pages/Components/Badges'))
+// );
+// const Tooltips = Loader(
+//   lazy(() => import('src/content/pages/Components/Tooltips'))
+// );
+// const Avatars = Loader(
+//   lazy(() => import('src/content/pages/Components/Avatars'))
+// );
+// const Cards = Loader(lazy(() => import('src/content/pages/Components/Cards')));
+// const Forms = Loader(lazy(() => import('src/content/pages/Components/Forms')));
 
 // Status
 

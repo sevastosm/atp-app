@@ -19,7 +19,7 @@ import moment from 'moment';
 import { string } from 'prop-types';
 import React, { useState } from 'react';
 import { User } from 'src/models/user';
-import UserDetails from './UserDetails';
+import UserDetails from './userDetails/UserDetails';
 import MultyTable from 'src/components/multyTable';
 
 type Props = {};

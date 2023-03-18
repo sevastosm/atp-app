@@ -10,7 +10,7 @@ import {
   ListItem
 } from '@mui/material';
 import { NavLink as RouterLink } from 'react-router-dom';
-import { SidebarContext } from 'src/contexts/SidebarContext';
+import { SidebarContext } from 'src/context/SidebarContext';
 
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
@@ -237,7 +237,7 @@ function SidebarMenu() {
                     </>
                   }
                 >
-                  ΕΙΔΗ
+                  ΤΡΟΦΙΜΑ
                 </Button>
               </ListItem>
             </List>

@@ -23,10 +23,11 @@ import moment from 'moment';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import DietCalculator from 'src/components/DietCalculator';
 import { users } from 'src/mocks/users';
-import { AppContext } from 'src/contexts/AppContext';
+import { AppContext } from 'src/context/AppContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Nutrition from 'src/components/Diet';
+import Notes from './Notes';
 
 type Props = {};
 interface IProfileFields {
@@ -99,8 +100,9 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const UserDetails = ({ mode = null }) => {
+const UserDetails = ({ mode = '' }) => {
   const { selectedRow } = React.useContext(AppContext);
+  console.log('selectedRow', selectedRow);
 
   const [state, setState] = useState<any>({});
   const handleInputChange = (e) => console.log(e);
@@ -124,8 +126,8 @@ const UserDetails = ({ mode = null }) => {
   // React.useEffect(() => {
   //   setState(selectedRow);
   // }, [selectedRow]);
-
-  if (!selectedRow) return null;
+  console.log(mode);
+  if (!selectedRow && mode !== 'add') return null;
 
   return (
     <Grid
@@ -137,7 +139,6 @@ const UserDetails = ({ mode = null }) => {
       // width={'100%'}
       sx={{ mt: 2, mb: 4 }}
     >
-      {console.log('selectedRow', selectedRow)}
       <Container maxWidth="lg">
         <Grid
           container
@@ -390,6 +391,9 @@ const UserDetails = ({ mode = null }) => {
                   <TabPanel value={tabValue} index={2}>
                     <DietCalculator user={selectedRow} />
                     <Nutrition />
+                  </TabPanel>
+                  <TabPanel value={tabValue} index={3}>
+                    <Notes />
                   </TabPanel>
                 </Box>
               </CardContent>

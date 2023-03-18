@@ -1,5 +1,4 @@
-import { TableBody, TableRow, TableCell, Checkbox } from '@mui/material';
-import { object } from 'prop-types';
+import { TableBody, TableRow, TableCell, Checkbox, Box } from '@mui/material';
 import React, { useContext } from 'react';
 import TableContext from '../TableContext';
 
@@ -63,64 +62,74 @@ const MultyTableBody = () => {
     isSelected,
     handleClick,
     excloudedFields,
-    handleDelete
+    selectedFilters,
+    noRecordsFound
   } = useContext(TableContext);
+
+  const fixedData = stableSort(data, getComparator(order, orderBy))
+    .filter((row: any) =>
+      row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    )
+    // TO DO add more than one filter
+    .filter((row: any) => {
+      if (!selectedFilters || selectedFilters.value === '0') return row;
+      return row[selectedFilters?.filter] === selectedFilters.value;
+    })
+    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
+  console.log('selectedFilters', selectedFilters);
   return (
     <TableBody>
       {/* if you don't need to support IE11, you can replace the `stableSort` call with:
 rows.sort(getComparator(order, orderBy)).slice() */}
-      {stableSort(data, getComparator(order, orderBy))
-        .filter((row: any) =>
-          row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-        )
-        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-        .map((row: any, index) => {
-          const isItemSelected = isSelected(row.name);
-          const labelId = `enhanced-table-checkbox-${index}`;
+      {fixedData.map((row: any, index) => {
+        console.log('row', data);
+        const isItemSelected = isSelected(row.name);
+        const labelId = `enhanced-table-checkbox-${index}`;
 
-          return (
-            <TableRow
-              onClick={(event) => handleClick(event, row.name, row)}
-              // role="checkbox"
-              aria-checked={isItemSelected}
-              tabIndex={-1}
-              key={row.name}
-              selected={isItemSelected}
-            >
-              {withSelect && (
-                <TableCell>
-                  <Checkbox
-                    color="primary"
-                    checked={isItemSelected}
-                    inputProps={{
-                      'aria-labelledby': labelId
-                    }}
-                  />
+        return (
+          <TableRow
+            onClick={(event) => handleClick(event, row.name, row)}
+            // role="checkbox"
+            aria-checked={isItemSelected}
+            tabIndex={-1}
+            key={row.name}
+            selected={isItemSelected}
+          >
+            {withSelect && (
+              <TableCell>
+                <Checkbox
+                  color="primary"
+                  checked={isItemSelected}
+                  inputProps={{
+                    'aria-labelledby': labelId
+                  }}
+                />
+              </TableCell>
+            )}
+            {Object.keys(row).map((key, i) => {
+              if (excloudedFields.includes(key)) return;
+              return (
+                <TableCell
+                  key={i + key}
+                  // component="th"
+                  id={labelId}
+                  scope="row"
+                >
+                  {row[key]}
                 </TableCell>
-              )}
-              {Object.keys(row).map((key, i) => {
-                if (excloudedFields.includes(key)) return;
-                return (
-                  <TableCell
-                    key={i + key}
-                    // component="th"
-                    id={labelId}
-                    scope="row"
-                  >
-                    {row[key]}
-                  </TableCell>
-                );
-              })}
-            </TableRow>
-          );
-        })}
-      {emptyRows > 0 && (
-        <TableRow
-          style={{
-            height: (dense ? 33 : 53) * emptyRows
-          }}
-        >
-          <TableCell colSpan={6} />
+              );
+            })}
+          </TableRow>
+        );
+      })}
+      {!fixedData.length && (
+        <TableRow>
+          <TableCell>
+            <Box sx={{ textAlign: 'center', width: '100%' }}>
+              {noRecordsFound}
+            </Box>
+          </TableCell>
         </TableRow>
       )}
     </TableBody>
