@@ -9,7 +9,8 @@ export const users: User[] = [
     phone: '345 616 8442',
     mobile: '536 981 2887',
     email: 'mdewire0@myspace.com',
-    metrics: {
+    appointments:[],
+    metrics: [{
       weight: 72,
       height: 168,
       date: '23/8/2022',
@@ -27,7 +28,7 @@ export const users: User[] = [
       pelvis: 98.2,
       thigh: 44.2,
       calves: 98.8
-    }
+    }]
   },
   {
     name: 'Duky',
@@ -37,7 +38,7 @@ export const users: User[] = [
     phone: '802 372 5345',
     mobile: '282 895 3446',
     email: 'dorbine1@canalblog.com',
-    metrics: {
+    metrics: [{
       weight: 78,
       height: 150,
       date: '14/4/2022',
@@ -55,7 +56,7 @@ export const users: User[] = [
       pelvis: 34.0,
       thigh: 14.1,
       calves: 44.9
-    }
+    }]
   },
   {
     name: 'Valerie',
@@ -65,7 +66,7 @@ export const users: User[] = [
     phone: '922 201 1450',
     mobile: '220 741 6707',
     email: 'vbranton2@craigslist.org',
-    metrics: {
+    metrics: [{
       weight: 126,
       height: 155,
       date: '30/7/2022',
@@ -83,7 +84,7 @@ export const users: User[] = [
       pelvis: 45.1,
       thigh: 29.8,
       calves: 50.7
-    }
+    }]
   },
   {
     name: 'Dannye',
@@ -93,7 +94,7 @@ export const users: User[] = [
     phone: '930 862 5857',
     mobile: '209 278 0174',
     email: 'dpoad3@hugedomains.com',
-    metrics: {
+    metrics: [{
       weight: 45,
       height: 199,
       date: '5/2/2022',
@@ -111,7 +112,7 @@ export const users: User[] = [
       pelvis: 29.7,
       thigh: 3.6,
       calves: 9.0
-    }
+    }]
   },
   {
     name: 'Willard',
@@ -121,7 +122,7 @@ export const users: User[] = [
     phone: '198 699 7598',
     mobile: '592 396 1758',
     email: 'wronisch4@hexun.com',
-    metrics: {
+    metrics: [{
       weight: 77,
       height: 185,
       date: '6/12/2022',
@@ -139,7 +140,7 @@ export const users: User[] = [
       pelvis: 29.4,
       thigh: 32.3,
       calves: 70.2
-    }
+    }]
   },
   {
     name: 'Josephina',
@@ -149,7 +150,7 @@ export const users: User[] = [
     phone: '974 523 9998',
     mobile: '518 983 0844',
     email: 'jbrunsen5@ucoz.ru',
-    metrics: {
+    metrics: [{
       weight: 93,
       height: 195,
       date: '6/12/2022',
@@ -167,118 +168,6 @@ export const users: User[] = [
       pelvis: 54.2,
       thigh: 44.8,
       calves: 28.2
-    }
+    }]
   },
-  {
-    name: 'Waverley',
-    surname: 'Speck',
-    gender: 'Male',
-    age: 16,
-    phone: '115 272 6937',
-    mobile: '920 437 8454',
-    email: 'wspeck6@miitbeian.gov.cn',
-    metrics: {
-      weight: 173,
-      height: 154,
-      date: '13/8/2022',
-      bmi: 27.5,
-      bodyFat: 38.5,
-      metabolicAge: 39,
-      boneMass: 38.1,
-      nonFatMass: 92.5,
-      vf: 43.6,
-      bodyWater: 36.6,
-      biseps: 44.5,
-      chest: 77.4,
-      waist: 2.6,
-      belly: 17.7,
-      pelvis: 71.2,
-      thigh: 44.5,
-      calves: 19.4
-    }
-  },
-  {
-    name: 'Otho',
-    surname: 'Latham',
-    gender: 'Male',
-    age: 90,
-    phone: '826 127 4909',
-    mobile: '360 268 7964',
-    email: 'olatham7@deliciousdays.com',
-    metrics: {
-      weight: 141,
-      height: 150,
-      date: '1/6/2022',
-      bmi: 6.0,
-      bodyFat: 18.3,
-      metabolicAge: 11,
-      boneMass: 22.7,
-      nonFatMass: 94.1,
-      vf: 36.2,
-      bodyWater: 17.9,
-      biseps: 90.5,
-      chest: 56.9,
-      waist: 96.8,
-      belly: 53.2,
-      pelvis: 27.3,
-      thigh: 79.9,
-      calves: 60.6
-    }
-  },
-  {
-    name: 'Hurlee',
-    surname: 'Cursey',
-    gender: 'Male',
-    age: 91,
-    phone: '450 283 0550',
-    mobile: '771 958 4644',
-    email: 'hcursey8@scientificamerican.com',
-    metrics: {
-      weight: 133,
-      height: 189,
-      date: '4/4/2022',
-      bmi: 6.4,
-      bodyFat: 58.5,
-      metabolicAge: 25,
-      boneMass: 12.8,
-      nonFatMass: 93.6,
-      vf: 13.3,
-      bodyWater: 14.6,
-      biseps: 8.3,
-      chest: 69.7,
-      waist: 38.2,
-      belly: 30.5,
-      pelvis: 72.7,
-      thigh: 77.3,
-      calves: 16.3
-    }
-  },
-  {
-    name: 'Byran',
-    surname: 'Bentke',
-    gender: 'Male',
-    age: 85,
-    phone: '731 641 2848',
-    mobile: '911 191 5389',
-    email: 'bbentke9@macromedia.com',
-    metrics: {
-      weight: 48,
-      height: 184,
-      date: '8/12/2022',
-      bmi: 35.7,
-      bodyFat: 38.8,
-      metabolicAge: 77,
-      boneMass: 24.7,
-      nonFatMass: 57.4,
-      vf: 38.5,
-      bodyWater: 41.7,
-      biseps: 35.6,
-      chest: 14.6,
-      waist: 49.4,
-      belly: 65.9,
-      pelvis: 37.3,
-      thigh: 31.0,
-      calves: 46.5
-    }
-  }
 ];

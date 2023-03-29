@@ -21,6 +21,7 @@ import TableContext from '../TableContext';
 import UserDetails from 'src/content/applications/Users/accounts/userDetails/UserDetails';
 import NewRecord from '../body/NewRecord';
 import Filters from './Filters';
+import DeleteDialog from './DeleteDialog';
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
@@ -35,6 +36,8 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
   const { numSelected, setSearch } = props;
   const [open, setOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
   const [editMode, setEditNode] = useState(false);
 
   const handleOnClose = () => setOpen(false);
@@ -48,6 +51,10 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     setEditNode(false);
   };
 
+  const onDelete = () => {
+    setDeleteOpen(true);
+  };
+
   const onEdit = () => {
     setOpen(true);
     setEditNode(true);
@@ -56,6 +63,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
   return (
     <>
+      <DeleteDialog open={deleteOpen} setDeleteOpen={setDeleteOpen} />
       <SimpleDialog open={open} onClose={handleOnClose}>
         {refersTo === 'customers' ? (
           <UserDetails mode={editMode ? 'edit' : 'add'} />
@@ -113,7 +121,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         {numSelected > 0 ? (
           <>
             <Tooltip title="Delete">
-              <IconButton onClick={handleDelete}>
+              <IconButton onClick={onDelete}>
                 <DeleteIcon />
               </IconButton>
             </Tooltip>

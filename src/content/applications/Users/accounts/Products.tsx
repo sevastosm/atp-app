@@ -10,7 +10,7 @@ import {
 } from 'src/mocks/products';
 
 const cols = [
-  { name: 'name', label: 'Προιον', width: '300' },
+  { name: 'name', label: 'Προιον', width: '300', required: true },
   { name: 'by', label: 'Ανα' },
   { name: 'energy', label: 'Ενέργεια (kcal)' },
   { name: 'fat', label: 'Λιπαρά (kcal)' },
@@ -20,7 +20,7 @@ const cols = [
   { name: 'edodomes', label: 'Εδώδιμες ίνες  (γρ.)' },
   { name: 'protein', label: 'Πρωτεϊνη (γρ.))' },
   { name: 'salt', label: 'Αλάτι (γρ.)' },
-  { name: 'code', label: 'Κωδικός -Κατηγοριας' }
+  { name: 'code', label: 'Κωδικός -Κατηγοριας', required: true }
 ];
 
 const getCategoryName = (data) =>

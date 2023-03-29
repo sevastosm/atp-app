@@ -17,25 +17,26 @@ import {
   TextField,
   Box
 } from '@mui/material';
-import { User } from 'src/models/user';
+// import { User } from 'src/models/user';
 import { AppContext } from 'src/context/AppContext';
 import React from 'react';
 
-type Props = { user: User };
+type Props = { user };
 
-const bmrMaleTEst = (66 + 13.7 * 78 + 5 * 184 - 6.8 * 38).toFixed(1);
+//const bmrMaleTEst = (66 + 13.7 * 78 + 5 * 184 - 6.8 * 38).toFixed(1);
 
 function DietCalculator({ user }: Props) {
+  if (!user?.metrics) return null;
   const bmrMale = (
     66 +
-    13.7 * user.metrics.weight +
-    5 * user.metrics.height -
+    13.7 * user.metrics[0].weight +
+    5 * user.metrics[0].height -
     6.8 * user.age
   ).toFixed(1);
   const bmrFemale = (
     655 +
-    9.6 * user.metrics.height +
-    1.8 * user.metrics.weight -
+    9.6 * user.metrics[0].height +
+    1.8 * user.metrics[0].weight -
     4.7 * user.age
   ).toFixed(1);
 
@@ -128,7 +129,7 @@ function DietCalculator({ user }: Props) {
                     size="small"
                     id="outlined-read-only-input"
                     label={workoutDencity.EVERYDAY_INTENCE}
-                    value={user.gender === 'Male' ? bmrMale : bmrFemale}
+                    value={evetydayIntenceDencity}
                     InputProps={{
                       readOnly: true
                     }}

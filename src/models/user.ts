@@ -6,7 +6,8 @@ export interface User {
   phone: string;
   mobile: string;
   email: string;
-  metrics?: Metrics;
+  metrics?: Metrics[]
+  appointments?:[]
 }
 
 export interface Metrics {

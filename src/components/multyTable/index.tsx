@@ -35,6 +35,9 @@ interface Iprops {
   }[];
   selectOpitionLabel?: string;
   noRecordsFoundText?: string;
+  deleteWarningMessage?: string;
+  requredFiledsMessage?: string;
+  newRecordTitle?: string;
 }
 
 export default function MultyTable({
@@ -47,7 +50,10 @@ export default function MultyTable({
   filters,
   refersTo = '',
   selectOpitionLabel = 'SELECT',
-  noRecordsFoundText = 'ΔΕΝ ΒΡΕΘΗΚΑΝ ΕΓΓΡΑΦΕΣ'
+  noRecordsFoundText = 'ΔΕΝ ΒΡΕΘΗΚΑΝ ΕΓΓΡΑΦΕΣ',
+  deleteWarningMessage = 'ΘΕΛΕΤΕ ΝΑ ΓΙΝΕΙ ΔΙΑΓΡΑΦΗ ?',
+  requredFiledsMessage = 'ΣΥΜΠΛΗΡΩΣΤΕ ΤΑ ΥΠΟΧΡΕΩΤΙΚΑ ΠΕΔΙΑ',
+  newRecordTitle = 'ΕΙΣΑΓΩΓΗ - ΔΙΟΡΘΩΣΗ'
 }: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
@@ -193,7 +199,10 @@ export default function MultyTable({
         setFilters,
         addRecord,
         editRecord,
-        selectedFilters
+        selectedFilters,
+        deleteWarningMessage,
+        requredFiledsMessage,
+        newRecordTitle
       }}
     >
       <Container maxWidth={false} sx={{ mt: 2 }}>
