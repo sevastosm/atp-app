@@ -12,13 +12,14 @@ import { users } from 'src/mocks/users';
 export const AppContext = createContext<any>({});
 
 export const AppContextProvider: FC = ({ children }) => {
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRow, setSelectedRow] = useState(users[0]);
   const [customers, setUsers] = useState(users);
   const [nutritions, setNutritions] = useState(null);
+  const [activeUser, setActiveUser] = useState(users[0]);
 
   return (
     <AppContext.Provider
-      value={{ selectedRow, setSelectedRow, customers, nutritions }}
+      value={{ selectedRow, setSelectedRow, customers, nutritions, activeUser }}
     >
       {children}
     </AppContext.Provider>

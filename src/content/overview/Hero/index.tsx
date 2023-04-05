@@ -1,4 +1,11 @@
-import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography
+} from '@mui/material';
 
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -72,18 +79,29 @@ const TsAvatar = styled(Box)(
 
 function Hero() {
   return (
-    <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
+    <Container sx={{ textAlign: 'center' }}>
       <Grid
-        spacing={{ xs: 6, md: 10 }}
+        spacing={{ xs: 3 }}
         justifyContent="center"
         alignItems="center"
         container
       >
-        <Grid item md={10} lg={8} mx="auto">
-          <LabelWrapper color="success">Version 0.0.0</LabelWrapper>
-          <TypographyH1 sx={{ mb: 2 }} variant="h1">
+        <Grid item xs={12} mx="auto">
+          {/* <LabelWrapper color="success">Version 0.0.0</LabelWrapper> */}
+          <Typography sx={{ mb: 2 }} variant="h1">
             ATP-app
-          </TypographyH1>
+          </Typography>
+          <TextField required id="user-name" label="Required" defaultValue="" />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            id="outlined-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+          />
+        </Grid>
+        <Grid item xs={12}>
           <Button
             component={RouterLink}
             to="/management/accounts"

@@ -8,6 +8,8 @@ export interface User {
   email: string;
   metrics?: Metrics[]
   appointments?:[]
+  nextApoitment?:string|string[]
+  role?:string
 }
 
 export interface Metrics {

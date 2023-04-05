@@ -164,8 +164,8 @@ const UserDetails = ({ mode = '' }) => {
                   >
                     <Tab label="ΣΤΟΙΧΕΙΑ" {...a11yProps(0)} />
                     <Tab label="ΜΕΤΡΗΣΕΙΣ" {...a11yProps(1)} />
-                    <Tab label="ΔΙΑΤΡΟΦΗ" {...a11yProps(2)} />
-                    <Tab label="ΣΗΜΕΙΩΣΕΙΣ" {...a11yProps(3)} />
+                    <Tab label="ΣΗΜΕΙΩΣΕΙΣ" {...a11yProps(2)} />
+                    <Tab label="ΔΙΑΤΡΟΦΗ" {...a11yProps(3)} />
                   </Tabs>
                   <TabPanel value={tabValue} index={0}>
                     <>
@@ -384,12 +384,13 @@ const UserDetails = ({ mode = '' }) => {
                       </Card> */}
                     </Grid>
                   </TabPanel>
+
                   <TabPanel value={tabValue} index={2}>
-                    <DietCalculator user={selectedRow} />
-                    <Nutrition />
+                    <Notes />
                   </TabPanel>
                   <TabPanel value={tabValue} index={3}>
-                    <Notes />
+                    <DietCalculator user={selectedRow} />
+                    <Nutrition />
                   </TabPanel>
                 </Box>
               </CardContent>

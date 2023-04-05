@@ -38,6 +38,7 @@ interface Iprops {
   deleteWarningMessage?: string;
   requredFiledsMessage?: string;
   newRecordTitle?: string;
+  hideToolbar?: boolean;
 }
 
 export default function MultyTable({
@@ -53,7 +54,8 @@ export default function MultyTable({
   noRecordsFoundText = 'ΔΕΝ ΒΡΕΘΗΚΑΝ ΕΓΓΡΑΦΕΣ',
   deleteWarningMessage = 'ΘΕΛΕΤΕ ΝΑ ΓΙΝΕΙ ΔΙΑΓΡΑΦΗ ?',
   requredFiledsMessage = 'ΣΥΜΠΛΗΡΩΣΤΕ ΤΑ ΥΠΟΧΡΕΩΤΙΚΑ ΠΕΔΙΑ',
-  newRecordTitle = 'ΕΙΣΑΓΩΓΗ - ΔΙΟΡΘΩΣΗ'
+  newRecordTitle = 'ΕΙΣΑΓΩΓΗ - ΔΙΟΡΘΩΣΗ',
+  hideToolbar = false
 }: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
@@ -100,6 +102,7 @@ export default function MultyTable({
     name: string,
     row: number
   ) => {
+    console.log('EEEE', event);
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
@@ -116,7 +119,7 @@ export default function MultyTable({
       );
     }
 
-    const selectedRow: any = withSelect ? [newSelected] : [name];
+    const selectedRow: any = withSelect ? newSelected : [name];
     onRowClick(row);
     setSelected(selectedRow);
     setSelectedRow(row);
@@ -168,14 +171,15 @@ export default function MultyTable({
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   React.useEffect(() => {
-    onDataChange(rows);
-  }, [rows]);
+    onDataChange({ rows, selected });
+  }, [rows, selected]);
 
   return (
     <TableContext.Provider
       value={{
         data: rows,
         withSelect,
+        selected,
         search,
         page,
         rowsPerPage,
@@ -208,10 +212,12 @@ export default function MultyTable({
       <Container maxWidth={false} sx={{ mt: 2 }}>
         <Box sx={{ width: '100%' }}>
           <Paper sx={{ width: '100%', mb: 2 }}>
-            <EnhancedTableToolbar
-              numSelected={selected.length}
-              setSearch={setSearch}
-            />
+            {!hideToolbar && (
+              <EnhancedTableToolbar
+                numSelected={selected.length}
+                setSearch={setSearch}
+              />
+            )}
             <TableContainer>
               <Table
                 sx={{ minWidth: 750 }}

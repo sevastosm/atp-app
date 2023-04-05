@@ -31,8 +31,15 @@ interface EnhancedTableToolbarProps {
 const search = 'ΑΝΑΖΗΤΗΣΗ';
 
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { handleDelete, title, refersTo, handleEdit, addRecord, editRecord } =
-    useContext(TableContext);
+  const {
+    handleDelete,
+    title,
+    refersTo,
+    handleEdit,
+    addRecord,
+    editRecord,
+    withSelect
+  } = useContext(TableContext);
 
   const { numSelected, setSearch } = props;
   const [open, setOpen] = useState(false);
@@ -88,20 +95,24 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           >
             {title}
           </Typography>
-          <Button
-            onClick={() => {
-              setEditNode(false);
-              setOpen(true);
-            }}
-          >
-            <AddBoxIcon fontSize="large" />
-          </Button>
-          {numSelected > 0 && (
-            <Tooltip title="Edit">
-              <IconButton onClick={onEdit}>
-                <EditIcon />
-              </IconButton>
-            </Tooltip>
+          {!withSelect && (
+            <>
+              <Button
+                onClick={() => {
+                  setEditNode(false);
+                  setOpen(true);
+                }}
+              >
+                <AddBoxIcon fontSize="large" />
+              </Button>
+              {numSelected > 0 && (
+                <Tooltip title="Edit">
+                  <IconButton onClick={onEdit}>
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </>
           )}
           <Filters />
         </Box>
@@ -120,11 +131,13 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         </FormControl>
         {numSelected > 0 ? (
           <>
-            <Tooltip title="Delete">
-              <IconButton onClick={onDelete}>
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
+            {!withSelect && (
+              <Tooltip title="Delete">
+                <IconButton onClick={onDelete}>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            )}
           </>
         ) : (
           <Tooltip title="Filter list">

@@ -60,6 +60,7 @@ export default function Products() {
       >
         <Grid item xs={12}>
           <MultyTable
+            withSelect={false}
             data={data}
             title="ΤΡΟΦΙΜΑ"
             cols={cols}

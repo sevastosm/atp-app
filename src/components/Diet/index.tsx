@@ -3,6 +3,13 @@ import { styled } from '@mui/material/styles';
 import { Stack, Paper, Typography } from '@mui/material';
 import { de } from 'date-fns/locale';
 import BasicTable from './Table';
+import NutritionBox from './NutritionBox';
+import BoxToolbar from './BoxToolbar';
+import {
+  NutritionContext,
+  NutritionContextProvider
+} from 'src/context/nutrition/NutritionContext';
+import NutritionContainer from './NutritionContainer';
 
 type Props = {};
 
@@ -15,35 +22,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Nutrition = (props: Props) => {
+  const { handleAddBox, boxes, dispatch } = React.useContext(NutritionContext);
+
+  const handleAdd = () => handleAddBox({ name: 'tatatat', boxes: [] });
+
+  console.log('BOXES', boxes);
   return (
-    <div>
-      <Stack spacing={2}>
-        <h3>Από: 25/02/2023 Έως: 12/03/2023</h3>
-        <Item>
-          <Typography
-            sx={{ m: 1, mb: 2 }}
-            align="left"
-            variant="h4"
-            gutterBottom
-          >
-            ΠΡΩΙΝΟ
-          </Typography>
-          <BasicTable />
-        </Item>
-        <Item>
-          <Typography align="left" variant="h4" gutterBottom>
-            ΣΝΑΚ
-          </Typography>
-          <BasicTable />
-        </Item>
-        <Item>
-          <Typography align="left" variant="h4" gutterBottom>
-            ΜΕΣΗΜΕΡΙΑΝΟ
-          </Typography>
-          <BasicTable />
-        </Item>
-      </Stack>
-    </div>
+    <NutritionContextProvider>
+      <NutritionContainer />
+    </NutritionContextProvider>
   );
 };
 

@@ -129,29 +129,24 @@ const routes: RouteObject[] = [
   {
     path: 'management',
     element: <SidebarLayout />,
+
     children: [
-      ,
+      {
+        path: '',
+        element: <Navigate to="accounts" replace />
+      },
       {
         path: 'accounts',
-        children: [
-          {
-            path: '',
-            element: <Navigate to="accounts" replace />
-          },
-          {
-            path: 'accounts',
-            element: <Accounts />
-          },
-          {
-            path: 'user',
-            element: <UserProfile />
-          }
-          // {
-          //   path: 'settings',
-          //   element: <UserSettings />
-          // }
-        ]
+        element: <Accounts />
+      },
+      {
+        path: 'user',
+        element: <UserProfile />
       }
+      // {
+      //   path: 'settings',
+      //   element: <UserSettings />
+      // }
     ]
   },
   {

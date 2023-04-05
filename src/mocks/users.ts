@@ -10,6 +10,8 @@ export const users: User[] = [
     mobile: '536 981 2887',
     email: 'mdewire0@myspace.com',
     appointments:[],
+    nextApoitment:'4-5-2023',
+    role:"admin",
     metrics: [{
       weight: 72,
       height: 168,

@@ -63,15 +63,15 @@ const MultyTableBody = () => {
     handleClick,
     excloudedFields,
     selectedFilters,
-    noRecordsFoundText
+    noRecordsFoundText,
+    selected,
+    selectedRow
   } = useContext(TableContext);
 
   // TO DO dynamic search options
   const fixedData = stableSort(data, getComparator(order, orderBy))
-    .filter(
-      (row: any) =>
-        row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-        row.mobile.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    .filter((row: any) =>
+      row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
     )
     // TO DO add more than one filter
     .filter((row: any) => {
@@ -80,24 +80,29 @@ const MultyTableBody = () => {
     })
     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
-  console.log('selectedFilters', selectedFilters);
+  console.log('Selected', selected);
+  console.log('Selected-Row', selectedRow);
+
   return (
     <TableBody>
       {/* if you don't need to support IE11, you can replace the `stableSort` call with:
 rows.sort(getComparator(order, orderBy)).slice() */}
       {fixedData.map((row: any, index) => {
-        console.log('row', data);
+        console.log('row', row);
         const isItemSelected = isSelected(row.name);
+        const isRowSelected = isSelected(
+          selectedRow?.name === row.name && row.name
+        );
         const labelId = `enhanced-table-checkbox-${index}`;
 
         return (
           <TableRow
             onClick={(event) => handleClick(event, row.name, row)}
             // role="checkbox"
-            aria-checked={isItemSelected}
+            // aria-checked={isItemSelected}
             tabIndex={-1}
             key={row.name}
-            selected={isItemSelected}
+            selected={isRowSelected}
           >
             {withSelect && (
               <TableCell>

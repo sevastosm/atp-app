@@ -15,6 +15,7 @@ import { SidebarContext } from 'src/context/SidebarContext';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import DisplaySettingsTwoToneIcon from '@mui/icons-material/DisplaySettingsTwoTone';
+import { AppContext } from 'src/context/AppContext';
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `
@@ -160,6 +161,9 @@ const SubMenuWrapper = styled(Box)(
 
 function SidebarMenu() {
   const { closeSidebar } = useContext(SidebarContext);
+  const { activeUser } = useContext(AppContext);
+
+  const { role } = activeUser;
 
   return (
     <>
@@ -174,28 +178,30 @@ function SidebarMenu() {
         >
           <SubMenuWrapper>
             <List component="div">
+              {role === 'admin' && (
+                <ListItem component="div">
+                  <Button
+                    disableRipple
+                    component={RouterLink}
+                    onClick={closeSidebar}
+                    to="/accounts"
+                    startIcon={
+                      <>
+                        <AccountCircleTwoToneIcon />
+                        <AccountCircleTwoToneIcon />
+                      </>
+                    }
+                  >
+                    ΠΕΛΑΤΕΣ
+                  </Button>
+                </ListItem>
+              )}
               <ListItem component="div">
                 <Button
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to="/management/accounts"
-                  startIcon={
-                    <>
-                      <AccountCircleTwoToneIcon />
-                      <AccountCircleTwoToneIcon />
-                    </>
-                  }
-                >
-                  ΠΕΛΑΤΕΣ
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/management/accounts/user"
+                  to="/management/user"
                   startIcon={<AccountCircleTwoToneIcon />}
                 >
                   ΠΡΟΦΙΛ ΧΡΗΣΤΗ
@@ -215,34 +221,36 @@ function SidebarMenu() {
             </List>
           </SubMenuWrapper>
         </List>
-        <List
-          component="div"
-          subheader={
-            <ListSubheader component="div" disableSticky>
-              ΤΡΟΦΗΜΑ
-            </ListSubheader>
-          }
-        >
-          <SubMenuWrapper>
-            <List component="div">
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/nutrition/"
-                  startIcon={
-                    <>
-                      <FastfoodIcon />
-                    </>
-                  }
-                >
-                  ΤΡΟΦΙΜΑ
-                </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
+        {role === 'admin' && (
+          <List
+            component="div"
+            subheader={
+              <ListSubheader component="div" disableSticky>
+                ΤΡΟΦΗΜΑ
+              </ListSubheader>
+            }
+          >
+            <SubMenuWrapper>
+              <List component="div">
+                <ListItem component="div">
+                  <Button
+                    disableRipple
+                    component={RouterLink}
+                    onClick={closeSidebar}
+                    to="/nutrition/"
+                    startIcon={
+                      <>
+                        <FastfoodIcon />
+                      </>
+                    }
+                  >
+                    ΤΡΟΦΙΜΑ
+                  </Button>
+                </ListItem>
+              </List>
+            </SubMenuWrapper>
+          </List>
+        )}
       </MenuWrapper>
     </>
   );

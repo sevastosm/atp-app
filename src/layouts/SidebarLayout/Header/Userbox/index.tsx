@@ -1,6 +1,4 @@
-import { useRef, useState } from 'react';
-
-import { NavLink } from 'react-router-dom';
+import { useRef, useState, useContext } from 'react';
 
 import {
   Avatar,
@@ -9,19 +7,15 @@ import {
   Divider,
   Hidden,
   lighten,
-  List,
-  ListItem,
-  ListItemText,
   Popover,
   Typography
 } from '@mui/material';
 
-import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
 import { styled } from '@mui/material/styles';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
-import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+import { AppContext } from 'src/context/AppContext';
+import { User } from 'src/models/user';
 
 const UserBoxButton = styled(Button)(
   ({ theme }) => `
@@ -59,11 +53,9 @@ const UserBoxDescription = styled(Typography)(
 );
 
 function HeaderUserbox() {
-  const user = {
-    name: 'Catherine Pike',
-    avatar: '/static/images/avatars/1.jpg',
-    jobtitle: 'Project Manager'
-  };
+  const { activeUser } = useContext(AppContext);
+
+  const user: User = activeUser;
 
   const ref = useRef<any>(null);
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -77,15 +69,18 @@ function HeaderUserbox() {
   };
 
   return (
-    <>
+    <Box sx={{ flex: '1', display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ flex: '1', alignItems: 'center', textAlign: 'center' }}>
+        Next date {user.nextApoitment}
+      </Box>
       <UserBoxButton color="secondary" ref={ref} onClick={handleOpen}>
-        <Avatar variant="rounded" alt={user.name} src={user.avatar} />
+        <Avatar variant="rounded" alt={user.name} />
         <Hidden mdDown>
           <UserBoxText>
             <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
-            <UserBoxDescription variant="body2">
-              {user.jobtitle}
-            </UserBoxDescription>
+          </UserBoxText>
+          <UserBoxText>
+            <UserBoxLabel variant="body2">{user.surname}</UserBoxLabel>
           </UserBoxText>
         </Hidden>
         <Hidden smDown>
@@ -106,16 +101,14 @@ function HeaderUserbox() {
         }}
       >
         <MenuUserBox sx={{ minWidth: 210 }} display="flex">
-          <Avatar variant="rounded" alt={user.name} src={user.avatar} />
+          <Avatar variant="rounded" alt={user.name} />
           <UserBoxText>
             <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
-            <UserBoxDescription variant="body2">
-              {user.jobtitle}
-            </UserBoxDescription>
+            <UserBoxLabel variant="body2">{user.surname}</UserBoxLabel>
           </UserBoxText>
         </MenuUserBox>
         <Divider sx={{ mb: 0 }} />
-        <List sx={{ p: 1 }} component="nav">
+        {/* <List sx={{ p: 1 }} component="nav">
           <ListItem button to="/management/profile/details" component={NavLink}>
             <AccountBoxTwoToneIcon fontSize="small" />
             <ListItemText primary="My Profile" />
@@ -132,7 +125,7 @@ function HeaderUserbox() {
             <AccountTreeTwoToneIcon fontSize="small" />
             <ListItemText primary="Account Settings" />
           </ListItem>
-        </List>
+        </List> */}
         <Divider />
         <Box sx={{ m: 1 }}>
           <Button color="primary" fullWidth>
@@ -141,7 +134,7 @@ function HeaderUserbox() {
           </Button>
         </Box>
       </Popover>
-    </>
+    </Box>
   );
 }
 

@@ -45,7 +45,7 @@ const ButtonUploadWrapper = styled(Box)(
     right: -${theme.spacing(1)};
 
     .MuiIconButton-root {
-      border-radius: 100%;
+      // border-radius: 100%;
       background: ${theme.colors.primary.main};
       color: ${theme.palette.primary.contrastText};
       box-shadow: ${theme.colors.shadows.primary};

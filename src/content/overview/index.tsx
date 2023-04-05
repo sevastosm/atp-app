@@ -11,6 +11,8 @@ const OverviewWrapper = styled(Box)(
     flex: 1;
     overflow-x: hidden;
     align-items: center;
+    display:flex;
+    height: 100%;
 `
 );
 
@@ -20,11 +22,17 @@ function Overview() {
       <Helmet>
         <title>ATP-app</title>
       </Helmet>
-      <Container maxWidth="lg">
-        <Box display="flex" justifyContent="center" py={5} alignItems="center">
+
+      <Container maxWidth="lg" sx={{ alignItems: 'center' }}>
+        <Box
+          sx={{ mb: 5 }}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Logo />
         </Box>
-        <Card sx={{ p: 10, mb: 10, borderRadius: 12 }}>
+        <Card sx={{ p: 10, mb: 10, borderRadius: 4 }}>
           <Hero />
         </Card>
       </Container>

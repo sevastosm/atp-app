@@ -9,7 +9,8 @@ import {
   IconButton,
   Tooltip,
   styled,
-  useTheme
+  useTheme,
+  Card
 } from '@mui/material';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import { SidebarContext } from 'src/context/SidebarContext';
@@ -62,15 +63,15 @@ function Header() {
               )}`
       }}
     >
-      <Stack
+      {/* <Stack
         direction="row"
         divider={<Divider orientation="vertical" flexItem />}
         alignItems="center"
         spacing={2}
       >
-        {/* <HeaderMenu /> */}
-      </Stack>
-      <Box display="flex" alignItems="center">
+         <HeaderMenu /> 
+      </Stack> */}
+      <Box display="flex" flex={1} alignItems="center">
         {/* <HeaderButtons /> */}
         <HeaderUserbox />
         <Box
