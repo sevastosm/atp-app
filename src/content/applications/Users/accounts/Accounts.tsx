@@ -12,8 +12,11 @@ const cols = [
   { name: 'age', label: 'ΗΛΙΚΙΑ' },
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
   { name: 'mobile', label: 'ΚΙΝΗΤΟ', width: '75' },
-  { name: 'email', label: 'EMAIL' }
+  { name: 'email', label: 'EMAIL' },
+  { name: 'nextApoitment', label: 'EΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ' },
+  { name: 'role', label: 'Role' }
 ];
+const excloudedFields = ['metrics', 'photos', 'appointments'];
 
 export default function Accounts() {
   const { setSelectedRow, customers } = React.useContext(AppContext);
@@ -41,6 +44,7 @@ export default function Accounts() {
                 title="ΠΕΛΑΤΕΣ"
                 cols={cols}
                 refersTo={'customers'}
+                excloudedFields={excloudedFields}
               />
             )}
           </Grid>

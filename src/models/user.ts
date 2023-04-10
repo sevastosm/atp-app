@@ -6,10 +6,15 @@ export interface User {
   phone: string;
   mobile: string;
   email: string;
-  metrics?: Metrics[]
-  appointments?:[]
-  nextApoitment?:string|string[]
-  role?:string
+  metrics?: Metrics[];
+  appointments?: [];
+  nextApoitment?: string | string[];
+  role?: string;
+  photos?: {
+    date: string;
+    p1: string;
+    p2: string;
+  };
 }
 
 export interface Metrics {

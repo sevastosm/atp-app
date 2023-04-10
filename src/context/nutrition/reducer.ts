@@ -1,12 +1,24 @@
-export default function nutritionReducer(boxes, action) {
+export default function nutritionReducer(store, action) {
   switch (action.type) {
     case 'added': {
-      return [...boxes, {
-               boxes: action.box.boxes
-      }];
+      return {
+        ...store,
+        boxes: [...store.boxes, action.box.boxes]
+      };
     }
+    case 'ADD_DATE': {
+      return {
+        ...store,
+        duration: { ...action.payload }
+      };
+    }
+    // case 'added': {
+    //   return [...boxes, {
+    //            boxes: action.box.boxes
+    //   }];
+    // }
     case 'changed': {
-      return boxes.map((t,i) => {
+      return store.boxes.map((t, i) => {
         if (i === action.index) {
           return action.task;
         } else {
@@ -15,12 +27,13 @@ export default function nutritionReducer(boxes, action) {
       });
     }
     case 'deleted': {
-      return boxes.filter((box )=> box!== action.box);
+      return {
+        ...store,
+        boxes: [...store.boxes.filter((box) => box !== action.box)]
+      };
     }
     default: {
       throw Error('Unknown action: ' + action.type);
     }
   }
 }
-
-

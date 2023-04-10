@@ -8,19 +8,26 @@ import {
   DialogTitle,
   Typography
 } from '@mui/material';
-import TableContext from '../TableContext';
 import SaveIcon from '@mui/icons-material/Save';
+import { REQUEST_FILELD_MESSAGE, NEW_RECORD_TITLE } from 'src/constants';
 type Props = any;
 
-export default function NewRecord({ onSave, editMode }: Props) {
-  const { cols, selectedRow, requredFiledsMessage, newRecordTitle } =
-    useContext(TableContext);
-  const [value, setValue] = React.useState<any>(editMode ? selectedRow : '');
+let requiredFiledList = [];
+const fieldList = [];
+export default function FormFields({
+  onSave,
+  editMode,
+  fields,
+  requredFiledsMessage = REQUEST_FILELD_MESSAGE,
+  newRecordTitle = NEW_RECORD_TITLE,
+  data
+}: Props) {
+  const [value, setValue] = React.useState<any>(editMode === 'add' ? '' : data);
   const [viewSave, setViewSave] = React.useState<any>(false);
   const [requireMessage, setRequireMessage] = React.useState<any>(false);
 
   /*Get required fields*/
-  const requiredFileds = cols
+  const requiredFileds = fields
     .map((obj) => obj.required && obj.name)
     .filter((value) => {
       return value !== undefined;
@@ -50,7 +57,6 @@ export default function NewRecord({ onSave, editMode }: Props) {
 
   return (
     <>
-      {console.log('RENDER')}
       <Grid>
         <Box
           component="form"
@@ -72,7 +78,7 @@ export default function NewRecord({ onSave, editMode }: Props) {
             alignItems="stretch"
             //   spacing={3}
           >
-            {cols.map((col) => (
+            {fields.map((col) => (
               <TextField
                 name={col.name}
                 key={col.name}
@@ -92,11 +98,11 @@ export default function NewRecord({ onSave, editMode }: Props) {
                 <SaveIcon fontSize="large" />
               </Button>
             )}
-            {/* {requireMessage && (
+            {requireMessage && (
               <Box sx={{ ml: 1 }}>
                 <Alert severity="warning">{requredFiledsMessage}</Alert>
               </Box>
-            )} */}
+            )}
           </Box>
         </Box>
       </Grid>

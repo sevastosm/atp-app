@@ -184,7 +184,7 @@ function SidebarMenu() {
                     disableRipple
                     component={RouterLink}
                     onClick={closeSidebar}
-                    to="/accounts"
+                    to="/management/accounts"
                     startIcon={
                       <>
                         <AccountCircleTwoToneIcon />

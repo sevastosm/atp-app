@@ -9,6 +9,13 @@ import EnhancedTableToolbar from './head/EnhancedTableToolbar';
 import { Container } from '@mui/material';
 import TableContext from './TableContext';
 import MultyTableBody from './body/MultyTableBody';
+import {
+  DELETE_WARNING_MESSAGE,
+  NEW_RECORD_TITLE,
+  NO_RECORDS_FOUND,
+  REQUEST_FILELD_MESSAGE,
+  SELECT_OPTION_LABEL
+} from '../../constants';
 
 export interface Data {
   calories: number;
@@ -39,6 +46,7 @@ interface Iprops {
   requredFiledsMessage?: string;
   newRecordTitle?: string;
   hideToolbar?: boolean;
+  excloudedFields?: string[];
 }
 
 export default function MultyTable({
@@ -50,12 +58,13 @@ export default function MultyTable({
   cols = null,
   filters,
   refersTo = '',
-  selectOpitionLabel = 'SELECT',
-  noRecordsFoundText = 'ΔΕΝ ΒΡΕΘΗΚΑΝ ΕΓΓΡΑΦΕΣ',
-  deleteWarningMessage = 'ΘΕΛΕΤΕ ΝΑ ΓΙΝΕΙ ΔΙΑΓΡΑΦΗ ?',
-  requredFiledsMessage = 'ΣΥΜΠΛΗΡΩΣΤΕ ΤΑ ΥΠΟΧΡΕΩΤΙΚΑ ΠΕΔΙΑ',
-  newRecordTitle = 'ΕΙΣΑΓΩΓΗ - ΔΙΟΡΘΩΣΗ',
-  hideToolbar = false
+  selectOpitionLabel = SELECT_OPTION_LABEL,
+  noRecordsFoundText = NO_RECORDS_FOUND,
+  deleteWarningMessage = DELETE_WARNING_MESSAGE,
+  requredFiledsMessage = REQUEST_FILELD_MESSAGE,
+  newRecordTitle = NEW_RECORD_TITLE,
+  hideToolbar = false,
+  excloudedFields = []
 }: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
@@ -163,8 +172,6 @@ export default function MultyTable({
   };
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
-  const excloudedFields = ['metrics'];
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =

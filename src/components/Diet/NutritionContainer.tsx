@@ -9,6 +9,7 @@ import {
   NutritionContext,
   NutritionContextProvider
 } from 'src/context/nutrition/NutritionContext';
+import NutritionDates from './NutritionDates';
 
 type Props = {};
 
@@ -21,35 +22,49 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const NutritionContainer = (props: Props) => {
-  const { handleAddBox, boxes, selectedBox, setSelectedBox, handleDeleteBox } =
+  const { handleAddBox, store, selectedBox, setSelectedBox, handleDeleteBox } =
     React.useContext(NutritionContext);
 
-  const handleAdd = () => handleAddBox({ name: 'tatatat', boxes: [] });
-  const handleDelete = () => handleDeleteBox(selectedBox);
+  const { boxes } = store;
 
-  console.log('setSelectedBox', setSelectedBox);
+  console.log('NutritionContainer', boxes);
+
+  const handleAdd = () => handleAddBox({ boxes: [] });
+  const handleDelete = () => {
+    handleDeleteBox(selectedBox);
+    setSelectedBox(null);
+  };
+
+  const handleSave = () => console.log('handleSave');
+
   return (
     <div>
       <Stack spacing={2}>
         <BoxToolbar
           onAdd={handleAdd}
           onDelete={handleDelete}
+          onSave={handleSave}
           selectedItem={selectedBox}
           isEdditVisible={false}
-          addText={'NEO BOX'}
+          addText={'ΝΕΟ BOX'}
           deleteText="ΔΙΑΓΡΑΦΗ ΒΟΧ"
           saveText="ΑΠΟΘΗΚΕΥΣΗ"
         />
-        <h3>Από: 25/02/2023 Έως: 12/03/2023</h3>
-        {boxes.map((box, i) => (
-          <div
-            key={i}
-            onClick={() => setSelectedBox(box)}
-            style={{ background: box === selectedBox && 'red' }}
-          >
-            <NutritionBox data={box} />
-          </div>
-        ))}
+        {boxes.length > 0 && (
+          <>
+            {/* <h3>Από: 25/02/2023 Έως: 12/03/2023</h3> */}
+            <NutritionDates />
+            {boxes.map((box, i) => (
+              <div
+                key={i}
+                onClick={() => setSelectedBox(box)}
+                style={{ background: box === selectedBox && 'red' }}
+              >
+                <NutritionBox data={box} />
+              </div>
+            ))}
+          </>
+        )}
       </Stack>
     </div>
   );

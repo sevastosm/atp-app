@@ -127,7 +127,7 @@ const routes: RouteObject[] = [
   },
 
   {
-    path: 'management',
+    path: '/management',
     element: <SidebarLayout />,
 
     children: [

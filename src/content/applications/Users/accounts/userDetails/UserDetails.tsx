@@ -28,6 +28,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Nutrition from 'src/components/Diet';
 import Notes from './Notes';
+import FormFields from 'src/components/general/Form';
 
 type Props = {};
 interface IProfileFields {
@@ -36,12 +37,12 @@ interface IProfileFields {
   type?: string;
 }
 const profileFields = [
-  { name: 'name', label: 'ΟΝΟΜΑ' },
-  { name: 'surname', label: 'ΕΠΩΝΥΜΟ' },
+  { name: 'name', label: 'ΟΝΟΜΑ', required: true },
+  { name: 'surname', label: 'ΕΠΩΝΥΜΟ', required: true },
   { name: 'gender', label: 'ΦΥΛΟ', type: 'select', values: [''] },
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
-  { name: 'mobile', label: 'ΚΙΝΗΤΟ' },
-  { name: 'email', label: 'EMAIL' },
+  { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true },
+  { name: 'email', label: 'EMAIL', required: true },
   { name: 'age', label: 'ΗΛΙΚΙΑ' }
 ];
 
@@ -186,7 +187,14 @@ const UserDetails = ({ mode = '' }) => {
                             alignItems="stretch"
                             //   spacing={3}
                           >
-                            {profileFields.map((field: IProfileFields) => (
+                            <FormFields
+                              fields={profileFields}
+                              editMode={mode}
+                              onSave={(v) => console.log(v)}
+                              data={selectedRow || ''}
+                            />
+
+                            {/* {profileFields.map((field: IProfileFields) => (
                               <TextField
                                 key={field.name}
                                 required
@@ -199,7 +207,7 @@ const UserDetails = ({ mode = '' }) => {
                                 onChange={handleInputChange}
                                 size="small"
                               />
-                            ))}
+                            ))} */}
                           </Grid>
                         </Box>
                         {/* </CardContent>

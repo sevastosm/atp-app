@@ -44,7 +44,6 @@ const NutritionBox = ({ data }) => {
           key={boxName}
           id={boxName}
           label="Name"
-          defaultValue={boxName}
           value={boxName}
           disabled={false}
           onChange={handleInputChange}
@@ -52,7 +51,7 @@ const NutritionBox = ({ data }) => {
         />
       )}
       <MultyTable
-        data={boxData.boxes}
+        data={[]}
         //   title="ΤΡΟΦΙΜΑ"
         hideToolbar
         cols={[]}

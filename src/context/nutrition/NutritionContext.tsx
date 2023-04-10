@@ -1,20 +1,23 @@
 import React, { FC, useState, createContext, useReducer } from 'react';
-type AppContext = {
-  selectedRow: any;
-  setSelectedRow: any;
-  users: any;
-  nutritions: any;
-};
 
 import { users } from 'src/mocks/users';
 import nutritionReducer from './reducer';
+
+const initialStore = {
+  userId: null,
+  duration: {
+    from: null,
+    to: null
+  },
+  boxes: [{ name: '', data: [] }]
+};
 
 const initialBoxes = [];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const NutritionContext = createContext<any>({});
 export const NutritionContextProvider: FC = ({ children }) => {
-  const [boxes, dispatch] = useReducer(nutritionReducer, initialBoxes);
+  const [store, dispatch] = useReducer(nutritionReducer, initialStore);
   const [selectedBox, setSelectedBox] = useState(null);
 
   function handleAddBox(data) {
@@ -30,18 +33,26 @@ export const NutritionContextProvider: FC = ({ children }) => {
       box: data
     });
   }
+
+  function handleAddDuration(data) {
+    dispatch({
+      type: 'ADD_DATE',
+      payload: data
+    });
+  }
   const [selectedRow, setSelectedRow] = useState(users[0]);
   const [customers, setUsers] = useState(users);
   const [nutritions, setNutritions] = useState(null);
   const [activeUser, setActiveUser] = useState(users[0]);
 
-  console.log('boxes', boxes);
+  console.log('APP-STORE', store);
 
   return (
     <NutritionContext.Provider
       value={{
-        boxes,
+        store,
         handleAddBox,
+        handleAddDuration,
         dispatch,
         handleDeleteBox,
         selectedBox,
