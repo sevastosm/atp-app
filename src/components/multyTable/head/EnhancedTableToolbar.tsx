@@ -22,6 +22,7 @@ import UserDetails from 'src/content/applications/Users/accounts/userDetails/Use
 import NewRecord from '../body/NewRecord';
 import Filters from './Filters';
 import DeleteDialog from './DeleteDialog';
+import { AppContext } from 'src/context/AppContext';
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
@@ -31,6 +32,7 @@ interface EnhancedTableToolbarProps {
 const search = 'ΑΝΑΖΗΤΗΣΗ';
 
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
+  const { selectedRow, setSelectedRow } = useContext(AppContext);
   const {
     handleDelete,
     title,
@@ -47,7 +49,10 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
   const [editMode, setEditNode] = useState(false);
 
-  const handleOnClose = () => setOpen(false);
+  const handleOnClose = () => {
+    setOpen(false);
+    setSelectedRow('');
+  };
   const handleSave = (value) => {
     if (editMode) {
       editRecord(value);
@@ -73,7 +78,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       <DeleteDialog open={deleteOpen} setDeleteOpen={setDeleteOpen} />
       <SimpleDialog open={open} onClose={handleOnClose}>
         {refersTo === 'customers' ? (
-          <UserDetails mode={editMode ? 'edit' : 'add'} />
+          <UserDetails mode={selectedRow ? 'edit' : 'add'} />
         ) : (
           <NewRecord onSave={handleSave} editMode={editMode} />
         )}
@@ -99,13 +104,14 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
             <>
               <Button
                 onClick={() => {
+                  setSelectedRow('');
                   setEditNode(false);
                   setOpen(true);
                 }}
               >
                 <AddBoxIcon fontSize="large" />
               </Button>
-              {numSelected > 0 && (
+              {numSelected > 0 && selectedRow && (
                 <Tooltip title="Edit">
                   <IconButton onClick={onEdit}>
                     <EditIcon />

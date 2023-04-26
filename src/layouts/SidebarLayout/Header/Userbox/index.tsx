@@ -57,6 +57,7 @@ function HeaderUserbox() {
 
   const user: User = activeUser;
 
+  if (!user) return null;
   const ref = useRef<any>(null);
   const [isOpen, setOpen] = useState<boolean>(false);
 

@@ -68,27 +68,23 @@ const MultyTableBody = () => {
     selectedRow
   } = useContext(TableContext);
 
-  // TO DO dynamic search options
-  const fixedData = stableSort(data, getComparator(order, orderBy))
-    .filter((row: any) =>
-      row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-    )
-    // TO DO add more than one filter
-    .filter((row: any) => {
-      if (!selectedFilters || selectedFilters.value === '0') return row;
-      return row[selectedFilters?.filter] === selectedFilters.value;
-    })
-    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-
-  console.log('Selected', selected);
-  console.log('Selected-Row', selectedRow);
+  // // TO DO dynamic search options
+  // const fixedData = stableSort(data, getComparator(order, orderBy))
+  //   .filter((row: any) =>
+  //     row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+  //   )
+  //   // TO DO add more than one filter
+  //   .filter((row: any) => {
+  //     if (!selectedFilters || selectedFilters.value === '0') return row;
+  //     return row[selectedFilters?.filter] === selectedFilters.value;
+  //   })
+  //   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
     <TableBody>
       {/* if you don't need to support IE11, you can replace the `stableSort` call with:
 rows.sort(getComparator(order, orderBy)).slice() */}
-      {fixedData.map((row: any, index) => {
-        console.log('row', row);
+      {data.map((row: any, index) => {
         const isItemSelected = isSelected(row.name);
         const isRowSelected = isSelected(
           selectedRow?.name === row.name && row.name
@@ -101,11 +97,11 @@ rows.sort(getComparator(order, orderBy)).slice() */}
             // role="checkbox"
             // aria-checked={isItemSelected}
             tabIndex={-1}
-            key={row.name}
+            key={index}
             selected={isRowSelected}
           >
             {withSelect && (
-              <TableCell>
+              <TableCell key={row.name}>
                 <Checkbox
                   color="primary"
                   checked={isItemSelected}
@@ -131,8 +127,8 @@ rows.sort(getComparator(order, orderBy)).slice() */}
           </TableRow>
         );
       })}
-      {!fixedData.length && (
-        <TableRow>
+      {!data.length && (
+        <TableRow key={0}>
           <TableCell>
             <Box sx={{ textAlign: 'center', width: '100%' }}>
               {noRecordsFoundText}

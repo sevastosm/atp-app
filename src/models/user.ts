@@ -10,11 +10,7 @@ export interface User {
   appointments?: [];
   nextApoitment?: string | string[];
   role?: string;
-  photos?: {
-    date: string;
-    p1: string;
-    p2: string;
-  };
+  // photos?: photos;
 }
 
 export interface Metrics {
@@ -35,4 +31,10 @@ export interface Metrics {
   pelvis: number;
   thigh: number;
   calves: number;
+}
+
+export interface photos {
+  date: string;
+  p1: string;
+  p2: string;
 }

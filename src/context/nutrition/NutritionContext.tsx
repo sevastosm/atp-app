@@ -45,8 +45,6 @@ export const NutritionContextProvider: FC = ({ children }) => {
   const [nutritions, setNutritions] = useState(null);
   const [activeUser, setActiveUser] = useState(users[0]);
 
-  console.log('APP-STORE', store);
-
   return (
     <NutritionContext.Provider
       value={{

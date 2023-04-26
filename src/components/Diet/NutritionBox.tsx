@@ -25,12 +25,8 @@ const NutritionBox = ({ data }) => {
     setBoxName(e.targe.value);
   };
 
-  console.log('boxData', boxData);
-
   const getData: any = (data) => {
     // const tableDAta = getData();
-
-    console.log('onDataChange', data);
   };
 
   return (

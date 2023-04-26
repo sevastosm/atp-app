@@ -27,15 +27,13 @@ const NutritionContainer = (props: Props) => {
 
   const { boxes } = store;
 
-  console.log('NutritionContainer', boxes);
-
   const handleAdd = () => handleAddBox({ boxes: [] });
   const handleDelete = () => {
     handleDeleteBox(selectedBox);
     setSelectedBox(null);
   };
 
-  const handleSave = () => console.log('handleSave');
+  const handleSave = () => {};
 
   return (
     <div>

@@ -14,7 +14,6 @@ type Props = {};
 const Filters = (props: Props) => {
   const { setFilters, filters, selectOpitionLabel } =
     React.useContext(TableContext);
-  console.log(filters);
 
   const [value, setValue] = React.useState('0');
 

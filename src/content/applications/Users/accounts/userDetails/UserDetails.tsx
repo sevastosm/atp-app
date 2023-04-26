@@ -29,6 +29,8 @@ import Tab from '@mui/material/Tab';
 import Nutrition from 'src/components/Diet';
 import Notes from './Notes';
 import FormFields from 'src/components/general/Form';
+import axios from 'axios';
+import { postUser } from 'src/api/users';
 
 type Props = {};
 interface IProfileFields {
@@ -37,8 +39,8 @@ interface IProfileFields {
   type?: string;
 }
 const profileFields = [
-  { name: 'name', label: 'ΟΝΟΜΑ', required: true },
-  { name: 'surname', label: 'ΕΠΩΝΥΜΟ', required: true },
+  { name: 'firstName', label: 'ΟΝΟΜΑ', required: true },
+  { name: 'lastName', label: 'ΕΠΩΝΥΜΟ', required: true },
   { name: 'gender', label: 'ΦΥΛΟ', type: 'select', values: [''] },
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
   { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true },
@@ -102,11 +104,16 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const UserDetails = ({ mode = '' }) => {
-  const { selectedRow } = React.useContext(AppContext);
-  console.log('selectedRow', selectedRow);
+  const {
+    selectedRow,
+    setSelectedRow,
+    setUsers,
+    customers,
+    setActiveUser,
+    activeUser
+  } = React.useContext(AppContext);
 
   const [state, setState] = useState<any>({});
-  const handleInputChange = (e) => console.log(e);
   const [value, setValue] = React.useState<any | null>(moment(new Date()));
 
   const handleChange = (newValue: any | null) => {
@@ -124,11 +131,25 @@ const UserDetails = ({ mode = '' }) => {
     setTabValue(newValue);
   };
 
-  // React.useEffect(() => {
-  //   setState(selectedRow);
-  // }, [selectedRow]);
-  console.log(mode);
+  const addUpdateUser = async (data) => {
+    const userId = selectedRow._id;
+    const request = await postUser(data, userId);
+
+    setUsers([request.data, ...customers]);
+    setSelectedRow(request.data);
+  };
+
+  const hendleSaveUser = (data) => {
+    addUpdateUser(data);
+  };
+
+  const hendleSaveUserMetrics = (data) => {};
+
   if (!selectedRow && mode !== 'add') return null;
+
+  React.useEffect(() => {
+    setValue(selectedRow);
+  }, [selectedRow]);
 
   return (
     <Grid
@@ -189,9 +210,8 @@ const UserDetails = ({ mode = '' }) => {
                           >
                             <FormFields
                               fields={profileFields}
-                              editMode={mode}
-                              onSave={(v) => console.log(v)}
-                              data={selectedRow || ''}
+                              onSave={hendleSaveUser}
+                              data={mode !== 'add' ? value : ''}
                             />
 
                             {/* {profileFields.map((field: IProfileFields) => (
@@ -236,8 +256,16 @@ const UserDetails = ({ mode = '' }) => {
                           direction="row"
                           alignItems="start"
                         >
+                          <FormFields
+                            fields={[
+                              ...metricsFieldsLeft,
+                              ...metricsFieldsRight
+                            ]}
+                            onSave={hendleSaveUserMetrics}
+                            data={value?.metrics || ''}
+                          />
                           <Grid item>
-                            {metricsFieldsLeft.map((field: IProfileFields) => {
+                            {/* {metricsFieldsLeft.map((field: IProfileFields) => {
                               switch (field.type) {
                                 case 'select':
                                   return (
@@ -309,10 +337,10 @@ const UserDetails = ({ mode = '' }) => {
                                     </Grid>
                                   );
                               }
-                            })}
+                            })} */}
                           </Grid>
                           <Grid item>
-                            {metricsFieldsRight.map((field: IProfileFields) => {
+                            {/* {metricsFieldsRight.map((field: IProfileFields) => {
                               switch (field.type) {
                                 case 'select':
                                   return (
@@ -384,7 +412,7 @@ const UserDetails = ({ mode = '' }) => {
                                     </Grid>
                                   );
                               }
-                            })}
+                            })} */}
                           </Grid>
                         </Grid>
                       </Box>

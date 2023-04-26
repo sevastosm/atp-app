@@ -15,7 +15,6 @@ const NutritionDates = (props: Props) => {
   const [valueΤο, setValueΤο] = React.useState<any | null>(null);
 
   const handleChange = (newValue: any | null) => {
-    console.log('newValue', newValue);
     setValue(newValue);
     handleAddDuration({ from: newValue, to: valueΤο });
   };

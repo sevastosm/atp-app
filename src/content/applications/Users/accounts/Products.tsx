@@ -40,14 +40,10 @@ const filters = [
   }
 ];
 
-console.log('DATA', data);
-
 export default function Products() {
   const { rows } = useContext(TableContext);
   const getData: any = (data) => {
     // const tableDAta = getData();
-
-    console.log('onDataChange', data);
   };
   return (
     <Container maxWidth={false}>

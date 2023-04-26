@@ -32,8 +32,7 @@ export const users: User[] = [
         thigh: 44.2,
         calves: 98.8
       }
-    ],
-    photos: { date: '', p1: '', p2: '' }
+    ]
   },
   {
     name: 'Duky',

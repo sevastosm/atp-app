@@ -26,7 +26,6 @@ const Nutrition = (props: Props) => {
 
   const handleAdd = () => handleAddBox({ name: 'tatatat', boxes: [] });
 
-  console.log('BOXES', boxes);
   return (
     <NutritionContextProvider>
       <NutritionContainer />

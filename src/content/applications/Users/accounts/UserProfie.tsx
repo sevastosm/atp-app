@@ -32,7 +32,6 @@ interface IProfileFields {
 
 export default function UserProfie() {
   const [state, setState] = useState({});
-  const handleInputChange = (e) => console.log(e);
   const [value, setValue] = React.useState<any | null>(moment(new Date()));
 
   const handleChange = (newValue: any | null) => {

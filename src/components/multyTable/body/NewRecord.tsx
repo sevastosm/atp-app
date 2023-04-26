@@ -37,7 +37,6 @@ export default function NewRecord({ onSave, editMode }: Props) {
       (f) => upDatedValue[f] && upDatedValue[f] !== ''
     );
 
-    console.log('isValid', isValid);
     setViewSave(isValid);
     setValue(upDatedValue);
   };

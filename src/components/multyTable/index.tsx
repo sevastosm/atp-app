@@ -75,8 +75,11 @@ export default function MultyTable({
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [selectedRow, setSelectedRow] = React.useState(null);
   const [selectedFilters, setFilters] = React.useState(null);
+  const [rows, setData] = React.useState([]);
 
-  const [rows, setData] = React.useState(data);
+  React.useEffect(() => {
+    setData(data);
+  }, [data]);
 
   const headCells = cols.map((col) => {
     return {
@@ -111,7 +114,6 @@ export default function MultyTable({
     name: string,
     row: number
   ) => {
-    console.log('EEEE', event);
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
@@ -156,13 +158,10 @@ export default function MultyTable({
   const handleDelete = () => setData(rows.filter((row) => row !== selectedRow));
 
   const addRecord = (newData) => {
-    console.log('newData', newData);
     setData([...rows, newData]);
   };
 
   const editRecord = (newData) => {
-    console.log('selectedRowData', selectedRow);
-
     const index = rows.indexOf(selectedRow);
 
     rows[index] = newData;

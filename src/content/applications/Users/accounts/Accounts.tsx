@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import { Container, Grid } from '@mui/material';
 import UserDetails from './userDetails/UserDetails';
 import MultyTable from 'src/components/multyTable';
 import { AppContext } from 'src/context/AppContext';
 import SimpleDialog from 'src/components/general/SimpleDialog';
+import { fetchUsers } from 'src/api/users';
 
 const cols = [
-  { name: 'name', label: 'ΟΝΟΜΑ' },
-  { name: 'surname', label: 'ΕΠΙΘΕΤΟ' },
+  { name: 'firstName', label: 'ΟΝΟΜΑ' },
+  { name: 'lastName', label: 'ΕΠΙΘΕΤΟ' },
   { name: 'gender', label: 'ΦΙΛΟ' },
   { name: 'age', label: 'ΗΛΙΚΙΑ' },
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
@@ -16,11 +18,20 @@ const cols = [
   { name: 'nextApoitment', label: 'EΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ' },
   { name: 'role', label: 'Role' }
 ];
-const excloudedFields = ['metrics', 'photos', 'appointments'];
+const excloudedFields = ['metrics', 'photos', 'appointments', '_id'];
 
 export default function Accounts() {
-  const { setSelectedRow, customers } = React.useContext(AppContext);
+  const { setSelectedRow, customers, setUsers } = React.useContext(AppContext);
   const [viewDetails, setViewDetails] = React.useState(false);
+
+  const getUsers = async () => {
+    const users: any = await fetchUsers();
+    setUsers(users.data);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const onRowClick = (row) => {
     setSelectedRow(row);

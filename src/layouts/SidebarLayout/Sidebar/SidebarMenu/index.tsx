@@ -163,10 +163,12 @@ function SidebarMenu() {
   const { closeSidebar } = useContext(SidebarContext);
   const { activeUser } = useContext(AppContext);
 
-  const { role } = activeUser;
+  // if (!activeUser) return null;
+  const role = 'admin';
 
   return (
     <>
+      sfdsdf
       <MenuWrapper>
         <List
           component="div"
