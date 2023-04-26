@@ -85,11 +85,11 @@ const MultyTableBody = () => {
       {/* if you don't need to support IE11, you can replace the `stableSort` call with:
 rows.sort(getComparator(order, orderBy)).slice() */}
       {data.map((row: any, index) => {
-        const isItemSelected = isSelected(row.name);
-        const isRowSelected = isSelected(
-          selectedRow?.name === row.name && row.name
-        );
+        const isItemSelected = isSelected(row._id);
+        const isRowSelected = selectedRow?._id === row._id;
         const labelId = `enhanced-table-checkbox-${index}`;
+
+        console.log('isRowSelected', isRowSelected);
 
         return (
           <TableRow

@@ -5,7 +5,7 @@ import UserDetails from './userDetails/UserDetails';
 import MultyTable from 'src/components/multyTable';
 import { AppContext } from 'src/context/AppContext';
 import SimpleDialog from 'src/components/general/SimpleDialog';
-import { fetchUsers } from 'src/api/users';
+import { fetchUsers, deleteUser } from 'src/api/users';
 
 const cols = [
   { name: 'firstName', label: 'ΟΝΟΜΑ' },
@@ -56,6 +56,7 @@ export default function Accounts() {
                 cols={cols}
                 refersTo={'customers'}
                 excloudedFields={excloudedFields}
+                onRecordDelete={(selectedRow) => deleteUser(selectedRow._id)}
               />
             )}
           </Grid>

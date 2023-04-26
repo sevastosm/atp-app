@@ -16,6 +16,7 @@ import {
   REQUEST_FILELD_MESSAGE,
   SELECT_OPTION_LABEL
 } from '../../constants';
+import { ro } from 'date-fns/locale';
 
 export interface Data {
   calories: number;
@@ -30,6 +31,7 @@ type Order = 'asc' | 'desc';
 interface Iprops {
   onRowClick?: (row: any) => void;
   onDataChange?: (data: any) => void;
+  onRecordDelete?: (id: any) => void;
   withSelect?: boolean;
   data: any;
   title?: string;
@@ -52,6 +54,7 @@ interface Iprops {
 export default function MultyTable({
   onRowClick = () => false,
   onDataChange = () => false,
+  onRecordDelete = () => false,
   withSelect = false,
   data,
   title,
@@ -155,7 +158,10 @@ export default function MultyTable({
     setDense(event.target.checked);
   };
 
-  const handleDelete = () => setData(rows.filter((row) => row !== selectedRow));
+  const handleDelete = () => {
+    setData(rows.filter((row) => row !== selectedRow));
+    onRecordDelete(selectedRow);
+  };
 
   const addRecord = (newData) => {
     setData([...rows, newData]);

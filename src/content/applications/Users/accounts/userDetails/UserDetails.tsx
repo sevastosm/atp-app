@@ -37,6 +37,7 @@ interface IProfileFields {
   name: string;
   label: string;
   type?: string;
+  inputType?: string;
 }
 const profileFields = [
   { name: 'firstName', label: 'ΟΝΟΜΑ', required: true },
@@ -44,7 +45,7 @@ const profileFields = [
   { name: 'gender', label: 'ΦΥΛΟ', type: 'select', values: [''] },
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
   { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true },
-  { name: 'email', label: 'EMAIL', required: true },
+  { name: 'email', label: 'EMAIL', required: true, inputType: 'email' },
   { name: 'age', label: 'ΗΛΙΚΙΑ' }
 ];
 
@@ -135,21 +136,24 @@ const UserDetails = ({ mode = '' }) => {
     const userId = selectedRow._id;
     const request = await postUser(data, userId);
 
-    setUsers([request.data, ...customers]);
-    setSelectedRow(request.data);
+    console.log('REQUEST', request);
+    setUsers(request.data.users);
+    setSelectedRow(request.data.user);
   };
 
   const hendleSaveUser = (data) => {
     addUpdateUser(data);
   };
 
-  const hendleSaveUserMetrics = (data) => {};
+  const hendleSaveUserMetrics = (data) => {
+    addUpdateUser({ ...selectedRow, metrics: data });
+  };
 
   if (!selectedRow && mode !== 'add') return null;
 
   React.useEffect(() => {
     setValue(selectedRow);
-  }, [selectedRow]);
+  }, [selectedRow, customers]);
 
   return (
     <Grid
@@ -211,7 +215,7 @@ const UserDetails = ({ mode = '' }) => {
                             <FormFields
                               fields={profileFields}
                               onSave={hendleSaveUser}
-                              data={mode !== 'add' ? value : ''}
+                              data={mode !== 'add' ? selectedRow : ''}
                             />
 
                             {/* {profileFields.map((field: IProfileFields) => (
@@ -262,7 +266,7 @@ const UserDetails = ({ mode = '' }) => {
                               ...metricsFieldsRight
                             ]}
                             onSave={hendleSaveUserMetrics}
-                            data={value?.metrics || ''}
+                            data={mode !== 'add' ? selectedRow?.metrics : ''}
                           />
                           <Grid item>
                             {/* {metricsFieldsLeft.map((field: IProfileFields) => {

@@ -13,4 +13,8 @@ const postUser = (data, id) => {
   return axios.post(host + '/new', data);
 };
 
-export { postUser, fetchUsers };
+const deleteUser = (id) => {
+  return axios.delete(host + '/' + id);
+};
+
+export { postUser, fetchUsers, deleteUser };

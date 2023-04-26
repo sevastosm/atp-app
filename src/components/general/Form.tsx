@@ -37,7 +37,7 @@ export default function FormFields({
   const [viewSave, setViewSave] = React.useState<any>(false);
   const [requireMessage, setRequireMessage] = React.useState<any>(false);
 
-  console.log('FORM--DATA', data);
+  console.log('FORM--DATA', value);
 
   /*Get required fields*/
   const requiredFileds = fields
@@ -157,6 +157,8 @@ export default function FormFields({
                   return (
                     <Grid item>
                       <TextField
+                        error
+                        type={field?.inputType}
                         name={field.name}
                         key={field.name}
                         required={field?.required}
