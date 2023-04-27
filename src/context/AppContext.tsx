@@ -16,6 +16,7 @@ export const AppContextProvider: FC = ({ children }) => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [nutritions, setNutritions] = useState(null);
   const [activeUser, setActiveUser] = useState(null);
+  const [message, setMessage] = useState(null);
 
   return (
     <AppContext.Provider
@@ -26,7 +27,9 @@ export const AppContextProvider: FC = ({ children }) => {
         nutritions,
         activeUser,
         setActiveUser,
-        setUsers
+        setUsers,
+        message,
+        setMessage
       }}
     >
       {children}

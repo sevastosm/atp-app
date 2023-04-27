@@ -168,7 +168,6 @@ function SidebarMenu() {
 
   return (
     <>
-      sfdsdf
       <MenuWrapper>
         <List
           component="div"

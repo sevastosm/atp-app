@@ -1,9 +1,11 @@
 import { FC, ReactNode } from 'react';
-import { Box, alpha, lighten, useTheme } from '@mui/material';
+import { Box, alpha, lighten, useTheme, Alert, Snackbar } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Header from './Header';
+import React from 'react';
+import { AppContext } from 'src/context/AppContext';
 
 interface SidebarLayoutProps {
   children?: ReactNode;
@@ -11,6 +13,29 @@ interface SidebarLayoutProps {
 
 const SidebarLayout: FC<SidebarLayoutProps> = () => {
   const theme = useTheme();
+  const { message, setMessage } = React.useContext(AppContext);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+    setMessage(null);
+  };
+
+  React.useEffect(() => {
+    if (message) setOpen(true);
+  }, [message]);
 
   return (
     <>
@@ -60,6 +85,22 @@ const SidebarLayout: FC<SidebarLayoutProps> = () => {
           </Box>
         </Box>
       </Box>
+      {message && (
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
+          <Alert
+            onClose={handleClose}
+            severity={message.type}
+            sx={{ width: '100%' }}
+          >
+            {message.message}
+          </Alert>
+        </Snackbar>
+      )}
     </>
   );
 };

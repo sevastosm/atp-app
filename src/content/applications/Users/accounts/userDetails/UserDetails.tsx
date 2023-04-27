@@ -43,10 +43,10 @@ const profileFields = [
   { name: 'firstName', label: 'ΟΝΟΜΑ', required: true },
   { name: 'lastName', label: 'ΕΠΩΝΥΜΟ', required: true },
   { name: 'gender', label: 'ΦΥΛΟ', type: 'select', values: [''] },
-  { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
-  { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true },
+  { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ', inputType: 'number' },
+  { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true, inputType: 'number' },
   { name: 'email', label: 'EMAIL', required: true, inputType: 'email' },
-  { name: 'age', label: 'ΗΛΙΚΙΑ' }
+  { name: 'age', label: 'ΗΛΙΚΙΑ', inputType: 'number' }
 ];
 
 const metricsFieldsLeft = [
@@ -111,7 +111,8 @@ const UserDetails = ({ mode = '' }) => {
     setUsers,
     customers,
     setActiveUser,
-    activeUser
+    activeUser,
+    setMessage
   } = React.useContext(AppContext);
 
   const [state, setState] = useState<any>({});
@@ -134,9 +135,8 @@ const UserDetails = ({ mode = '' }) => {
 
   const addUpdateUser = async (data) => {
     const userId = selectedRow._id;
-    const request = await postUser(data, userId);
+    const request = await postUser(data, userId, setMessage || null);
 
-    console.log('REQUEST', request);
     setUsers(request.data.users);
     setSelectedRow(request.data.user);
   };
@@ -189,9 +189,16 @@ const UserDetails = ({ mode = '' }) => {
                     aria-label="basic tabs example"
                   >
                     <Tab label="ΣΤΟΙΧΕΙΑ" {...a11yProps(0)} />
-                    <Tab label="ΜΕΤΡΗΣΕΙΣ" {...a11yProps(1)} />
-                    <Tab label="ΣΗΜΕΙΩΣΕΙΣ" {...a11yProps(2)} />
-                    <Tab label="ΔΙΑΤΡΟΦΗ" {...a11yProps(3)} />
+
+                    {selectedRow._id && (
+                      <Tab label="ΜΕΤΡΗΣΕΙΣ" {...a11yProps(1)} />
+                    )}
+                    {selectedRow._id && (
+                      <Tab label="ΣΗΜΕΙΩΣΕΙΣ" {...a11yProps(2)} />
+                    )}
+                    {selectedRow._id && (
+                      <Tab label="ΔΙΑΤΡΟΦΗ" {...a11yProps(3)} />
+                    )}
                   </Tabs>
                   <TabPanel value={tabValue} index={0}>
                     <>
@@ -216,22 +223,8 @@ const UserDetails = ({ mode = '' }) => {
                               fields={profileFields}
                               onSave={hendleSaveUser}
                               data={mode !== 'add' ? selectedRow : ''}
+                              onError={setMessage}
                             />
-
-                            {/* {profileFields.map((field: IProfileFields) => (
-                              <TextField
-                                key={field.name}
-                                required
-                                id={field.name}
-                                label={field.label}
-                                defaultValue={
-                                  mode === 'edit' ? selectedRow[field.name] : ''
-                                }
-                                disabled={false}
-                                onChange={handleInputChange}
-                                size="small"
-                              />
-                            ))} */}
                           </Grid>
                         </Box>
                         {/* </CardContent>
@@ -268,156 +261,6 @@ const UserDetails = ({ mode = '' }) => {
                             onSave={hendleSaveUserMetrics}
                             data={mode !== 'add' ? selectedRow?.metrics : ''}
                           />
-                          <Grid item>
-                            {/* {metricsFieldsLeft.map((field: IProfileFields) => {
-                              switch (field.type) {
-                                case 'select':
-                                  return (
-                                    <Grid item>
-                                      <FormControl
-                                        style={{
-                                          margin: '9px',
-                                          width: '25ch'
-                                        }}
-                                      >
-                                        <InputLabel
-                                          id="demo-simple-select-label"
-                                          size="small"
-                                        >
-                                          {field.label}
-                                        </InputLabel>
-                                        <Select
-                                          labelId="demo-simple-select-label"
-                                          id="demo-simple-select"
-                                          value={selectValue}
-                                          label="fsdfsf"
-                                          onChange={handleSelectChange}
-                                          size="small"
-                                        >
-                                          <MenuItem value={1}>ΑΝΔΡΑΣ</MenuItem>
-                                          <MenuItem value={0}>ΓΥΝΑΙΚΑ</MenuItem>
-                                        </Select>
-                                      </FormControl>
-                                    </Grid>
-                                  );
-                                case 'date':
-                                  return (
-                                    <Grid item>
-                                      <LocalizationProvider
-                                        dateAdapter={AdapterMoment}
-                                      >
-                                        <DesktopDatePicker
-                                          label={field.label}
-                                          inputFormat="d/m/yy"
-                                          value={value}
-                                          onChange={handleChange}
-                                          renderInput={(params) => (
-                                            <TextField
-                                              size="small"
-                                              {...params}
-                                            />
-                                          )}
-                                        />
-                                      </LocalizationProvider>
-                                    </Grid>
-                                  );
-                                default:
-                                  return (
-                                    <Grid item>
-                                      <TextField
-                                        key={field.name}
-                                        required
-                                        id={field.name}
-                                        label={field.label}
-                                        value={
-                                          mode === 'edit'
-                                            ? selectedRow.metrics[field.name]
-                                            : ''
-                                        }
-                                        disabled={false}
-                                        onChange={handleInputChange}
-                                        size="small"
-                                      />
-                                    </Grid>
-                                  );
-                              }
-                            })} */}
-                          </Grid>
-                          <Grid item>
-                            {/* {metricsFieldsRight.map((field: IProfileFields) => {
-                              switch (field.type) {
-                                case 'select':
-                                  return (
-                                    <Grid item>
-                                      <FormControl
-                                        style={{
-                                          margin: '9px',
-                                          width: '25ch'
-                                        }}
-                                      >
-                                        <InputLabel
-                                          id="demo-simple-select-label"
-                                          size="small"
-                                        >
-                                          {field.label}
-                                        </InputLabel>
-                                        <Select
-                                          labelId="demo-simple-select-label"
-                                          id="demo-simple-select"
-                                          value={selectValue}
-                                          label="fsdfsf"
-                                          onChange={handleSelectChange}
-                                          size="small"
-                                        >
-                                          <MenuItem value={1}>ΑΝΔΡΑΣ</MenuItem>
-                                          <MenuItem value={0}>ΓΥΝΑΙΚΑ</MenuItem>
-                                        </Select>
-                                      </FormControl>
-                                    </Grid>
-                                  );
-                                case 'date':
-                                  return (
-                                    <Grid item>
-                                      <LocalizationProvider
-                                        dateAdapter={AdapterMoment}
-                                      >
-                                        <DesktopDatePicker
-                                          label={field.label}
-                                          inputFormat="mm/dd/yyyy"
-                                          value={value}
-                                          onChange={handleChange}
-                                          renderInput={(params) => (
-                                            <TextField
-                                              size="small"
-                                              {...params}
-                                            />
-                                          )}
-                                        />
-                                      </LocalizationProvider>
-                                    </Grid>
-                                  );
-                                default:
-                                  return (
-                                    <Grid item>
-                                      <TextField
-                                        key={field.name}
-                                        required
-                                        id={field.name}
-                                        label={field.label}
-                                        value={
-                                          mode === 'edit'
-                                            ? selectedRow.metrics[field.name]
-                                            : ''
-                                        }
-                                        disabled={false}
-                                        onChange={handleInputChange}
-                                        size="small"
-                                      />
-                                    </Grid>
-                                  );
-                              }
-                            })} */}
-                          </Grid>
                         </Grid>
                       </Box>
                       {/* </CardContent>
@@ -429,8 +272,9 @@ const UserDetails = ({ mode = '' }) => {
                     <Notes />
                   </TabPanel>
                   <TabPanel value={tabValue} index={3}>
-                    <DietCalculator user={selectedRow} />
-                    <Nutrition />
+                    Nutrition
+                    {/* <DietCalculator user={selectedRow} />
+                    <Nutrition /> */}
                   </TabPanel>
                 </Box>
               </CardContent>

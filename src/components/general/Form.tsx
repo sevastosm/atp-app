@@ -30,7 +30,8 @@ export default function FormFields({
   fields,
   requredFiledsMessage = REQUEST_FILELD_MESSAGE,
   newRecordTitle = NEW_RECORD_TITLE,
-  data
+  data,
+  onError
 }: Props) {
   const [value, setValue] = React.useState<any>('');
   const [selectValue, setSelectValue] = React.useState('');
@@ -66,6 +67,16 @@ export default function FormFields({
   };
 
   const handleSave = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let isValidEmail = true;
+    if (value.email) {
+      isValidEmail = emailRegex.test(value.email);
+    }
+
+    if (!isValidEmail) {
+      return onError({ type: 'error', message: 'ΛΑΘΟΣ EMAIL' });
+    }
     if (viewSave) {
       return onSave(value);
     }
@@ -157,8 +168,8 @@ export default function FormFields({
                   return (
                     <Grid item>
                       <TextField
-                        error
-                        type={field?.inputType}
+                        // type={field?.inputType}
+
                         name={field.name}
                         key={field.name}
                         required={field?.required}
@@ -169,6 +180,7 @@ export default function FormFields({
                         onChange={(e) =>
                           handleInputChange(e.target.value, field.name)
                         }
+                        inputProps={{ type: field?.inputType }}
                         size="small"
                       />
                     </Grid>
