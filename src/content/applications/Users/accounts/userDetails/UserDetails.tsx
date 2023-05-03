@@ -45,20 +45,20 @@ const profileFields = [
   { name: 'gender', label: 'ΦΥΛΟ', type: 'select', values: [''] },
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ', inputType: 'number' },
   { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true, inputType: 'number' },
-  { name: 'email', label: 'EMAIL', required: true, inputType: 'email' },
+  { name: 'email', label: 'EMAIL', inputType: 'email' },
   { name: 'age', label: 'ΗΛΙΚΙΑ', inputType: 'number' }
 ];
 
 const metricsFieldsLeft = [
   // ----------------------
   { name: 'date', label: 'ΗΜ/ΝΙΑ', type: 'date' },
-  { name: 'weight', label: 'ΒΑΡΟΣ' },
-  { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ' },
-  { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ' },
-  { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ' },
-  { name: 'bmi', label: 'BMI' },
-  { name: 'metabolicAge', label: 'ΜΕΤΑΒΟΛΙΚΗ ΗΛΙΚΙΑ' },
-  { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ' }
+  { name: 'weight', label: 'ΒΑΡΟΣ', inputType: 'number' },
+  { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ', inputType: 'number' },
+  { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ', inputType: 'number' },
+  { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ', inputType: 'number' },
+  { name: 'bmi', label: 'BMI', inputType: 'number' },
+  { name: 'metabolicAge', label: 'ΜΕΤΑΒΟΛΙΚΗ ΗΛΙΚΙΑ', inputType: 'number' },
+  { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ', inputType: 'number' }
 ];
 const metricsFieldsRight = [
   { name: 'chest', label: 'ΘΩΡΑΚΑΣ' },
@@ -117,16 +117,17 @@ const UserDetails = ({ mode = '' }) => {
 
   const [state, setState] = useState<any>({});
   const [value, setValue] = React.useState<any | null>(moment(new Date()));
-
-  const handleChange = (newValue: any | null) => {
-    setValue(newValue);
-  };
-
   const [selectValue, setSelectValue] = React.useState('');
 
-  const handleSelectChange = (event: SelectChangeEvent) => {
-    setSelectValue(event.target.value as string);
-  };
+  // if (!selectedRow && mode !== 'add') return null;
+
+  // const handleChange = (newValue: any | null) => {
+  //   setValue(newValue);
+  // };
+
+  // const handleSelectChange = (event: SelectChangeEvent) => {
+  //   setSelectValue(event.target.value as string);
+  // };
   const [tabValue, setTabValue] = useState(0);
 
   const handleTabChange = (event: SyntheticEvent, newValue: number) => {
@@ -135,7 +136,7 @@ const UserDetails = ({ mode = '' }) => {
 
   const addUpdateUser = async (data) => {
     const userId = selectedRow._id;
-    const request = await postUser(data, userId, setMessage || null);
+    const request = await postUser(data, userId, setMessage);
 
     setUsers(request.data.users);
     setSelectedRow(request.data.user);
@@ -149,12 +150,11 @@ const UserDetails = ({ mode = '' }) => {
     addUpdateUser({ ...selectedRow, metrics: data });
   };
 
-  if (!selectedRow && mode !== 'add') return null;
-
   React.useEffect(() => {
     setValue(selectedRow);
-  }, [selectedRow, customers]);
+  }, [selectedRow]);
 
+  console.log('UESER DETAILS', value);
   return (
     <Grid
       container
@@ -222,7 +222,7 @@ const UserDetails = ({ mode = '' }) => {
                             <FormFields
                               fields={profileFields}
                               onSave={hendleSaveUser}
-                              data={mode !== 'add' ? selectedRow : ''}
+                              data={mode !== 'add' ? value : ''}
                               onError={setMessage}
                             />
                           </Grid>
@@ -253,13 +253,19 @@ const UserDetails = ({ mode = '' }) => {
                           direction="row"
                           alignItems="start"
                         >
+                          {console.log('MeTRICS', value.metrics)}
                           <FormFields
                             fields={[
                               ...metricsFieldsLeft,
                               ...metricsFieldsRight
                             ]}
                             onSave={hendleSaveUserMetrics}
-                            data={mode !== 'add' ? selectedRow?.metrics : ''}
+                            data={
+                              mode !== 'add'
+                                ? value?.metrics?.length &&
+                                  value.metrics[value?.metrics?.length - 1]
+                                : ''
+                            }
                           />
                         </Grid>
                       </Box>

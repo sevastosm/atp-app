@@ -32,7 +32,7 @@ interface EnhancedTableToolbarProps {
 const search = 'ΑΝΑΖΗΤΗΣΗ';
 
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { selectedRow, setSelectedRow } = useContext(AppContext);
+  // const { setSelectedRow } = useContext(AppContext);
   const {
     handleDelete,
     title,
@@ -40,7 +40,10 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     handleEdit,
     addRecord,
     editRecord,
-    withSelect
+    selectedRow,
+    withSelect,
+    onRecordSave,
+    setSelectedRow
   } = useContext(TableContext);
 
   const { numSelected, setSearch } = props;
@@ -59,6 +62,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     } else {
       addRecord(value);
     }
+    onRecordSave(value);
     handleOnClose();
     setEditNode(false);
   };

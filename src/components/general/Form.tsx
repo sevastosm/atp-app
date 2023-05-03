@@ -18,9 +18,12 @@ import { REQUEST_FILELD_MESSAGE, NEW_RECORD_TITLE } from 'src/constants';
 import {
   LocalizationProvider,
   DesktopDatePicker,
-  DatePicker
+  DatePicker,
+  dateTimePickerTabsClasses
 } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import moment from 'moment';
+import { el } from 'date-fns/locale';
 type Props = any;
 
 let requiredFiledList = [];
@@ -37,6 +40,7 @@ export default function FormFields({
   const [selectValue, setSelectValue] = React.useState('');
   const [viewSave, setViewSave] = React.useState<any>(false);
   const [requireMessage, setRequireMessage] = React.useState<any>(false);
+  const [pickerDate, setDate] = React.useState('');
 
   console.log('FORM--DATA', value);
 
@@ -82,9 +86,30 @@ export default function FormFields({
     }
   };
 
+  const formatDate = (date) => {
+    console.log(typeof date);
+
+    console.log('FOMAT-DATE', date);
+
+    console.log('FOMAT-moment', moment(date));
+    return moment(date);
+  };
+
   useEffect(() => {
+    if (data?.date) {
+      const dd: any = moment(data.date, 'DD/MM/YYYY');
+
+      setDate(dd);
+    } else {
+      const dd: any = moment(new Date(), 'DD/MM/YYYY');
+      setDate(dd);
+    }
     setValue(data);
   }, [data]);
+
+  const fd = formatDate(value?.date);
+
+  console.log(fd);
 
   return (
     <>
@@ -139,7 +164,7 @@ export default function FormFields({
                   );
                 case 'date':
                   return (
-                    <Grid item>
+                    <Grid item key={i}>
                       {/* <LocalizationProvider dateAdapter={AdapterMoment}>
                         <DesktopDatePicker
                           label={field.label}
@@ -153,10 +178,16 @@ export default function FormFields({
                       </LocalizationProvider> */}
                       <LocalizationProvider dateAdapter={AdapterMoment}>
                         <DatePicker
-                          label="ΗΜ/ΝΙΑ"
+                          label={field.label}
                           inputFormat="DD/MM/YY"
-                          value={value[field?.name] || ''}
-                          onChange={(e) => handleInputChange(e, field.name)}
+                          value={pickerDate}
+                          onChange={(e: any) => {
+                            setDate(e);
+                            handleInputChange(
+                              moment(e).format('DD/MM/YY'),
+                              field.name
+                            );
+                          }}
                           renderInput={(params) => (
                             <TextField size="small" {...params} />
                           )}
@@ -166,7 +197,7 @@ export default function FormFields({
                   );
                 default:
                   return (
-                    <Grid item>
+                    <Grid item key={i}>
                       <TextField
                         // type={field?.inputType}
 

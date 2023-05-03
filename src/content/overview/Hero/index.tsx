@@ -7,9 +7,12 @@ import {
   Typography
 } from '@mui/material';
 
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/material/styles';
+import React from 'react';
+import { login } from 'src/api/auth';
+import { AppContext } from 'src/context/AppContext';
 
 const TypographyH1 = styled(Typography)(
   ({ theme }) => `
@@ -78,8 +81,30 @@ const TsAvatar = styled(Box)(
 );
 
 function Hero() {
+  const { setMessage, setAuth, setLogedInUser } = React.useContext(AppContext);
+  const [credentials, setCredentials] = React.useState<any>({});
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setCredentials({ ...credentials, [name]: value });
+  };
+
+  const handleLogin = (e) => {
+    login(credentials, setMessage).then(async (responce) => {
+      console.log('handleLogin', responce);
+
+      localStorage.setItem('token', responce.data.token);
+      setAuth(true);
+      setLogedInUser(responce.data.user);
+
+      navigate('/management/accounts', { replace: false });
+    });
+  };
+
   return (
-    <Container sx={{ textAlign: 'center' }}>
+    <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
       <Grid
         spacing={{ xs: 3 }}
         justifyContent="center"
@@ -91,7 +116,14 @@ function Hero() {
           <Typography sx={{ mb: 2 }} variant="h1">
             ATP-app
           </Typography>
-          <TextField required id="user-name" label="Required" defaultValue="" />
+          <TextField
+            required
+            id="email"
+            label="Email"
+            value={credentials.email || ''}
+            name="email"
+            onChange={handleChange}
+          />
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -99,16 +131,14 @@ function Hero() {
             label="Password"
             type="password"
             autoComplete="current-password"
+            value={credentials.password || ''}
+            name="password"
+            onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12}>
-          <Button
-            component={RouterLink}
-            to="/management/accounts"
-            size="large"
-            variant="contained"
-          >
-            Fake login
+          <Button onClick={handleLogin} size="large" variant="contained">
+            Log in
           </Button>
         </Grid>
       </Grid>

@@ -85,22 +85,6 @@ const SidebarLayout: FC<SidebarLayoutProps> = () => {
           </Box>
         </Box>
       </Box>
-      {message && (
-        <Snackbar
-          open={open}
-          autoHideDuration={6000}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        >
-          <Alert
-            onClose={handleClose}
-            severity={message.type}
-            sx={{ width: '100%' }}
-          >
-            {message.message}
-          </Alert>
-        </Snackbar>
-      )}
     </>
   );
 };

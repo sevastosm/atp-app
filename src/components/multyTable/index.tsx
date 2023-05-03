@@ -32,6 +32,7 @@ interface Iprops {
   onRowClick?: (row: any) => void;
   onDataChange?: (data: any) => void;
   onRecordDelete?: (id: any) => void;
+  onRecordSave?: (data: any) => void;
   withSelect?: boolean;
   data: any;
   title?: string;
@@ -49,12 +50,14 @@ interface Iprops {
   newRecordTitle?: string;
   hideToolbar?: boolean;
   excloudedFields?: string[];
+  defaultFilter?: string;
 }
 
 export default function MultyTable({
   onRowClick = () => false,
   onDataChange = () => false,
   onRecordDelete = () => false,
+  onRecordSave = () => false,
   withSelect = false,
   data,
   title,
@@ -67,7 +70,8 @@ export default function MultyTable({
   requredFiledsMessage = REQUEST_FILELD_MESSAGE,
   newRecordTitle = NEW_RECORD_TITLE,
   hideToolbar = false,
-  excloudedFields = []
+  excloudedFields = [],
+  defaultFilter = 'name'
 }: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
@@ -218,7 +222,10 @@ export default function MultyTable({
         selectedFilters,
         deleteWarningMessage,
         requredFiledsMessage,
-        newRecordTitle
+        newRecordTitle,
+        onRecordSave,
+        defaultFilter,
+        setSelectedRow
       }}
     >
       <Container maxWidth={false} sx={{ mt: 2 }}>

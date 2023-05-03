@@ -13,14 +13,20 @@ export const AppContext = createContext<any>({});
 
 export const AppContextProvider: FC = ({ children }) => {
   const [customers, setUsers] = useState(null);
+  const [products, setProducts] = useState(null);
+
   const [selectedRow, setSelectedRow] = useState(null);
   const [nutritions, setNutritions] = useState(null);
   const [activeUser, setActiveUser] = useState(null);
   const [message, setMessage] = useState(null);
+  const [auth, setAuth] = useState(false);
+  const [logedInUser, setLogedInUser] = useState(null);
 
   return (
     <AppContext.Provider
       value={{
+        logedInUser,
+        setLogedInUser,
         selectedRow,
         setSelectedRow,
         customers,
@@ -29,7 +35,11 @@ export const AppContextProvider: FC = ({ children }) => {
         setActiveUser,
         setUsers,
         message,
-        setMessage
+        setMessage,
+        auth,
+        setAuth,
+        products,
+        setProducts
       }}
     >
       {children}

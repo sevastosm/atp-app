@@ -9,11 +9,12 @@ import {
   Button,
   ListItem
 } from '@mui/material';
-import { NavLink as RouterLink } from 'react-router-dom';
+import { NavLink as RouterLink, useNavigate } from 'react-router-dom';
 import { SidebarContext } from 'src/context/SidebarContext';
 
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
+import SettingsIcon from '@mui/icons-material/Settings';
 import DisplaySettingsTwoToneIcon from '@mui/icons-material/DisplaySettingsTwoTone';
 import { AppContext } from 'src/context/AppContext';
 
@@ -56,6 +57,7 @@ const SubMenuWrapper = styled(Box)(
             text-transform: uppercase;
             color: ${theme.palette.primary.contrastText};
           }
+      }
         }
     
         .MuiButton-root {
@@ -155,16 +157,26 @@ const SubMenuWrapper = styled(Box)(
           }
         }
       }
+  
     }
 `
 );
 
 function SidebarMenu() {
   const { closeSidebar } = useContext(SidebarContext);
-  const { activeUser } = useContext(AppContext);
+  const { setAuth, auth, setLogedInUser, logedInUser } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const role = logedInUser?.role || null;
+  if (!auth && !role) navigate('/', { replace: false });
+
+  const handleLogout = async () => {
+    await localStorage.removeItem('token');
+    setAuth(false);
+    setLogedInUser(null);
+  };
 
   // if (!activeUser) return null;
-  const role = 'admin';
 
   return (
     <>
@@ -197,7 +209,7 @@ function SidebarMenu() {
                   </Button>
                 </ListItem>
               )}
-              <ListItem component="div">
+              {/* <ListItem component="div">
                 <Button
                   disableRipple
                   component={RouterLink}
@@ -207,32 +219,21 @@ function SidebarMenu() {
                 >
                   ΠΡΟΦΙΛ ΧΡΗΣΤΗ
                 </Button>
-              </ListItem>
-              {/* <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/management/profile/settings"
-                  startIcon={<DisplaySettingsTwoToneIcon />}
-                >
-                  Account Settings
-                </Button>
               </ListItem> */}
             </List>
           </SubMenuWrapper>
         </List>
         {role === 'admin' && (
-          <List
-            component="div"
-            subheader={
-              <ListSubheader component="div" disableSticky>
-                ΤΡΟΦΗΜΑ
-              </ListSubheader>
-            }
-          >
+          <>
             <SubMenuWrapper>
-              <List component="div">
+              <List
+                component="div"
+                subheader={
+                  <ListSubheader component="div" disableSticky>
+                    ΤΡΟΦΗΜΑ
+                  </ListSubheader>
+                }
+              >
                 <ListItem component="div">
                   <Button
                     disableRipple
@@ -250,7 +251,33 @@ function SidebarMenu() {
                 </ListItem>
               </List>
             </SubMenuWrapper>
-          </List>
+            <Box sx={{ position: 'absolute', bottom: 0 }}>
+              <SubMenuWrapper>
+                <List
+                  component="div"
+                  subheader={
+                    <ListSubheader component="div" disableSticky>
+                      ΡΥΘΜΙΣΕΙΣ
+                    </ListSubheader>
+                  }
+                ></List>
+                <List component="div">
+                  <ListItem component="div">
+                    <Button
+                      onClick={handleLogout}
+                      startIcon={
+                        <>
+                          <SettingsIcon />
+                        </>
+                      }
+                    >
+                      Log out
+                    </Button>
+                  </ListItem>
+                </List>
+              </SubMenuWrapper>
+            </Box>
+          </>
         )}
       </MenuWrapper>
     </>

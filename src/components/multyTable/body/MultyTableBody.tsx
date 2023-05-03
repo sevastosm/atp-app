@@ -65,32 +65,33 @@ const MultyTableBody = () => {
     selectedFilters,
     noRecordsFoundText,
     selected,
-    selectedRow
+    selectedRow,
+    defaultFilter,
+    cols
   } = useContext(TableContext);
 
   // // TO DO dynamic search options
-  // const fixedData = stableSort(data, getComparator(order, orderBy))
-  //   .filter((row: any) =>
-  //     row.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-  //   )
-  //   // TO DO add more than one filter
-  //   .filter((row: any) => {
-  //     if (!selectedFilters || selectedFilters.value === '0') return row;
-  //     return row[selectedFilters?.filter] === selectedFilters.value;
-  //   })
-  //   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const fixedData = stableSort(data, getComparator(order, orderBy))
+    .filter((row: any) =>
+      row[defaultFilter]
+        .toLocaleLowerCase()
+        .includes(search.toLocaleLowerCase())
+    )
+    // TO DO add more than one filter
+    .filter((row: any) => {
+      if (!selectedFilters || selectedFilters.value === '0') return row;
+      return row[selectedFilters?.filter] === selectedFilters.value;
+    })
+    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
     <TableBody>
       {/* if you don't need to support IE11, you can replace the `stableSort` call with:
 rows.sort(getComparator(order, orderBy)).slice() */}
-      {data.map((row: any, index) => {
+      {fixedData.map((row: any, index) => {
         const isItemSelected = isSelected(row._id);
         const isRowSelected = selectedRow?._id === row._id;
         const labelId = `enhanced-table-checkbox-${index}`;
-
-        console.log('isRowSelected', isRowSelected);
-
         return (
           <TableRow
             onClick={(event) => handleClick(event, row.name, row)}
@@ -111,8 +112,8 @@ rows.sort(getComparator(order, orderBy)).slice() */}
                 />
               </TableCell>
             )}
-            {Object.keys(row).map((key, i) => {
-              if (excloudedFields.includes(key)) return;
+            {cols.map((key, i) => {
+              if (excloudedFields.includes(key.name)) return;
               return (
                 <TableCell
                   key={i + key}
@@ -120,7 +121,7 @@ rows.sort(getComparator(order, orderBy)).slice() */}
                   id={labelId}
                   scope="row"
                 >
-                  {row[key]}
+                  {row[key.name] || ''}
                 </TableCell>
               );
             })}

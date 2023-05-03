@@ -21,7 +21,8 @@ const cols = [
 const excloudedFields = ['metrics', 'photos', 'appointments', '_id'];
 
 export default function Accounts() {
-  const { setSelectedRow, customers, setUsers } = React.useContext(AppContext);
+  const { setSelectedRow, customers, setUsers, auth } =
+    React.useContext(AppContext);
   const [viewDetails, setViewDetails] = React.useState(false);
 
   const getUsers = async () => {
@@ -57,6 +58,7 @@ export default function Accounts() {
                 refersTo={'customers'}
                 excloudedFields={excloudedFields}
                 onRecordDelete={(selectedRow) => deleteUser(selectedRow._id)}
+                defaultFilter="firstName"
               />
             )}
           </Grid>
