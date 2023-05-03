@@ -13,13 +13,16 @@ type Props = {
 };
 
 const DeleteDialog = ({ open, setDeleteOpen }: Props) => {
-  const { handleDelete, deleteWarningMessage } = React.useContext(TableContext);
+  const { handleDelete, deleteWarningMessage, setSelectedRow } =
+    React.useContext(TableContext);
 
   const handleClose = () => {
     setDeleteOpen(false);
+    setSelectedRow(null);
   };
   const handleCloseOk = () => {
     setDeleteOpen(false);
+    setSelectedRow(null);
     handleDelete();
   };
 

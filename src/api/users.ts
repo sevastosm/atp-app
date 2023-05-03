@@ -6,7 +6,7 @@ const fetchUsers = async () => {
   return axiosInstance.get(host);
 };
 
-const postUser = (data, id, setMessage) => {
+const postUser = (data, setMessage, id = null) => {
   createMessage(setMessage);
   if (id) {
     return axiosInstance.patch(host + '/' + id, data);

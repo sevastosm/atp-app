@@ -135,8 +135,7 @@ const UserDetails = ({ mode = '' }) => {
   };
 
   const addUpdateUser = async (data) => {
-    const userId = selectedRow._id;
-    const request = await postUser(data, userId, setMessage);
+    const request = await postUser(data, setMessage, data._id || null);
 
     setUsers(request.data.users);
     setSelectedRow(request.data.user);
@@ -190,13 +189,13 @@ const UserDetails = ({ mode = '' }) => {
                   >
                     <Tab label="ΣΤΟΙΧΕΙΑ" {...a11yProps(0)} />
 
-                    {selectedRow._id && (
+                    {value?._id !== undefined && (
                       <Tab label="ΜΕΤΡΗΣΕΙΣ" {...a11yProps(1)} />
                     )}
-                    {selectedRow._id && (
+                    {value?._id !== undefined && (
                       <Tab label="ΣΗΜΕΙΩΣΕΙΣ" {...a11yProps(2)} />
                     )}
-                    {selectedRow._id && (
+                    {value?._id !== undefined && (
                       <Tab label="ΔΙΑΤΡΟΦΗ" {...a11yProps(3)} />
                     )}
                   </Tabs>
@@ -253,7 +252,7 @@ const UserDetails = ({ mode = '' }) => {
                           direction="row"
                           alignItems="start"
                         >
-                          {console.log('MeTRICS', value.metrics)}
+                          {console.log('MeTRICS', value?.metrics)}
                           <FormFields
                             fields={[
                               ...metricsFieldsLeft,
@@ -263,7 +262,7 @@ const UserDetails = ({ mode = '' }) => {
                             data={
                               mode !== 'add'
                                 ? value?.metrics?.length &&
-                                  value.metrics[value?.metrics?.length - 1]
+                                  value?.metrics[value?.metrics?.length - 1]
                                 : ''
                             }
                           />

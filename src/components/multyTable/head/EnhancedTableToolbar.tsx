@@ -54,7 +54,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
   const handleOnClose = () => {
     setOpen(false);
-    setSelectedRow('');
+    setSelectedRow(null);
   };
   const handleSave = (value) => {
     if (editMode) {
@@ -139,7 +139,8 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
             }
           />
         </FormControl>
-        {numSelected > 0 ? (
+
+        {numSelected > 0 && selectedRow && (
           <>
             {!withSelect && (
               <Tooltip title="Delete">
@@ -149,13 +150,14 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
               </Tooltip>
             )}
           </>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton>
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
         )}
+        {/* // ) : (
+        //   <Tooltip title="Filter list">
+        //     <IconButton>
+        //       <FilterListIcon />
+        //     </IconButton>
+        //   </Tooltip>
+        // )} */}
       </Toolbar>
       <Divider />
     </>

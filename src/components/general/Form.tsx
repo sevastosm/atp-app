@@ -87,11 +87,6 @@ export default function FormFields({
   };
 
   const formatDate = (date) => {
-    console.log(typeof date);
-
-    console.log('FOMAT-DATE', date);
-
-    console.log('FOMAT-moment', moment(date));
     return moment(date);
   };
 
@@ -108,8 +103,6 @@ export default function FormFields({
   }, [data]);
 
   const fd = formatDate(value?.date);
-
-  console.log(fd);
 
   return (
     <>
