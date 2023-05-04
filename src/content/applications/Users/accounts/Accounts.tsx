@@ -15,8 +15,8 @@ const cols = [
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
   { name: 'mobile', label: 'ΚΙΝΗΤΟ', width: '75' },
   { name: 'email', label: 'EMAIL' },
-  { name: 'nextApoitment', label: 'EΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ' },
-  { name: 'role', label: 'Role' }
+  { name: 'nextApoitment', label: 'EΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ' }
+  // { name: 'role', label: 'Role' }
 ];
 const excloudedFields = ['metrics', 'photos', 'appointments', '_id'];
 
@@ -36,6 +36,10 @@ export default function Accounts() {
 
   const onRowClick = (row) => {
     setSelectedRow(row);
+  };
+
+  const handleDataChange = (data) => {
+    console.log('TABLECHANGE-', data);
   };
 
   return (
@@ -59,6 +63,7 @@ export default function Accounts() {
                 excloudedFields={excloudedFields}
                 onRecordDelete={(selectedRow) => deleteUser(selectedRow._id)}
                 defaultFilter="firstName"
+                onDataChange={handleDataChange}
               />
             )}
           </Grid>

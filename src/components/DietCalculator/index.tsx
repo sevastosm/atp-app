@@ -26,6 +26,7 @@ type Props = { user };
 //const bmrMaleTEst = (66 + 13.7 * 78 + 5 * 184 - 6.8 * 38).toFixed(1);
 
 function DietCalculator({ user }: Props) {
+  console.log('user', user);
   if (!user?.metrics) return null;
   const bmrMale = (
     66 +
@@ -40,7 +41,7 @@ function DietCalculator({ user }: Props) {
     4.7 * user.age
   ).toFixed(1);
 
-  const getGender = user.gender === 'Male' ? bmrMale : bmrFemale;
+  const getGender = user.gender === '0' ? bmrMale : bmrFemale;
   const rareDencity = 1.2 * parseFloat(getGender);
   const mediumDencity = 1.375 * parseFloat(getGender);
   const intenceDencity = 1.55 * parseFloat(getGender);

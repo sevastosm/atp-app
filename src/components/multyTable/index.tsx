@@ -187,8 +187,8 @@ export default function MultyTable({
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   React.useEffect(() => {
-    onDataChange({ rows, selected });
-  }, [rows, selected]);
+    onDataChange({ rows, selectedRow });
+  }, [rows, selectedRow]);
 
   return (
     <TableContext.Provider

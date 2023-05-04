@@ -46,13 +46,15 @@ const profileFields = [
   { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ', inputType: 'number' },
   { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true, inputType: 'number' },
   { name: 'email', label: 'EMAIL', inputType: 'email' },
-  { name: 'age', label: 'ΗΛΙΚΙΑ', inputType: 'number' }
+  { name: 'age', label: 'ΗΛΙΚΙΑ', inputType: 'number' },
+  { name: 'nextApoitment', label: 'ΕΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ', type: 'date' }
 ];
 
 const metricsFieldsLeft = [
   // ----------------------
   { name: 'date', label: 'ΗΜ/ΝΙΑ', type: 'date' },
   { name: 'weight', label: 'ΒΑΡΟΣ', inputType: 'number' },
+  { name: 'height', label: 'ΥΨΟΣ', inputType: 'number' },
   { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ', inputType: 'number' },
   { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ', inputType: 'number' },
   { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ', inputType: 'number' },
@@ -67,6 +69,12 @@ const metricsFieldsRight = [
   { name: 'thigh', label: 'ΜΟΙΡΟΣ' },
   { name: 'calves', label: 'ΓΑΜΠΑ' },
   { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' }
+];
+
+const notesFilelds = [
+  { name: 'activity', label: 'ΠΡΟΠΟΝΗΣΗ (ΕΙΔΟΣ,ΣΥΧΝΟΤΗΤΑ,ΩΡΕΣ Κ.Λ.Π)' },
+  { name: 'allergies', label: 'ΔΙΑΦΟΡΕΣ ΠΑΘΗΣΕΙΣ - ΑΛΕΡΓΙΕΣ Κ.Α' },
+  { name: 'notes', label: 'ΣΗΜΕΙΩΣΕΣ - ΠΑΡΑΤΗΡΗΣΕΙΣ' }
 ];
 
 const TITLE = 'ΣΤΟΙΧΕΙΑ ΧΡΗΣΤΗ';
@@ -104,10 +112,14 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const UserDetails = ({ mode = '' }) => {
+const UserDetails = ({
+  mode = '',
+  selectedRow = null,
+  setSelectedRow = null
+}) => {
   const {
-    selectedRow,
-    setSelectedRow,
+    // selectedRow,
+    // setSelectedRow,
     setUsers,
     customers,
     setActiveUser,
@@ -141,19 +153,27 @@ const UserDetails = ({ mode = '' }) => {
     setSelectedRow(request.data.user);
   };
 
-  const hendleSaveUser = (data) => {
+  const handleSaveUser = (data) => {
     addUpdateUser(data);
   };
 
-  const hendleSaveUserMetrics = (data) => {
+  const handleSaveUserMetrics = (data) => {
     addUpdateUser({ ...selectedRow, metrics: data });
+  };
+
+  const handleSaveNotes = (data) => {
+    addUpdateUser({ ...selectedRow, notes: data });
   };
 
   React.useEffect(() => {
     setValue(selectedRow);
   }, [selectedRow]);
 
-  console.log('UESER DETAILS', value);
+  const handleSaveNutrition = (data) => {
+    addUpdateUser({ ...selectedRow, nutrition: data });
+  };
+
+  console.log('USER DETAILS', value);
   return (
     <Grid
       container
@@ -220,7 +240,7 @@ const UserDetails = ({ mode = '' }) => {
                           >
                             <FormFields
                               fields={profileFields}
-                              onSave={hendleSaveUser}
+                              onSave={handleSaveUser}
                               data={mode !== 'add' ? value : ''}
                               onError={setMessage}
                             />
@@ -258,7 +278,7 @@ const UserDetails = ({ mode = '' }) => {
                               ...metricsFieldsLeft,
                               ...metricsFieldsRight
                             ]}
-                            onSave={hendleSaveUserMetrics}
+                            onSave={handleSaveUserMetrics}
                             data={
                               mode !== 'add'
                                 ? value?.metrics?.length &&
@@ -274,12 +294,22 @@ const UserDetails = ({ mode = '' }) => {
                   </TabPanel>
 
                   <TabPanel value={tabValue} index={2}>
-                    <Notes />
+                    <FormFields
+                      fields={notesFilelds}
+                      onSave={handleSaveNotes}
+                      data={
+                        mode !== 'add'
+                          ? value?.notes?.length &&
+                            value?.notes[value?.notes?.length - 1]
+                          : ''
+                      }
+                      onError={setMessage}
+                    />
                   </TabPanel>
                   <TabPanel value={tabValue} index={3}>
                     Nutrition
-                    {/* <DietCalculator user={selectedRow} />
-                    <Nutrition /> */}
+                    <DietCalculator user={value} />
+                    <Nutrition />
                   </TabPanel>
                 </Box>
               </CardContent>

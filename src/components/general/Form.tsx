@@ -102,7 +102,19 @@ export default function FormFields({
     setValue(data);
   }, [data]);
 
-  const fd = formatDate(value?.date);
+  useEffect(() => {
+    if (data?.nextApoitment) {
+      const dd: any = moment(data.nextApoitment, 'DD/MM/YYYY');
+
+      setDate(dd);
+    } else {
+      const dd: any = moment(new Date(), 'DD/MM/YYYY');
+      setDate(dd);
+    }
+    setValue(data);
+  }, [data]);
+
+  // const fd = formatDate(value?.date);
 
   return (
     <>
@@ -142,15 +154,18 @@ export default function FormFields({
                           {field.label}
                         </InputLabel>
                         <Select
+                          name={field.name}
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
-                          value={selectValue}
+                          value={value[field?.name] || ''}
                           label="fsdfsf"
-                          onChange={handleSelectChange}
+                          onChange={(e) =>
+                            handleInputChange(e.target.value, field.name)
+                          }
                           size="small"
                         >
-                          <MenuItem value={1}>ΑΝΔΡΑΣ</MenuItem>
-                          <MenuItem value={0}>ΓΥΝΑΙΚΑ</MenuItem>
+                          <MenuItem value={'0'}>ΑΝΔΡΑΣ</MenuItem>
+                          <MenuItem value={'1'}>ΓΥΝΑΙΚΑ</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>

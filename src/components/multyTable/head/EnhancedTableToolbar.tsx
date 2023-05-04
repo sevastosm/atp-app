@@ -54,7 +54,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
   const handleOnClose = () => {
     setOpen(false);
-    setSelectedRow(null);
+    setSelectedRow('');
   };
   const handleSave = (value) => {
     if (editMode) {
@@ -63,7 +63,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       addRecord(value);
     }
     onRecordSave(value);
-    handleOnClose();
+    // handleOnClose();
     setEditNode(false);
   };
 
@@ -82,7 +82,11 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       <DeleteDialog open={deleteOpen} setDeleteOpen={setDeleteOpen} />
       <SimpleDialog open={open} onClose={handleOnClose}>
         {refersTo === 'customers' ? (
-          <UserDetails mode={selectedRow ? 'edit' : 'add'} />
+          <UserDetails
+            mode={selectedRow ? 'edit' : 'add'}
+            selectedRow={selectedRow}
+            setSelectedRow={setSelectedRow}
+          />
         ) : (
           <NewRecord onSave={handleSave} editMode={editMode} />
         )}
