@@ -23,7 +23,14 @@ export const NutritionContextProvider: FC = ({ children }) => {
   function handleAddBox(data) {
     dispatch({
       type: 'added',
-      box: data
+      payload: data
+    });
+  }
+  function handleSaveBox(data, index) {
+    dispatch({
+      type: 'save',
+      payload: data,
+      index: index
     });
   }
 
@@ -40,10 +47,16 @@ export const NutritionContextProvider: FC = ({ children }) => {
       payload: data
     });
   }
-  const [selectedRow, setSelectedRow] = useState(users[0]);
-  const [customers, setUsers] = useState(users);
-  const [nutritions, setNutritions] = useState(null);
-  const [activeUser, setActiveUser] = useState(users[0]);
+
+  function saveBoxName(name) {
+    dispatch({
+      type: 'ADD_NAME',
+      payload: name
+    });
+  }
+
+  console.log('NUTRITION_STORE', store);
+  console.log('SELECTED_BOX', selectedBox);
 
   return (
     <NutritionContext.Provider
@@ -54,7 +67,9 @@ export const NutritionContextProvider: FC = ({ children }) => {
         dispatch,
         handleDeleteBox,
         selectedBox,
-        setSelectedBox
+        setSelectedBox,
+        saveBoxName,
+        handleSaveBox
       }}
     >
       {children}

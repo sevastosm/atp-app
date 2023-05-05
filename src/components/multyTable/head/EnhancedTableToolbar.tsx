@@ -43,7 +43,9 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     selectedRow,
     withSelect,
     onRecordSave,
-    setSelectedRow
+    setSelectedRow,
+    hideAddButton,
+    hideSearchButton
   } = useContext(TableContext);
 
   const { numSelected, setSearch } = props;
@@ -110,16 +112,18 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           </Typography>
           {!withSelect && (
             <>
-              <Button
-                onClick={() => {
-                  setSelectedRow('');
-                  setEditNode(false);
-                  setOpen(true);
-                }}
-              >
-                <AddBoxIcon fontSize="large" />
-              </Button>
-              {numSelected > 0 && selectedRow && (
+              {!hideAddButton && (
+                <Button
+                  onClick={() => {
+                    setSelectedRow('');
+                    setEditNode(false);
+                    setOpen(true);
+                  }}
+                >
+                  <AddBoxIcon fontSize="large" />
+                </Button>
+              )}
+              {numSelected > 0 && selectedRow && !hideAddButton && (
                 <Tooltip title="Edit">
                   <IconButton onClick={onEdit}>
                     <EditIcon />
@@ -130,21 +134,24 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           )}
           <Filters />
         </Box>
-        <FormControl sx={{ m: 1, minWidth: 300 }}>
-          {/* <InputLabel htmlFor="searcht">{search}</InputLabel> */}
-          <OutlinedInput
-            id="search"
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={search}
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+        {!hideSearchButton && (
+          <FormControl sx={{ m: 1, minWidth: 300 }}>
+            {/* <InputLabel htmlFor="searcht">{search}</InputLabel> */}
+            <OutlinedInput
+              size="small"
+              id="search"
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={search}
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+        )}
 
-        {numSelected > 0 && selectedRow && (
+        {numSelected > 0 && selectedRow && !hideAddButton && (
           <>
             {!withSelect && (
               <Tooltip title="Delete">

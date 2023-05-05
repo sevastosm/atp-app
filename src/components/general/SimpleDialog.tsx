@@ -19,7 +19,7 @@ export default function SimpleDialog(props: SimpleDialogProps) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open} maxWidth="md">
+    <Dialog onClose={handleClose} open={open} maxWidth="xl">
       <DialogTitle>
         {onClose ? (
           <IconButton

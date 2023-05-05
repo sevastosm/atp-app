@@ -105,7 +105,7 @@ rows.sort(getComparator(order, orderBy)).slice() */}
               <TableCell key={row.name}>
                 <Checkbox
                   color="primary"
-                  checked={isItemSelected}
+                  checked={isRowSelected}
                   inputProps={{
                     'aria-labelledby': labelId
                   }}
@@ -116,6 +116,7 @@ rows.sort(getComparator(order, orderBy)).slice() */}
               if (excloudedFields.includes(key.name)) return;
               return (
                 <TableCell
+                  sx={{ fontSize: '12px' }}
                   key={i + key}
                   // component="th"
                   id={labelId}

@@ -29,6 +29,7 @@ const Filters = (props: Props) => {
           <FormControl sx={{ m: 1 }}>
             <InputLabel id="demo-simple-select-label">{filter.name}</InputLabel>
             <Select
+              size="small"
               id="demo-simple-select-label"
               value={value}
               label={filter.name}

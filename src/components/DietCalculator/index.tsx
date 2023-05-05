@@ -58,7 +58,7 @@ function DietCalculator({ user }: Props) {
       width={'100%'}
       sx={{ mt: 2, mb: 4 }}
     >
-      <Grid item xs={12} lg={8}>
+      <Grid item>
         <Card>
           <CardHeader title="Diet Calculator" />
           <Divider />
@@ -66,19 +66,13 @@ function DietCalculator({ user }: Props) {
             <Box
               component="form"
               sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' }
+                '& .MuiTextField-root': { m: 1 }
               }}
               noValidate
               autoComplete="off"
               onSubmit={() => console.log('Form submited!')}
             >
-              <Grid
-                container
-                direction="row"
-                //   justifyContent="center"
-                alignItems="stretch"
-                //   spacing={3}
-              >
+              <Grid container direction="row" spacing={3}>
                 <TextField
                   size="small"
                   id="outlined-read-only-input"

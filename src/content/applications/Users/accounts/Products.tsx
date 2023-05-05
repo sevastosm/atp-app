@@ -22,7 +22,12 @@ const cols = [
   { name: 'edible', label: 'Εδώδιμες ίνες  (γρ.)' },
   { name: 'protein', label: 'Πρωτεϊνη (γρ.))' },
   { name: 'salt', label: 'Αλάτι (γρ.)' },
-  { name: 'category', label: 'Κωδικός -Κατηγοριας', required: true }
+  {
+    name: 'category',
+    label: 'Κωδικός -Κατηγοριας',
+    required: true,
+    width: '200'
+  }
 ];
 
 const getCategoryName = (data) =>
@@ -38,7 +43,11 @@ const filters = [
   }
 ];
 
-export default function Products() {
+export default function Products({
+  onDataChange = () => null,
+  onRowSelect = () => null,
+  hideAddButton = false
+}) {
   const { setProducts, products, setMessage } = React.useContext(AppContext);
   const { rows } = useContext(TableContext);
 
@@ -50,7 +59,6 @@ export default function Products() {
 
   const handleDelete = async (row) => {
     await deleteProduct(row._id).then((resp) => {
-      console.log('RESP', resp);
       setProducts(resp.data);
     });
   };
@@ -76,28 +84,30 @@ export default function Products() {
   });
 
   return (
-    <Container maxWidth={false}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="stretch"
-        spacing={3}
-      >
-        <Grid item xs={12}>
-          <MultyTable
-            withSelect={false}
-            data={data}
-            title="ΤΡΟΦΙΜΑ"
-            cols={cols}
-            onDataChange={getData}
-            filters={filters}
-            excloudedFields={['_id']}
-            onRecordDelete={handleDelete}
-            onRecordSave={handleSave}
-          />
-        </Grid>
-      </Grid>
-    </Container>
+    // <Container maxWidth={false}>
+    //   <Grid
+    //     container
+    //     direction="row"
+    //     justifyContent="center"
+    //     alignItems="stretch"
+    //     // spacing={3}
+    //   >
+    //     <Grid item sx={{ width: '100%' }}>
+    <MultyTable
+      withSelect={false}
+      data={data}
+      title="ΤΡΟΦΙΜΑ"
+      cols={cols}
+      onDataChange={onDataChange}
+      filters={filters}
+      excloudedFields={['_id']}
+      onRecordDelete={handleDelete}
+      onRecordSave={handleSave}
+      onRowClick={onRowSelect}
+      hideAddButton={hideAddButton}
+    />
+    //     </Grid>
+    //   </Grid>
+    // </Container>
   );
 }

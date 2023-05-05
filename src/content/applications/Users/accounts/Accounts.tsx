@@ -44,7 +44,7 @@ export default function Accounts() {
 
   return (
     <>
-      <Container maxWidth={false} sx={{ mt: 2 }}>
+      {/* <Container maxWidth={false} sx={{ mt: 2 }}>
         <Grid
           container
           direction="row"
@@ -52,23 +52,23 @@ export default function Accounts() {
           alignItems="stretch"
           spacing={3}
         >
-          <Grid item xs={12}>
-            {customers && (
-              <MultyTable
-                onRowClick={onRowClick}
-                data={customers}
-                title="ΠΕΛΑΤΕΣ"
-                cols={cols}
-                refersTo={'customers'}
-                excloudedFields={excloudedFields}
-                onRecordDelete={(selectedRow) => deleteUser(selectedRow._id)}
-                defaultFilter="firstName"
-                onDataChange={handleDataChange}
-              />
-            )}
-          </Grid>
+          <Grid item xs={12}> */}
+      {customers && (
+        <MultyTable
+          onRowClick={onRowClick}
+          data={customers}
+          title="ΠΕΛΑΤΕΣ"
+          cols={cols}
+          refersTo={'customers'}
+          excloudedFields={excloudedFields}
+          onRecordDelete={(selectedRow) => deleteUser(selectedRow._id)}
+          defaultFilter="firstName"
+          onDataChange={handleDataChange}
+        />
+      )}
+      {/* </Grid>
         </Grid>
-      </Container>
+      </Container> */}
       <SimpleDialog open={viewDetails} onClose={() => setViewDetails(false)}>
         <UserDetails mode="edit" />
       </SimpleDialog>

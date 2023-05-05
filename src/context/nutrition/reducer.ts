@@ -3,7 +3,19 @@ export default function nutritionReducer(store, action) {
     case 'added': {
       return {
         ...store,
-        boxes: [...store.boxes, action.box.boxes]
+        boxes: [...store.boxes, action.payload]
+      };
+    }
+    case 'save': {
+      return {
+        ...store,
+        boxes: store.boxes.map((t, i) => {
+          if (i === action.index) {
+            return action.payload;
+          } else {
+            return t;
+          }
+        })
       };
     }
     case 'ADD_DATE': {
@@ -12,15 +24,18 @@ export default function nutritionReducer(store, action) {
         duration: { ...action.payload }
       };
     }
-    // case 'added': {
-    //   return [...boxes, {
-    //            boxes: action.box.boxes
-    //   }];
+    // case 'ADD_NAME': {
+    //   return [
+    //     ...store,
+    //     {
+    //       boxes: action.box.boxes
+    //     }
+    //   ];
     // }
     case 'changed': {
       return store.boxes.map((t, i) => {
         if (i === action.index) {
-          return action.task;
+          return action.payload;
         } else {
           return t;
         }

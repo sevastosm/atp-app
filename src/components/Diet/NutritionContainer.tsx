@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Stack, Paper, Typography } from '@mui/material';
+import { Stack, Paper, Typography, Box, Card } from '@mui/material';
 import { de } from 'date-fns/locale';
 import BasicTable from './Table';
 import NutritionBox from './NutritionBox';
@@ -27,7 +27,7 @@ const NutritionContainer = (props: Props) => {
 
   const { boxes } = store;
 
-  const handleAdd = () => handleAddBox({ boxes: [] });
+  const handleAdd = () => handleAddBox({});
   const handleDelete = () => {
     handleDeleteBox(selectedBox);
     setSelectedBox(null);
@@ -36,8 +36,8 @@ const NutritionContainer = (props: Props) => {
   const handleSave = () => {};
 
   return (
-    <div>
-      <Stack spacing={2}>
+    <Box>
+      <Stack spacing={1}>
         <BoxToolbar
           onAdd={handleAdd}
           onDelete={handleDelete}
@@ -46,25 +46,29 @@ const NutritionContainer = (props: Props) => {
           isEdditVisible={false}
           addText={'ΝΕΟ BOX'}
           deleteText="ΔΙΑΓΡΑΦΗ ΒΟΧ"
-          saveText="ΑΠΟΘΗΚΕΥΣΗ"
+          saveText="ΑΠΟΘΗΚΕΥΣΗ ΔΙΑΤΡΟΦΗΣ"
         />
         {boxes.length > 0 && (
           <>
             {/* <h3>Από: 25/02/2023 Έως: 12/03/2023</h3> */}
             <NutritionDates />
             {boxes.map((box, i) => (
-              <div
+              <Card
+                variant="outlined"
                 key={i}
                 onClick={() => setSelectedBox(box)}
-                style={{ background: box === selectedBox && 'red' }}
+                style={{
+                  border: box === selectedBox && '1px solid blue'
+                  // border: 'solid 1px'
+                }}
               >
-                <NutritionBox data={box} />
-              </div>
+                <NutritionBox data={box} index={i} />
+              </Card>
             ))}
           </>
         )}
       </Stack>
-    </div>
+    </Box>
   );
 };
 

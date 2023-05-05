@@ -6,7 +6,7 @@ import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import EnhancedTableHead from './head/EnhancedTableHead';
 import EnhancedTableToolbar from './head/EnhancedTableToolbar';
-import { Container } from '@mui/material';
+import { Container, TableHead } from '@mui/material';
 import TableContext from './TableContext';
 import MultyTableBody from './body/MultyTableBody';
 import {
@@ -17,6 +17,7 @@ import {
   SELECT_OPTION_LABEL
 } from '../../constants';
 import { ro } from 'date-fns/locale';
+import { Height } from '@mui/icons-material';
 
 export interface Data {
   calories: number;
@@ -51,6 +52,9 @@ interface Iprops {
   hideToolbar?: boolean;
   excloudedFields?: string[];
   defaultFilter?: string;
+  height?: number;
+  hideAddButton?: boolean;
+  hideSearchButton?: boolean;
 }
 
 export default function MultyTable({
@@ -71,7 +75,10 @@ export default function MultyTable({
   newRecordTitle = NEW_RECORD_TITLE,
   hideToolbar = false,
   excloudedFields = [],
-  defaultFilter = 'name'
+  defaultFilter = 'name',
+  height = 400,
+  hideAddButton = false,
+  hideSearchButton = false
 }: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
@@ -225,23 +232,27 @@ export default function MultyTable({
         newRecordTitle,
         onRecordSave,
         defaultFilter,
-        setSelectedRow
+        setSelectedRow,
+        height,
+        hideAddButton,
+        hideSearchButton
       }}
     >
       <Container maxWidth={false} sx={{ mt: 2 }}>
         <Box sx={{ width: '100%' }}>
-          <Paper sx={{ width: '100%', mb: 2 }}>
+          <Paper sx={{ width: '100%', mb: 2 }} variant="outlined" elevation={0}>
             {!hideToolbar && (
               <EnhancedTableToolbar
                 numSelected={selected.length}
                 setSearch={setSearch}
               />
             )}
-            <TableContainer>
+            <TableContainer sx={{ maxHeight: height }}>
               <Table
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
                 size={dense ? 'small' : 'medium'}
+                stickyHeader
               >
                 <EnhancedTableHead
                   numSelected={selected.length}

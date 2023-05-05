@@ -307,8 +307,7 @@ const UserDetails = ({
                     />
                   </TabPanel>
                   <TabPanel value={tabValue} index={3}>
-                    Nutrition
-                    <DietCalculator user={value} />
+                    {/* <DietCalculator user={value} /> */}
                     <Nutrition />
                   </TabPanel>
                 </Box>
