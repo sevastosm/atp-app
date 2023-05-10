@@ -10,6 +10,9 @@ import {
   NutritionContextProvider
 } from 'src/context/nutrition/NutritionContext';
 import NutritionDates from './NutritionDates';
+import { AppBlockingTwoTone, ConstructionOutlined } from '@mui/icons-material';
+import { AppContext } from 'src/context/AppContext';
+import { addDiet } from 'src/api/users';
 
 type Props = {};
 
@@ -22,19 +25,41 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const NutritionContainer = (props: Props) => {
-  const { handleAddBox, store, selectedBox, setSelectedBox, handleDeleteBox } =
-    React.useContext(NutritionContext);
+  const {
+    handleAddBox,
+    store,
+    selectedBox,
+    setSelectedBox,
+    handleDeleteBox,
+    handleSetStore
+  } = React.useContext(NutritionContext);
+
+  const { selectedRow, setMessage, setUsers, setSelectedRow } =
+    React.useContext(AppContext);
 
   const { boxes } = store;
 
-  const handleAdd = () => handleAddBox({});
+  const handleAdd = () => handleAddBox({ name: '', data: [] });
   const handleDelete = () => {
     handleDeleteBox(selectedBox);
     setSelectedBox(null);
   };
 
-  const handleSave = () => {};
+  const handleSave = () => {
+    addDiet(store, setMessage, selectedRow._id, store._id).then(
+      (response: any) => {
+        setSelectedRow(response.data.user);
+        setUsers(response.data.users);
+      }
+    );
+  };
 
+  React.useEffect(() => {
+    //Add lassr nutriton
+    return selectedRow?.nutrition[0]
+      ? handleSetStore(selectedRow.nutrition[0])
+      : null;
+  }, [selectedRow]);
   return (
     <Box>
       <Stack spacing={1}>
@@ -46,7 +71,7 @@ const NutritionContainer = (props: Props) => {
           isEdditVisible={false}
           addText={'ΝΕΟ BOX'}
           deleteText="ΔΙΑΓΡΑΦΗ ΒΟΧ"
-          saveText="ΑΠΟΘΗΚΕΥΣΗ ΔΙΑΤΡΟΦΗΣ"
+          saveText="ΑΠΟΘΗΚΕΥΣΗ ΟΛΩΝ"
         />
         {boxes.length > 0 && (
           <>

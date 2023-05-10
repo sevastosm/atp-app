@@ -55,6 +55,8 @@ interface Iprops {
   height?: number;
   hideAddButton?: boolean;
   hideSearchButton?: boolean;
+  hideDeleteButton?: boolean;
+  hideEditButton?: boolean;
 }
 
 export default function MultyTable({
@@ -78,7 +80,9 @@ export default function MultyTable({
   defaultFilter = 'name',
   height = 400,
   hideAddButton = false,
-  hideSearchButton = false
+  hideSearchButton = false,
+  hideDeleteButton = false,
+  hideEditButton = false
 }: Iprops) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
@@ -235,7 +239,9 @@ export default function MultyTable({
         setSelectedRow,
         height,
         hideAddButton,
-        hideSearchButton
+        hideSearchButton,
+        hideDeleteButton,
+        hideEditButton
       }}
     >
       <Container maxWidth={false} sx={{ mt: 2 }}>

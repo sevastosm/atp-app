@@ -22,10 +22,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Nutrition = (props: Props) => {
-  const { handleAddBox, boxes, dispatch } = React.useContext(NutritionContext);
-
-  const handleAdd = () => handleAddBox({ name: 'tatatat', boxes: [] });
-
   return (
     <NutritionContextProvider>
       <NutritionContainer />

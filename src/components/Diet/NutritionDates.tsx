@@ -11,7 +11,7 @@ import { formatDate } from 'src/utils/heplers';
 type Props = {};
 
 const NutritionDates = (props: Props) => {
-  const { handleAddDuration } = React.useContext(NutritionContext);
+  const { handleAddDuration, store } = React.useContext(NutritionContext);
   const [value, setValue] = React.useState<any | null>(null);
   const [valueΤο, setValueΤο] = React.useState<any | null>(null);
 
@@ -23,6 +23,12 @@ const NutritionDates = (props: Props) => {
     setValueΤο(newValue);
     handleAddDuration({ from: formatDate(value), to: formatDate(newValue) });
   };
+
+  React.useEffect(() => {
+    //Add lassr nutriton
+    setValue(moment(store.duration.from, 'DD/MM/YYYY'));
+    setValueΤο(moment(store.duration.to, 'DD/MM/YYYY'));
+  }, [store.duration]);
 
   return (
     <Box display={'flex'} flexWrap="wrap">

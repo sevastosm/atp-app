@@ -1,5 +1,10 @@
 export default function nutritionReducer(store, action) {
   switch (action.type) {
+    case 'set': {
+      return {
+        ...action.payload
+      };
+    }
     case 'added': {
       return {
         ...store,
@@ -32,15 +37,15 @@ export default function nutritionReducer(store, action) {
     //     }
     //   ];
     // }
-    case 'changed': {
-      return store.boxes.map((t, i) => {
-        if (i === action.index) {
-          return action.payload;
-        } else {
-          return t;
-        }
-      });
-    }
+    // case 'changed': {
+    //   return store.boxes.map((t, i) => {
+    //     if (i === action.index) {
+    //       return action.payload;
+    //     } else {
+    //       return t;
+    //     }
+    //   });
+    // }
     case 'deleted': {
       return {
         ...store,

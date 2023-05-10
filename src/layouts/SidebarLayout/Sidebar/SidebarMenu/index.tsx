@@ -185,7 +185,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Accounts
+              {role === 'admin' && 'Accounts'}
             </ListSubheader>
           }
         >
@@ -223,7 +223,7 @@ function SidebarMenu() {
             </List>
           </SubMenuWrapper>
         </List>
-        {role === 'admin' && (
+        {role === 'admin' ? (
           <>
             <SubMenuWrapper>
               <List
@@ -278,6 +278,33 @@ function SidebarMenu() {
               </SubMenuWrapper>
             </Box>
           </>
+        ) : (
+          <Box sx={{ position: 'absolute', bottom: 0 }}>
+            <SubMenuWrapper>
+              <List
+                component="div"
+                subheader={
+                  <ListSubheader component="div" disableSticky>
+                    ΡΥΘΜΙΣΕΙΣ
+                  </ListSubheader>
+                }
+              ></List>
+              <List component="div">
+                <ListItem component="div">
+                  <Button
+                    onClick={handleLogout}
+                    startIcon={
+                      <>
+                        <SettingsIcon />
+                      </>
+                    }
+                  >
+                    Log out
+                  </Button>
+                </ListItem>
+              </List>
+            </SubMenuWrapper>
+          </Box>
         )}
       </MenuWrapper>
     </>

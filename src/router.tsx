@@ -8,7 +8,7 @@ import BaseLayout from 'src/layouts/BaseLayout';
 import SuspenseLoader from 'src/components/SuspenseLoader';
 import Products from './content/applications/Users/accounts/Products';
 import Accounts from './content/applications/Users/accounts/Accounts';
-import UserProfile from './content/applications/Users/accounts/UserProfie';
+import UserAccount from './content/applications/Users/accounts/userDetails/UserAccount';
 
 const Loader = (Component) => (props) =>
   (
@@ -141,7 +141,7 @@ const routes: RouteObject[] = [
       },
       {
         path: 'user',
-        element: <UserProfile />
+        element: <UserAccount />
       }
       // {
       //   path: 'settings',

@@ -19,4 +19,19 @@ const deleteUser = (id, setMessage = null) => {
   return axiosInstance.delete(host + '/' + id);
 };
 
-export { postUser, fetchUsers, deleteUser };
+const hostDiet = 'http://localhost:6001/diet';
+
+const addDiet = (data, setMessage, id = null, dietId = null) => {
+  createMessage(setMessage);
+  if (dietId) {
+    return axiosInstance.patch(hostDiet + `/${id}/${dietId}`, data);
+  }
+  return axiosInstance.post(hostDiet + '/new/' + id, data);
+};
+
+const getUserDiet = (id = null, setMessage = null) => {
+  createMessage(setMessage);
+  return axiosInstance.get(hostDiet + '/' + id);
+};
+
+export { postUser, fetchUsers, deleteUser, addDiet, getUserDiet };

@@ -112,14 +112,10 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const UserDetails = ({
-  mode = '',
-  selectedRow = null,
-  setSelectedRow = null
-}) => {
+const UserAccount = ({ mode = '' }) => {
   const {
-    // selectedRow,
-    // setSelectedRow,
+    selectedRow,
+    setSelectedRow,
     setUsers,
     customers,
     setActiveUser,
@@ -128,10 +124,10 @@ const UserDetails = ({
   } = React.useContext(AppContext);
 
   const [state, setState] = useState<any>({});
-  const [value, setValue] = React.useState<any | null>(moment(new Date()));
+  const [value, setValue] = React.useState<any | null>([]);
   const [selectValue, setSelectValue] = React.useState('');
 
-  // if (!selectedRow && mode !== 'add') return null;
+  // if (selectedRow && mode !== 'add') return null;
 
   // const handleChange = (newValue: any | null) => {
   //   setValue(newValue);
@@ -320,4 +316,4 @@ const UserDetails = ({
   );
 };
 
-export default UserDetails;
+export default UserAccount;

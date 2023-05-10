@@ -1,10 +1,21 @@
 import React from 'react';
-import { Stack, Paper, Typography, TextField, Box, Card } from '@mui/material';
+import {
+  Stack,
+  Paper,
+  Typography,
+  TextField,
+  Box,
+  Card,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import MultyTable from '../multyTable';
 import BoxToolbar from './BoxToolbar';
 import { NutritionContext } from 'src/context/nutrition/NutritionContext';
 import Products from 'src/content/applications/Users/accounts/Products';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,12 +37,14 @@ const cols = [
   // { name: 'protein', label: 'Πρωτεϊνη (γρ.))' },
   // { name: 'salt', label: 'Αλάτι (γρ.)' },
   // { name: 'category', label: 'Κωδικός -Κατηγοριας', required: true },
+  { name: 'qi', label: 'Ποσότητα', required: true, inputType: 'number' },
   { name: 'notes', label: 'Σημιώσεις', required: true }
 ];
 
 const box = { name: '', data: [] };
 
 const NutritionBox = ({ data, index }) => {
+  console.log('DATAAAAAA', data);
   const { handleSaveBox } = React.useContext(NutritionContext);
 
   const [boxData, setData] = React.useState<any>([]);
@@ -58,41 +71,102 @@ const NutritionBox = ({ data, index }) => {
     setNutritionVisible(false);
   };
 
+  const handleSaveRecord = (record) => {
+    const updatedList = boxData.map((t, i) => {
+      if (i._id === record._id) {
+        return record;
+      } else {
+        return t;
+      }
+    });
+    setData(updatedList);
+    handleSaveBox(
+      {
+        name: boxName,
+        data: updatedList
+      },
+      index
+    );
+  };
+  const sumWithInitial = () => boxData.reduce((sum, li) => sum + li.energy, 0);
+
+  const handleDeleteRecord = (record) => {
+    const updatedList = boxData.filter((d) => d._id !== record._id);
+    setData(updatedList);
+    handleSaveBox(
+      {
+        name: boxName,
+        data: updatedList
+      },
+      index
+    );
+  };
+
+  React.useEffect(() => {
+    //Add lassr nutriton
+    setBoxName(data.name);
+    setData(data.data);
+  }, [data]);
+
   return (
     <Item sx={{ position: 'relative' }}>
-      <Box sx={{ marginLeft: '40px', position: 'absolute' }}>
-        <BoxToolbar
-          isEdditVisible={false}
-          onAdd={() => setNutritionVisible(true)}
-          onSave={handleSave}
-          // onEddit={() => setNutritionVisible(true)}
-        />
-      </Box>
+      <Accordion id={'Accordion' + index}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>{boxName}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box
+            sx={{
+              marginLeft: 5,
+              marginBottom: 3,
+              marginTop: 3,
+              textAlign: 'left'
+            }}
+          >
+            <TextField
+              name={'name'}
+              id={'boxName'}
+              label="Ονομασία Box"
+              value={boxName}
+              onChange={handleInputChange}
+              size="small"
+            />
+          </Box>
 
-      <TextField
-        name={'name'}
-        id={'boxName'}
-        label="Ονομασία Box"
-        value={boxName}
-        onChange={handleInputChange}
-        size="small"
-      />
+          <Box sx={{ marginLeft: '40px' }}>
+            <BoxToolbar
+              isEdditVisible={false}
+              onAdd={() => setNutritionVisible(true)}
+              onSave={handleSave}
+              // onEddit={() => setNutritionVisible(true)}
+              addText={'ΕΙΣΑΓΩΓΗ ' + boxName}
+              saveText={'ΑΠΟΘΗΚΕΥΣΗ ' + boxName}
+            />
+          </Box>
+          <Typography>{boxData?.length && sumWithInitial()}</Typography>
 
-      {nutritionVisible && (
-        <Products hideAddButton={true} onRowSelect={getData} />
-      )}
-      <>
-        <MultyTable
-          hideAddButton={true}
-          hideSearchButton={true}
-          data={boxData}
-          title="ΤΡΟΦΙΜΑ"
-          // hideToolbar
-          cols={cols}
-          // onRowClick={getData}
-          //   filters={filters}
-        />
-      </>
+          <MultyTable
+            hideAddButton={true}
+            hideSearchButton={true}
+            data={boxData}
+            title={`ΤΡΟΦΙΜΑ ` + boxName}
+            onRecordSave={handleSaveRecord}
+            onRecordDelete={handleDeleteRecord}
+            // hideToolbar
+            cols={cols}
+            // onRowClick={getData}
+            //   filters={filters}
+          />
+
+          {nutritionVisible && (
+            <Products hideAddButton={true} onRowSelect={getData} />
+          )}
+        </AccordionDetails>
+      </Accordion>
     </Item>
   );
 };

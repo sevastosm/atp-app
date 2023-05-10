@@ -1,24 +1,30 @@
 import React, { FC, useState, createContext, useReducer } from 'react';
 
 import { users } from 'src/mocks/users';
+import { AppContext } from '../AppContext';
 import nutritionReducer from './reducer';
-
-const initialStore = {
-  userId: null,
-  duration: {
-    from: null,
-    to: null
-  },
-  boxes: [{ name: '', data: [] }]
-};
 
 const initialBoxes = [];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const NutritionContext = createContext<any>({});
 export const NutritionContextProvider: FC = ({ children }) => {
+  const initialStore = {
+    duration: {
+      from: null,
+      to: null
+    },
+    boxes: [{ name: '', data: [] }]
+  };
   const [store, dispatch] = useReducer(nutritionReducer, initialStore);
   const [selectedBox, setSelectedBox] = useState(null);
+
+  function handleSetStore(data) {
+    dispatch({
+      type: 'set',
+      payload: data
+    });
+  }
 
   function handleAddBox(data) {
     dispatch({
@@ -64,6 +70,7 @@ export const NutritionContextProvider: FC = ({ children }) => {
         store,
         handleAddBox,
         handleAddDuration,
+        handleSetStore,
         dispatch,
         handleDeleteBox,
         selectedBox,

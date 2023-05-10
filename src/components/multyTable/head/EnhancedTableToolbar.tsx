@@ -45,7 +45,9 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     onRecordSave,
     setSelectedRow,
     hideAddButton,
-    hideSearchButton
+    hideSearchButton,
+    hideDeleteButton,
+    hideEditButton
   } = useContext(TableContext);
 
   const { numSelected, setSearch } = props;
@@ -61,12 +63,12 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const handleSave = (value) => {
     if (editMode) {
       editRecord(value);
+      setEditNode(false);
     } else {
       addRecord(value);
     }
     onRecordSave(value);
-    // handleOnClose();
-    setEditNode(false);
+    handleOnClose();
   };
 
   const onDelete = () => {
@@ -123,7 +125,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                   <AddBoxIcon fontSize="large" />
                 </Button>
               )}
-              {numSelected > 0 && selectedRow && !hideAddButton && (
+              {numSelected > 0 && selectedRow && !hideEditButton && (
                 <Tooltip title="Edit">
                   <IconButton onClick={onEdit}>
                     <EditIcon />
@@ -151,7 +153,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           </FormControl>
         )}
 
-        {numSelected > 0 && selectedRow && !hideAddButton && (
+        {numSelected > 0 && selectedRow && !hideDeleteButton && (
           <>
             {!withSelect && (
               <Tooltip title="Delete">

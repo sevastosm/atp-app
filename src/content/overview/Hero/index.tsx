@@ -81,7 +81,8 @@ const TsAvatar = styled(Box)(
 );
 
 function Hero() {
-  const { setMessage, setAuth, setLogedInUser } = React.useContext(AppContext);
+  const { setMessage, setAuth, setLogedInUser, setSelectedRow } =
+    React.useContext(AppContext);
   const [credentials, setCredentials] = React.useState<any>({});
   const navigate = useNavigate();
 
@@ -92,14 +93,19 @@ function Hero() {
   };
 
   const handleLogin = (e) => {
-    login(credentials, setMessage).then(async (responce) => {
-      console.log('handleLogin', responce);
+    login(credentials, setMessage).then(async (response) => {
+      console.log('handleLogin', response);
 
-      localStorage.setItem('token', responce.data.token);
+      localStorage.setItem('token', response.data.token);
       setAuth(true);
-      setLogedInUser(responce.data.user);
+      setLogedInUser(response.data.user);
+      setSelectedRow(response.data.user);
 
-      navigate('/management/accounts', { replace: false });
+      if (response.data.user.role === 'admin') {
+        navigate('/management/accounts', { replace: false });
+      } else {
+        navigate('/management/user', { replace: false });
+      }
     });
   };
 

@@ -73,6 +73,7 @@ export default function NewRecord({ onSave, editMode }: Props) {
           >
             {cols.map((col) => (
               <TextField
+                type={col.inputType}
                 name={col.name}
                 key={col.name}
                 required={col?.required}
