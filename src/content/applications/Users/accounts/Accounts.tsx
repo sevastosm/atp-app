@@ -31,6 +31,7 @@ export default function Accounts() {
   };
 
   useEffect(() => {
+    if (!auth) return null;
     getUsers();
   }, []);
 

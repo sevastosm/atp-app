@@ -1,5 +1,10 @@
 export default function nutritionReducer(store, action) {
   switch (action.type) {
+    case 'new': {
+      return {
+        ...action.payload
+      };
+    }
     case 'set': {
       return {
         ...action.payload
@@ -9,6 +14,12 @@ export default function nutritionReducer(store, action) {
       return {
         ...store,
         boxes: [...store.boxes, action.payload]
+      };
+    }
+    case 'addLimit': {
+      return {
+        ...store,
+        caloriesLimit: action.payload
       };
     }
     case 'save': {

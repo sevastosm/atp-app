@@ -28,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const cols = [
   { name: 'name', label: 'Προιον', width: '300', required: true },
   // { name: 'by', label: 'Ανα' },
-  // { name: 'energy', label: 'Ενέργεια (kcal)' },
+  { name: 'energy', label: 'Ενέργεια (kcal)' },
   // { name: 'fat', label: 'Λιπαρά (kcal)' },
   // { name: 'saturated_fat', label: 'Κορεσμένα (γρ.)' },
   // { name: 'carbs', label: 'Υδατάνθρακες (γρ.)' },
@@ -61,13 +61,13 @@ const NutritionBox = ({ data, index }) => {
   };
 
   const handleSave = () => {
-    handleSaveBox(
-      {
-        name: boxName,
-        data: boxData
-      },
-      index
-    );
+    // handleSaveBox(
+    //   {
+    //     name: boxName,
+    //     data: boxData
+    //   },
+    //   index
+    // );
     setNutritionVisible(false);
   };
 
@@ -88,7 +88,10 @@ const NutritionBox = ({ data, index }) => {
       index
     );
   };
-  const sumWithInitial = () => boxData.reduce((sum, li) => sum + li.energy, 0);
+  const sumWithInitial = boxData.reduce(
+    (sum, li) => sum + parseInt(li.energy) * parseInt(li.qi),
+    0
+  );
 
   const handleDeleteRecord = (record) => {
     const updatedList = boxData.filter((d) => d._id !== record._id);
@@ -116,38 +119,60 @@ const NutritionBox = ({ data, index }) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>{boxName}</Typography>
+          <Box
+            sx={{
+              width: '100%',
+
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between'
+            }}
+          >
+            <Box>
+              <TextField
+                name={'name'}
+                id={'boxName'}
+                label="Ονομασία Box"
+                value={boxName}
+                onChange={handleInputChange}
+                size="small"
+              />
+            </Box>
+            <Box sx={{ maxWidth: '150px' }}>
+              <TextField
+                id={'boxName'}
+                label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ"
+                value={boxData?.length && sumWithInitial}
+                onChange={handleInputChange}
+                size="small"
+                InputProps={{
+                  readOnly: true
+                }}
+              />
+            </Box>
+          </Box>
         </AccordionSummary>
         <AccordionDetails>
           <Box
             sx={{
-              marginLeft: 5,
-              marginBottom: 3,
-              marginTop: 3,
-              textAlign: 'left'
+              marginLeft: '30px',
+              marginRight: '30px',
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between'
             }}
           >
-            <TextField
-              name={'name'}
-              id={'boxName'}
-              label="Ονομασία Box"
-              value={boxName}
-              onChange={handleInputChange}
-              size="small"
-            />
+            <Box sx={{ flexGrow: 1 }}>
+              <BoxToolbar
+                isEdditVisible={false}
+                onAdd={() => setNutritionVisible(true)}
+                onSave={handleSave}
+                // onEddit={() => setNutritionVisible(true)}
+                addText={'ΤΡΟΦΗΜΑ ΓΙΑ ' + boxName}
+                saveText={'ΚΛΕΙΣΙΜΟ ΤΡΟΦΗΜΑ '}
+              />
+            </Box>
           </Box>
-
-          <Box sx={{ marginLeft: '40px' }}>
-            <BoxToolbar
-              isEdditVisible={false}
-              onAdd={() => setNutritionVisible(true)}
-              onSave={handleSave}
-              // onEddit={() => setNutritionVisible(true)}
-              addText={'ΕΙΣΑΓΩΓΗ ' + boxName}
-              saveText={'ΑΠΟΘΗΚΕΥΣΗ ' + boxName}
-            />
-          </Box>
-          <Typography>{boxData?.length && sumWithInitial()}</Typography>
 
           <MultyTable
             hideAddButton={true}
@@ -163,7 +188,12 @@ const NutritionBox = ({ data, index }) => {
           />
 
           {nutritionVisible && (
-            <Products hideAddButton={true} onRowSelect={getData} />
+            <Products
+              hideAddButton={true}
+              hideEditButton={true}
+              hideDeleteButton={true}
+              onRowSelect={getData}
+            />
           )}
         </AccordionDetails>
       </Accordion>

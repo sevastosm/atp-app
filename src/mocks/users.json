@@ -1,0 +1,2024 @@
+[
+  {
+    "_id": {
+      "$oid": "643f97dc861bb68965f9bc57"
+    },
+    "firstName": "Willard",
+    "lastName": "Ronisch",
+    "gender": "Male",
+    "age": "93",
+    "phone": "198 699 7598",
+    "mobile": "592 396 1758",
+    "email": "wronisch4@hexun.com",
+    "metrics": [
+      {
+        "weight": 77,
+        "height": 185,
+        "date": "6/12/2022",
+        "bmi": 3.3,
+        "bodyFat": 66.1,
+        "metabolicAge": 61,
+        "boneMass": 17.3,
+        "nonFatMass": 84.2,
+        "vf": 28.3,
+        "bodyWater": 30.2,
+        "biseps": 33.8,
+        "chest": 92.1,
+        "waist": 21.6,
+        "belly": 93.4,
+        "pelvis": 29.4,
+        "thigh": 32.3,
+        "calves": 70.2
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2023-04-19T07:27:24.822Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T07:27:24.822Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "643f97dc861bb68965f9bc53"
+    },
+    "firstName": "Mead",
+    "lastName": "Dewire",
+    "gender": "Male",
+    "age": "47",
+    "phone": "345 616 8442",
+    "mobile": "6945498067",
+    "email": "admin@mail.com",
+    "metrics": [
+      {
+        "weight": 72,
+        "height": 168,
+        "date": "23/8/2022",
+        "bmi": 31.1,
+        "bodyFat": 70.8,
+        "metabolicAge": 8,
+        "boneMass": 38.4,
+        "nonFatMass": 51.2,
+        "vf": 32.5,
+        "bodyWater": 51,
+        "biseps": 17.1,
+        "chest": 89.3,
+        "waist": 55.8,
+        "belly": 93.3,
+        "pelvis": 98.2,
+        "thigh": 44.2,
+        "calves": 98.8
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "4-5-2023",
+    "role": "admin",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2023-04-19T07:27:24.821Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T07:27:24.821Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "643f97dc861bb68965f9bc55"
+    },
+    "firstName": "Valerie",
+    "lastName": "Branton",
+    "gender": "Female",
+    "age": "76",
+    "phone": "922 201 1450",
+    "mobile": "220 741 6707",
+    "email": "vbranton2@craigslist.org",
+    "metrics": [
+      {
+        "weight": 126,
+        "height": 155,
+        "date": "30/7/2022",
+        "bmi": 22.5,
+        "bodyFat": 31.9,
+        "metabolicAge": 31,
+        "boneMass": 17.7,
+        "nonFatMass": 55.7,
+        "vf": 31.8,
+        "bodyWater": 51.4,
+        "biseps": 71,
+        "chest": 9.7,
+        "waist": 17.8,
+        "belly": 42.9,
+        "pelvis": 45.1,
+        "thigh": 29.8,
+        "calves": 50.7
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2023-04-19T07:27:24.821Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T07:27:24.821Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "643f97dc861bb68965f9bc56"
+    },
+    "firstName": "Dannye",
+    "lastName": "Poad",
+    "gender": "Female",
+    "age": "70",
+    "phone": "930 862 5857",
+    "mobile": "209 278 0174",
+    "email": "dpoad3@hugedomains.com",
+    "metrics": [
+      {
+        "weight": 45,
+        "height": 199,
+        "date": "5/2/2022",
+        "bmi": 10.3,
+        "bodyFat": 12.9,
+        "metabolicAge": 99,
+        "boneMass": 39,
+        "nonFatMass": 48.3,
+        "vf": 4.4,
+        "bodyWater": 69.5,
+        "biseps": 87.8,
+        "chest": 98.3,
+        "waist": 8.3,
+        "belly": 54.1,
+        "pelvis": 29.7,
+        "thigh": 3.6,
+        "calves": 9
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2023-04-19T07:27:24.822Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T07:27:24.822Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "643f97dc861bb68965f9bc54"
+    },
+    "firstName": "Duky",
+    "lastName": "Orbine",
+    "gender": "Male",
+    "age": "90",
+    "phone": "802 372 5345",
+    "mobile": "282 895 3446",
+    "email": "dorbine1@canalblog.com",
+    "metrics": [
+      {
+        "weight": 78,
+        "height": 150,
+        "date": "14/4/2022",
+        "bmi": 11.8,
+        "bodyFat": 5.6,
+        "metabolicAge": 65,
+        "boneMass": 17.4,
+        "nonFatMass": 46.8,
+        "vf": 49,
+        "bodyWater": 41.6,
+        "biseps": 43.6,
+        "chest": 58,
+        "waist": 52.9,
+        "belly": 20.9,
+        "pelvis": 34,
+        "thigh": 14.1,
+        "calves": 44.9
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2023-04-19T07:27:24.821Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T07:27:24.821Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "643f97dc861bb68965f9bc58"
+    },
+    "firstName": "Josephina",
+    "lastName": "Brunsen",
+    "gender": "Female",
+    "age": "45",
+    "phone": "974 523 9998",
+    "mobile": "518 983 0844",
+    "email": "jbrunsen5@ucoz.ru",
+    "metrics": [
+      {
+        "weight": 93,
+        "height": 195,
+        "date": "6/12/2022",
+        "bmi": 25.3,
+        "bodyFat": 34.2,
+        "metabolicAge": 68,
+        "boneMass": 19,
+        "nonFatMass": 39.5,
+        "vf": 6.6,
+        "bodyWater": 6.1,
+        "biseps": 34.3,
+        "chest": 2.5,
+        "waist": 84.3,
+        "belly": 5.6,
+        "pelvis": 54.2,
+        "thigh": 44.8,
+        "calves": 28.2
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2023-04-19T07:27:24.822Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T07:27:24.822Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "643feb7060469a5e420bc183"
+    },
+    "firstName": "sfsdf",
+    "lastName": "sfsdf",
+    "mobile": "sfsdf",
+    "email": "sfsdfdf",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-19T13:24:00.520Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T13:24:00.520Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "643feba960469a5e420bc186"
+    },
+    "firstName": "Test2",
+    "lastName": "Test2",
+    "mobile": "Test2",
+    "email": "Test2",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-19T13:24:57.823Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T13:24:57.823Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "643fec2f60469a5e420bc18b"
+    },
+    "firstName": "test3",
+    "lastName": "test3",
+    "mobile": "test3",
+    "email": "test3",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-19T13:27:11.952Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T13:27:11.952Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "643fece8faafb660c484ae18"
+    },
+    "firstName": "test4",
+    "lastName": "test4",
+    "mobile": "test4",
+    "email": "test4",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-19T13:30:16.937Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T13:30:16.937Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "643fed8ffaafb660c484ae1b"
+    },
+    "firstName": "tests5",
+    "lastName": "tests5",
+    "mobile": "tests5",
+    "email": "tests5",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-19T13:33:03.133Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T13:33:03.133Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "643fedd7faafb660c484ae20"
+    },
+    "firstName": "tests6",
+    "lastName": "tests6",
+    "mobile": "tests6",
+    "email": "tests6",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-19T13:34:15.544Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T13:34:15.544Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "643fef8551de046b4cfa9dab"
+    },
+    "firstName": "asdasd",
+    "lastName": "adasd",
+    "mobile": "adasd",
+    "email": "adasd",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "uiser",
+    "createdAt": {
+      "$date": "2023-04-19T13:41:25.306Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-19T13:41:25.306Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6440ed76a58bf7a918bbccf5"
+    },
+    "firstName": "yo",
+    "lastName": "yo",
+    "mobile": "yo",
+    "email": "yo",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-20T07:44:54.917Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-20T07:44:54.917Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644903636e3e443343a655f8"
+    },
+    "firstName": "sit",
+    "lastName": "sit",
+    "mobile": "sit",
+    "email": "sit",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T10:56:35.127Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T10:56:35.127Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644903e16e3e443343a655fc"
+    },
+    "firstName": "pip",
+    "lastName": "pip",
+    "mobile": "pip",
+    "email": "pip",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T10:58:41.437Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T10:58:41.437Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644904438f8967d0565df04e"
+    },
+    "firstName": "tik",
+    "lastName": "tik",
+    "mobile": "tik",
+    "email": "tik",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T11:00:19.527Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T11:00:19.527Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64493125216d39d9de6bcf28"
+    },
+    "firstName": "kak",
+    "lastName": "kak",
+    "mobile": "kak",
+    "email": "kak",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T14:11:49.311Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T14:11:49.311Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6449315afa3a0631f91f2bf4"
+    },
+    "firstName": "tat",
+    "lastName": "tat",
+    "mobile": "tat",
+    "email": "tat",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T14:12:42.150Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T14:12:42.150Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6449332f1599ec110080277a"
+    },
+    "firstName": "pap",
+    "lastName": "pap",
+    "mobile": "pap",
+    "email": "pap",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T14:20:31.197Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T14:20:31.197Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644935b914f3451c22902558"
+    },
+    "firstName": "lak",
+    "lastName": "lak",
+    "mobile": "lak",
+    "email": "lak",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T14:31:21.159Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T14:31:21.159Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6449362614f3451c2290255c"
+    },
+    "firstName": "fap",
+    "lastName": "fap",
+    "mobile": "fap",
+    "email": "fap",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T14:33:10.704Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T14:33:10.704Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6449365e14f3451c22902560"
+    },
+    "firstName": "gag",
+    "lastName": "gag",
+    "mobile": "gag",
+    "email": "gag",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T14:34:06.633Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T14:34:06.633Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6449378314f3451c22902564"
+    },
+    "firstName": "pop",
+    "lastName": "pop",
+    "mobile": "pop",
+    "email": "pop",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T14:38:59.969Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T14:38:59.969Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644937f314f3451c22902568"
+    },
+    "firstName": "gop",
+    "lastName": "gop",
+    "mobile": "gop",
+    "email": "gop",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T14:40:51.791Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T14:40:51.791Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6449402fbac3a64b069950f0"
+    },
+    "firstName": "gogoo",
+    "lastName": "gogoo",
+    "mobile": "gogoo",
+    "email": "gogoo",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T15:15:59.602Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T15:15:59.602Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644940d1bac3a64b069950f4"
+    },
+    "firstName": "klikidadadsasd",
+    "lastName": "kliki",
+    "mobile": "kliki",
+    "email": "kliki",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T15:18:41.963Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T15:37:00.183Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64498d7383dd092edf515628"
+    },
+    "firstName": "dddd111",
+    "lastName": "ddd",
+    "mobile": "ddd",
+    "email": "ddd",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T20:45:39.081Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-26T20:45:57.299Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6449a39e99b44d226ffb7794"
+    },
+    "firstName": ";l;l;",
+    "lastName": "lklkl",
+    "mobile": "lklklk",
+    "email": "m,mmm,m,lklklklklkkl",
+    "metrics": [
+      {
+        "date": "2023-04-26T21:00:00.000Z"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-26T22:20:14.723Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T07:48:07.613Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a2493436ab1bc452761b1"
+    },
+    "firstName": "sfsdfsdf555",
+    "lastName": "sdf",
+    "mobile": "sdfsdf",
+    "email": "sdfsd555f@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T07:30:27.961Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T07:30:27.961Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a3362436ab1bc452761eb"
+    },
+    "firstName": "adadad",
+    "lastName": "adad",
+    "mobile": "42423423424",
+    "email": "adad@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T08:33:38.375Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T08:33:38.375Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a3561eb04ccb63b19701b"
+    },
+    "firstName": "vb",
+    "lastName": "vbsfsfsdf",
+    "mobile": "34234",
+    "email": "vb@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T08:42:09.164Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T08:44:44.472Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a36699d97f859ff88b21d"
+    },
+    "firstName": "bbbbb",
+    "lastName": "bbbbb",
+    "mobile": "3324234",
+    "email": "bbbbb@sfsfsf.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T08:46:33.413Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T08:46:33.413Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a373fa0079a8fb16b7ae4"
+    },
+    "firstName": "adasd",
+    "lastName": "nn",
+    "mobile": "33423",
+    "email": "nn@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T08:50:07.283Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T08:50:07.283Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a3797a0079a8fb16b7aee"
+    },
+    "firstName": "adasd",
+    "lastName": "wrwer",
+    "mobile": "12313123123",
+    "email": "35345@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T08:51:35.836Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T08:59:55.336Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a3846a0079a8fb16b7af3"
+    },
+    "firstName": "mom",
+    "lastName": "mom",
+    "mobile": "34242",
+    "email": "rerer@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T08:54:30.202Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T08:54:30.202Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a38b2863712c8786ea824"
+    },
+    "firstName": "xxx",
+    "lastName": "xxx",
+    "mobile": "24234234",
+    "email": "xxx@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T08:56:18.152Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T08:56:18.152Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a3a52863712c8786ea837"
+    },
+    "firstName": "rwrwerwr",
+    "lastName": "sdf",
+    "mobile": "34234234",
+    "email": "tes@mail.co",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:03:14.118Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:03:14.118Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a3b55863712c8786ea83c"
+    },
+    "firstName": "sfsdf",
+    "lastName": "2343",
+    "mobile": "324234234",
+    "email": "testkkk@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:07:33.695Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:07:33.695Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a3fcdc4644c40a0c4610e"
+    },
+    "firstName": "ffff",
+    "lastName": "ffff",
+    "mobile": "24324",
+    "email": "ffff@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:26:37.408Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:26:37.408Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a42146feae8c09921bb39"
+    },
+    "firstName": "testMAil",
+    "lastName": "testMAil",
+    "mobile": "424234234",
+    "email": "testMAil@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:36:20.156Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:36:20.156Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a4274cbcf46488403390e"
+    },
+    "firstName": "test2",
+    "lastName": "test2",
+    "mobile": "42424234",
+    "email": "test2@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:37:56.131Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:37:56.131Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a43c29175d379fe0649bc"
+    },
+    "firstName": "wrwerwer",
+    "lastName": "wrwerwer",
+    "mobile": "234234",
+    "email": "wrwerwer@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:43:30.921Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:43:30.921Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a4403273a555290390e90"
+    },
+    "firstName": "sfsfsdf",
+    "lastName": "sfsdf",
+    "mobile": "3424234",
+    "email": "tes@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:44:36.066Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:44:36.066Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a4468273a555290390e95"
+    },
+    "firstName": "yo1",
+    "lastName": "e",
+    "mobile": "1",
+    "email": "yo1@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:46:16.959Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:46:16.959Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a44ac256f71ee71bef704"
+    },
+    "firstName": "yo2",
+    "lastName": "yo2",
+    "mobile": "2",
+    "email": "yo2@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:47:24.779Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:47:24.779Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a45016fcdf846eebc2090"
+    },
+    "firstName": "yo 3",
+    "lastName": "yo 3",
+    "mobile": "3434",
+    "email": "yo3@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T09:48:49.305Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T09:48:49.305Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a4a2ddfb68b4156e52e96"
+    },
+    "firstName": "werwer",
+    "lastName": "werwer",
+    "mobile": "434354",
+    "email": "op@mail.com",
+    "metrics": [
+      {
+        "date": "15/04/23"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T10:10:53.263Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T13:03:56.170Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a546635974b4b1699b89d"
+    },
+    "firstName": "wrwerwe",
+    "lastName": "24234resdfsdf",
+    "mobile": "24234234",
+    "email": "w@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T10:54:30.963Z"
+    },
+    "updatedAt": {
+      "$date": "2023-04-27T10:54:30.963Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "644a6c770c8e7da9552bd373"
+    },
+    "firstName": "test",
+    "lastName": "test",
+    "mobile": "24234234",
+    "email": "sdfsdf@mail.com",
+    "metrics": [
+      {
+        "weight": "jjkkhkhkjhkj"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-04-27T12:37:11.300Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-04T18:32:42.546Z"
+    },
+    "__v": 0,
+    "notes": [
+      {
+        "activity": "asdadadasd",
+        "allergies": "asdasdasd",
+        "notes": "asdasdadasd"
+      }
+    ],
+    "nutrition": []
+  },
+  {
+    "_id": {
+      "$oid": "6451039376e2bd50fd093965"
+    },
+    "firstName": "seb_admin",
+    "lastName": "seb_admin",
+    "mobile": "12345333",
+    "email": "seb_admin@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "admin",
+    "createdAt": {
+      "$date": "2023-05-02T12:35:31.336Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-03T11:28:18.705Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6452414ff6eb63934495b8c1"
+    },
+    "firstName": "pontios",
+    "lastName": "pontios",
+    "mobile": "2344445",
+    "email": "pontios@mail.xom",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-03T11:11:11.183Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-03T11:26:03.111Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6452645f6fcce11efa8420d9"
+    },
+    "firstName": "alex",
+    "lastName": "alex",
+    "mobile": "123123123123",
+    "email": "dsafjsdfds@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-03T13:40:47.300Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-03T13:40:47.300Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6452658f6fcce11efa8420e6"
+    },
+    "firstName": "alex2",
+    "lastName": "alex2",
+    "mobile": "239042934324",
+    "email": "alex2@mail.com",
+    "metrics": [
+      {
+        "weight": "3142423",
+        "boneMass": "234234",
+        "bodyWater": "234234324",
+        "date": "18/05/23"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-03T13:45:51.851Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-03T13:57:15.053Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "645274196fcce11efa84210c"
+    },
+    "firstName": "t1",
+    "lastName": "t1",
+    "mobile": "18989234",
+    "email": "t1@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-03T14:47:53.754Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-03T14:47:53.754Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "645274ab6fcce11efa842114"
+    },
+    "firstName": "po",
+    "lastName": "po",
+    "mobile": "34243234",
+    "email": "po@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-03T14:50:19.278Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-03T14:50:19.278Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "645275cf6fcce11efa842124"
+    },
+    "firstName": "pq1",
+    "lastName": "pq1",
+    "mobile": "342423",
+    "email": "pq1@mail.com",
+    "metrics": [
+      {
+        "metabolicAge": "1",
+        "date": "24/05/23"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-03T14:55:11.442Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-03T15:06:56.478Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "645284906fcce11efa842196"
+    },
+    "firstName": "sk8",
+    "lastName": "sk8",
+    "mobile": "14",
+    "email": "sk8@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-03T15:58:08.070Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-03T15:58:10.883Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "645286c66fcce11efa8421c6"
+    },
+    "firstName": "sk8ord",
+    "lastName": "sk8ord",
+    "mobile": "34243",
+    "email": "sk8ord@mail.com",
+    "metrics": [
+      {
+        "weight": "1"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-03T16:07:34.345Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-04T18:34:46.454Z"
+    },
+    "__v": 1,
+    "notes": [],
+    "nutrition": []
+  },
+  {
+    "_id": {
+      "$oid": "645389cfe395817a4f4c2f52"
+    },
+    "firstName": "Juan",
+    "lastName": "Juan",
+    "mobile": "134345343",
+    "email": "Juan@mail.com",
+    "metrics": [
+      {
+        "weight": "3",
+        "boneMass": "123123",
+        "bodyWater": "123123"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "notes": [
+      {
+        "0": {
+          "_id": "645389cfe395817a4f4c2f52",
+          "firstName": "Juan",
+          "lastName": "Juan",
+          "mobile": "134345343",
+          "password": "$2b$10$BkjaXOt3.hEXRRCVW9Zyhewi9D8WjI4qBrVY0GRXhO0wvUXBXItPi",
+          "email": "Juan@mail.com",
+          "metrics": [],
+          "appointments": [],
+          "nextApoitment": "",
+          "notes": "asfd",
+          "nutrition": [],
+          "role": "user",
+          "createdAt": "2023-05-04T10:32:47.962Z",
+          "updatedAt": "2023-05-04T18:35:22.907Z",
+          "__v": 0,
+          "gender": "ΑΝΔΡΑΣ",
+          "activity": "asfsadf",
+          "allergies": "asdfasdf"
+        },
+        "activity": "666",
+        "allergies": "sdfdsfsdm",
+        "notes": "sdfsdf"
+      }
+    ],
+    "nutrition": [],
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-04T10:32:47.962Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-04T18:41:18.504Z"
+    },
+    "__v": 0,
+    "gender": "ΑΝΔΡΑΣ"
+  },
+  {
+    "_id": {
+      "$oid": "6453fc766607ec30e15731aa"
+    },
+    "firstName": "sdr",
+    "lastName": "sdr",
+    "gender": "ΑΝΔΡΑΣ",
+    "mobile": "234234234",
+    "email": "sdr@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "notes": [],
+    "nutrition": [],
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-04T18:41:58.756Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-04T18:41:58.756Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6453fc876607ec30e15731d0"
+    },
+    "firstName": "sdr",
+    "lastName": "sdr",
+    "gender": "1",
+    "mobile": "234234234",
+    "email": "sdrd@mail.com",
+    "metrics": [
+      {
+        "boneMass": "68687686",
+        "weight": "23",
+        "height": "23"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "notes": [
+      {
+        "activity": "asfsadfasdf"
+      }
+    ],
+    "nutrition": [],
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-04T18:42:15.505Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-04T20:13:21.695Z"
+    },
+    "__v": 0,
+    "age": "23"
+  },
+  {
+    "_id": {
+      "$oid": "645400c76607ec30e15731eb"
+    },
+    "firstName": "jo1",
+    "lastName": "jo1",
+    "mobile": "24234234",
+    "email": "jo1@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "notes": [
+      {
+        "activity": "sdfadff",
+        "allergies": "asdfsadf",
+        "notes": "afdasdf"
+      }
+    ],
+    "nutrition": [],
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-04T19:00:23.793Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-04T19:00:35.754Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "645400f16607ec30e15731f6"
+    },
+    "firstName": "stat1",
+    "lastName": "sadfsdaf",
+    "mobile": "234234",
+    "email": "stat1@mail.com",
+    "metrics": [
+      {
+        "date": "27/05/23",
+        "weight": "80",
+        "bodyFat": "2",
+        "nonFatMass": "1",
+        "boneMass": "2",
+        "bmi": "2",
+        "bodyWater": "2",
+        "chest": "2",
+        "thigh": "2",
+        "belly": "2",
+        "metabolicAge": "2",
+        "pelvis": "2",
+        "calves": "2",
+        "biseps": "2",
+        "height": "180"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "27/05/23",
+    "notes": [
+      {
+        "activity": "sdsdfsdfsaf",
+        "allergies": "asdasdasd",
+        "notes": "asdasd"
+      }
+    ],
+    "nutrition": [
+      {
+        "duration": {
+          "from": "27/05/23",
+          "to": "30/05/23"
+        },
+        "boxes": [
+          {
+            "name": "YLOPA",
+            "data": [
+              {
+                "_id": "64524e0d1e2ca8eb172569f8",
+                "name": "Γιαούρτι 2% ΔΕΛΤΑ Free lactose Complet",
+                "by": "1000",
+                "energy": "66",
+                "fat": "2",
+                "saturated_fat": "1.2",
+                "edible": "0",
+                "protein": "7.2",
+                "salt": "0.11",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "sugar": "2",
+                "carbs": "4",
+                "qi": "4",
+                "notes": "sdf"
+              },
+              {
+                "_id": "643add57ac94c3ce3e5d0e21",
+                "name": "Ρόφημα γάλακτος ΜΕΒΓΑΛ high protein (choco)",
+                "by": "100ml.",
+                "energy": "65",
+                "fat": "0.3",
+                "saturated_fat": "0.2",
+                "cabs": "5.5",
+                "edible": "0",
+                "protein": "10",
+                "salt": "0.12",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0
+              }
+            ]
+          },
+          {
+            "name": "Mpoko",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e28",
+                "name": "Γιαούρτι Στραγγιστό 10% ΔΕΛΤΑ",
+                "by": "100",
+                "energy": "132",
+                "fat": "10",
+                "saturated_fat": "7",
+                "cabs": "4",
+                "edible": "0",
+                "protein": "6.6",
+                "salt": "0.13",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "3",
+                "notes": "asdfsadfsf"
+              }
+            ]
+          },
+          {
+            "name": "hohohohoh",
+            "data": [
+              {
+                "_id": "645257356fcce11efa8420cc",
+                "name": "2222",
+                "__v": 0,
+                "qi": "444",
+                "notes": "ela pamwee"
+              }
+            ]
+          }
+        ],
+        "_id": {
+          "$oid": "645b82961c0478d6d3fb0773"
+        },
+        "createdAt": {
+          "$date": "2023-05-10T11:40:06.508Z"
+        },
+        "updatedAt": {
+          "$date": "2023-05-10T11:40:06.508Z"
+        },
+        "__v": 0
+      },
+      {
+        "duration": {
+          "from": "05/05/23",
+          "to": "18/05/23"
+        },
+        "boxes": [
+          {
+            "name": "tst",
+            "data": [
+              {
+                "_id": "645257356fcce11efa8420cc",
+                "name": "2222",
+                "__v": 0,
+                "qi": "4",
+                "notes": "sffdsd"
+              }
+            ]
+          }
+        ],
+        "_id": {
+          "$oid": "645b835e1c0478d6d3fb0777"
+        },
+        "createdAt": {
+          "$date": "2023-05-10T11:43:26.551Z"
+        },
+        "updatedAt": {
+          "$date": "2023-05-10T11:43:26.551Z"
+        },
+        "__v": 0
+      },
+      {
+        "duration": {
+          "from": "05/05/23",
+          "to": "18/05/23"
+        },
+        "boxes": [
+          {
+            "name": "tst",
+            "data": [
+              {
+                "_id": "645257356fcce11efa8420cc",
+                "name": "2222",
+                "__v": 0,
+                "qi": "4",
+                "notes": "sffdsd"
+              }
+            ]
+          }
+        ],
+        "_id": {
+          "$oid": "645b83781c0478d6d3fb077b"
+        },
+        "createdAt": {
+          "$date": "2023-05-10T11:43:52.177Z"
+        },
+        "updatedAt": {
+          "$date": "2023-05-10T11:43:52.177Z"
+        },
+        "__v": 0
+      }
+    ],
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-04T19:01:05.890Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-10T16:41:13.551Z"
+    },
+    "__v": 15,
+    "gender": "0",
+    "age": "35"
+  },
+  {
+    "_id": {
+      "$oid": "645bcbf77698476051f56ed6"
+    },
+    "firstName": "Cooll",
+    "lastName": "Cooll",
+    "gender": "1",
+    "mobile": "123456",
+    "email": "coo@mail.com",
+    "metrics": [
+      {
+        "weight": "423",
+        "nonFatMass": "234",
+        "metabolicAge": "234",
+        "height": "234",
+        "bodyFat": "234",
+        "bmi": "23",
+        "chest": "234",
+        "thigh": "234",
+        "calves": "234",
+        "pelvis": "234",
+        "belly": "234",
+        "biseps": "234",
+        "bodyWater": "24",
+        "boneMass": "24"
+      }
+    ],
+    "appointments": [],
+    "nextApoitment": "",
+    "notes": [
+      {
+        "activity": "skate",
+        "allergies": "skate",
+        "notes": "skate"
+      }
+    ],
+    "nutrition": [
+      {
+        "duration": {
+          "from": "11/05/23",
+          "to": "25/05/23"
+        },
+        "boxes": [
+          {
+            "name": "Test2",
+            "data": [
+              {
+                "_id": "64524e0d1e2ca8eb172569f8",
+                "name": "Γιαούρτι 2% ΔΕΛΤΑ Free lactose Complet",
+                "by": "1000",
+                "energy": "66",
+                "fat": "2",
+                "saturated_fat": "1.2",
+                "edible": "0",
+                "protein": "7.2",
+                "salt": "0.11",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "sugar": "2",
+                "carbs": "4",
+                "qi": "3",
+                "notes": "tset"
+              }
+            ]
+          },
+          {
+            "name": "SKATIANO",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e22",
+                "name": "Ρόφημα γάλακτος ΜΕΒΓΑΛ high protein (Vanilia)",
+                "by": "100ml.",
+                "energy": "64",
+                "fat": "0.23",
+                "saturated_fat": "0.1",
+                "cabs": "5.7",
+                "edible": "0",
+                "protein": "10",
+                "salt": "0.12",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "2",
+                "notes": "ASDASD"
+              }
+            ]
+          },
+          {
+            "name": "tripes",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e23",
+                "name": "Γάλα 1,\r\n        5% free lactose ΜΕΒΓΑΛ",
+                "by": "100ml.",
+                "energy": "47",
+                "fat": "1.5",
+                "saturated_fat": "1",
+                "cabs": "4.9",
+                "edible": "0",
+                "protein": "3.4",
+                "salt": "0.1",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "3",
+                "notes": "tetse"
+              }
+            ]
+          }
+        ],
+        "_id": "645bcd5a7698476051f56ef7",
+        "createdAt": "2023-05-10T16:59:06.596Z",
+        "updatedAt": "2023-05-10T16:59:06.596Z",
+        "__v": 0,
+        "caloriesLimit": "999"
+      }
+    ],
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-10T16:53:11.932Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-12T13:32:07.652Z"
+    },
+    "__v": 9
+  },
+  {
+    "_id": {
+      "$oid": "645bfe7ff924701d406e52cd"
+    },
+    "firstName": "Sevastis",
+    "lastName": "Sevastis",
+    "mobile": "23423",
+    "email": "sevastis@mail.com",
+    "metrics": [],
+    "appointments": [],
+    "nextApoitment": "",
+    "notes": [],
+    "nutrition": [
+      {
+        "duration": {
+          "from": "31/05/23",
+          "to": "14/06/23"
+        },
+        "boxes": [
+          {
+            "name": "test nw2",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e21",
+                "name": "Ρόφημα γάλακτος ΜΕΒΓΑΛ high protein (choco)",
+                "by": "100ml.",
+                "energy": "65",
+                "fat": "0.3",
+                "saturated_fat": "0.2",
+                "cabs": "5.5",
+                "edible": "0",
+                "protein": "10",
+                "salt": "0.12",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "2",
+                "notes": "wer"
+              }
+            ]
+          },
+          {
+            "name": "test",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e23",
+                "name": "Γάλα 1,\r\n        5% free lactose ΜΕΒΓΑΛ",
+                "by": "100ml.",
+                "energy": "47",
+                "fat": "1.5",
+                "saturated_fat": "1",
+                "cabs": "4.9",
+                "edible": "0",
+                "protein": "3.4",
+                "salt": "0.1",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "333",
+                "notes": "r"
+              }
+            ]
+          }
+        ],
+        "_id": {
+          "$oid": "645e1309d61bb24e70b4ca36"
+        },
+        "createdAt": {
+          "$date": "2023-05-12T10:20:57.702Z"
+        },
+        "updatedAt": {
+          "$date": "2023-05-12T10:20:57.702Z"
+        },
+        "__v": 0,
+        "caloriesLimit": "666"
+      },
+      {
+        "duration": {
+          "from": "31/05/23",
+          "to": "14/06/23"
+        },
+        "boxes": [
+          {
+            "name": "test nw2",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e21",
+                "name": "Ρόφημα γάλακτος ΜΕΒΓΑΛ high protein (choco)",
+                "by": "100ml.",
+                "energy": "65",
+                "fat": "0.3",
+                "saturated_fat": "0.2",
+                "cabs": "5.5",
+                "edible": "0",
+                "protein": "10",
+                "salt": "0.12",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "2",
+                "notes": "wer"
+              }
+            ]
+          },
+          {
+            "name": "test",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e23",
+                "name": "Γάλα 1,\r\n        5% free lactose ΜΕΒΓΑΛ",
+                "by": "100ml.",
+                "energy": "47",
+                "fat": "1.5",
+                "saturated_fat": "1",
+                "cabs": "4.9",
+                "edible": "0",
+                "protein": "3.4",
+                "salt": "0.1",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "333",
+                "notes": "r"
+              }
+            ]
+          }
+        ],
+        "_id": {
+          "$oid": "645e1aaec15c7f795760f502"
+        },
+        "createdAt": {
+          "$date": "2023-05-12T10:53:34.474Z"
+        },
+        "updatedAt": {
+          "$date": "2023-05-12T10:53:34.474Z"
+        },
+        "__v": 0,
+        "caloriesLimit": "666"
+      },
+      {
+        "duration": {
+          "from": "31/05/23",
+          "to": "14/06/23"
+        },
+        "boxes": [
+          {
+            "name": "test nw2",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e21",
+                "name": "Ρόφημα γάλακτος ΜΕΒΓΑΛ high protein (choco)",
+                "by": "100ml.",
+                "energy": "65",
+                "fat": "0.3",
+                "saturated_fat": "0.2",
+                "cabs": "5.5",
+                "edible": "0",
+                "protein": "10",
+                "salt": "0.12",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "2",
+                "notes": "wer"
+              }
+            ]
+          },
+          {
+            "name": "test",
+            "data": [
+              {
+                "_id": "643add57ac94c3ce3e5d0e23",
+                "name": "Γάλα 1,\r\n        5% free lactose ΜΕΒΓΑΛ",
+                "by": "100ml.",
+                "energy": "47",
+                "fat": "1.5",
+                "saturated_fat": "1",
+                "cabs": "4.9",
+                "edible": "0",
+                "protein": "3.4",
+                "salt": "0.1",
+                "category": "ΓΑΛΑΚΤΟΚΟΜΙΚΑ-ΕΙΔΗ ΨΥΓΕΙΟΥ",
+                "__v": 0,
+                "qi": "333",
+                "notes": "r"
+              }
+            ]
+          }
+        ],
+        "_id": {
+          "$oid": "645e1b56d43ca71e0fe63fd0"
+        },
+        "createdAt": {
+          "$date": "2023-05-12T10:56:22.771Z"
+        },
+        "updatedAt": {
+          "$date": "2023-05-12T10:56:22.771Z"
+        },
+        "__v": 0,
+        "caloriesLimit": "666"
+      }
+    ],
+    "role": "user",
+    "createdAt": {
+      "$date": "2023-05-10T20:28:47.739Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-12T13:09:21.549Z"
+    },
+    "__v": 8
+  }
+]

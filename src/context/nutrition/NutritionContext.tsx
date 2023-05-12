@@ -14,6 +14,7 @@ export const NutritionContextProvider: FC = ({ children }) => {
       from: null,
       to: null
     },
+    caloriesLimit: '',
     boxes: [{ name: '', data: [] }]
   };
   const [store, dispatch] = useReducer(nutritionReducer, initialStore);
@@ -23,6 +24,13 @@ export const NutritionContextProvider: FC = ({ children }) => {
     dispatch({
       type: 'set',
       payload: data
+    });
+  }
+
+  function handleAddNewNutririon() {
+    dispatch({
+      type: 'new',
+      payload: initialStore
     });
   }
 
@@ -61,6 +69,13 @@ export const NutritionContextProvider: FC = ({ children }) => {
     });
   }
 
+  function handleAddLimit(e) {
+    dispatch({
+      type: 'addLimit',
+      payload: e.target.value
+    });
+  }
+
   console.log('NUTRITION_STORE', store);
   console.log('SELECTED_BOX', selectedBox);
 
@@ -69,7 +84,9 @@ export const NutritionContextProvider: FC = ({ children }) => {
       value={{
         store,
         handleAddBox,
+        handleAddNewNutririon,
         handleAddDuration,
+        handleAddLimit,
         handleSetStore,
         dispatch,
         handleDeleteBox,

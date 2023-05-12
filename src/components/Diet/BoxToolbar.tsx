@@ -31,6 +31,7 @@ interface BoxToolbarProps {
   onEddit?: () => void;
   onDelete?: () => void;
   onSave?: () => void;
+  onAddNew?: () => void;
   mode?: string;
   selectedItem?: any;
   isAddVisible?: boolean;
@@ -38,6 +39,7 @@ interface BoxToolbarProps {
   isDeleteVisible?: boolean;
   isSaveVisible?: boolean;
   addText?: string;
+  addNewText?: string;
   editText?: string;
   deleteText?: string;
   saveText?: string;
@@ -71,6 +73,7 @@ export default function BoxToolbar(props: BoxToolbarProps) {
     onDelete,
     onAdd,
     onSave,
+    onAddNew,
     selectedItem,
     isAddVisible = true,
     isEdditVisible = true,
@@ -79,9 +82,9 @@ export default function BoxToolbar(props: BoxToolbarProps) {
     addText = null,
     editText = null,
     deleteText = null,
-    saveText = null
+    saveText = null,
+    addNewText = null
   } = props;
-  const { handleAddBox, boxes } = useContext(NutritionContext);
   const handleAdd = () => onAdd();
 
   return (

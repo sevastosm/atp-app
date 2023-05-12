@@ -46,7 +46,9 @@ const filters = [
 export default function Products({
   onDataChange = () => null,
   onRowSelect = () => null,
-  hideAddButton = false
+  hideAddButton = false,
+  hideEditButton = false,
+  hideDeleteButton = false
 }) {
   const { setProducts, products, setMessage } = React.useContext(AppContext);
   const { rows } = useContext(TableContext);
@@ -105,6 +107,8 @@ export default function Products({
       onRecordSave={handleSave}
       onRowClick={onRowSelect}
       hideAddButton={hideAddButton}
+      hideDeleteButton={hideDeleteButton}
+      hideEditButton={hideEditButton}
     />
     //     </Grid>
     //   </Grid>
