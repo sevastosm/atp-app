@@ -34,7 +34,8 @@ export default function FormFields({
   requredFiledsMessage = REQUEST_FILELD_MESSAGE,
   newRecordTitle = NEW_RECORD_TITLE,
   data,
-  onError
+  onError,
+  readOnly = false
 }: Props) {
   const [value, setValue] = React.useState<any>('');
   const [selectValue, setSelectValue] = React.useState('');
@@ -163,6 +164,7 @@ export default function FormFields({
                             handleInputChange(e.target.value, field.name)
                           }
                           size="small"
+                          inputProps={{ readOnly: readOnly }}
                         >
                           <MenuItem value={'0'}>ΑΝΔΡΑΣ</MenuItem>
                           <MenuItem value={'1'}>ΓΥΝΑΙΚΑ</MenuItem>
@@ -197,7 +199,13 @@ export default function FormFields({
                             );
                           }}
                           renderInput={(params) => (
-                            <TextField size="small" {...params} />
+                            <TextField
+                              size="small"
+                              {...params}
+                              InputProps={{
+                                readOnly: readOnly
+                              }}
+                            />
                           )}
                         />
                       </LocalizationProvider>
@@ -219,7 +227,10 @@ export default function FormFields({
                         onChange={(e) =>
                           handleInputChange(e.target.value, field.name)
                         }
-                        inputProps={{ type: field?.inputType }}
+                        inputProps={{
+                          type: field?.inputType,
+                          readOnly: readOnly
+                        }}
                         size="small"
                       />
                     </Grid>

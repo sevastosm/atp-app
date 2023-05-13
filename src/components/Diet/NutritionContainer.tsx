@@ -48,6 +48,10 @@ const NutritionContainer = () => {
   const { selectedRow, setMessage, setUsers, setSelectedRow } =
     React.useContext(AppContext);
 
+  const { role } = selectedRow;
+
+  const isAdmin = role === 'admin';
+
   const { boxes, caloriesLimit, nutrition } = store;
 
   const handleAdd = () => handleAddBox({ name: '', data: [] });
@@ -127,28 +131,32 @@ const NutritionContainer = () => {
   return (
     <Box>
       <Stack spacing={1}>
-        <Box sx={{ display: 'flex', justifyContent: 'end' }}>
-          <ButtonWraper>
-            <Button
-              onClick={handleAddNewNutririon}
-              size="small"
-              variant="contained"
-              startIcon={<AddBoxIcon />}
-            >
-              <span className="button-text">ΝΕΑ ΔΙΑΤΡΟΦΗ</span>
-            </Button>
-          </ButtonWraper>
-        </Box>
-        <BoxToolbar
-          onAdd={handleAdd}
-          onDelete={handleDelete}
-          onSave={handleSave}
-          selectedItem={selectedBox}
-          isEdditVisible={false}
-          addText={'ΝΕΟ BOX'}
-          deleteText="ΔΙΑΓΡΑΦΗ ΒΟΧ"
-          saveText="ΑΠΟΘΗΚΕΥΣΗ ΔΙΑΤΡΟΦΗΣ"
-        />
+        {isAdmin && (
+          <>
+            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+              <ButtonWraper>
+                <Button
+                  onClick={handleAddNewNutririon}
+                  size="small"
+                  variant="contained"
+                  startIcon={<AddBoxIcon />}
+                >
+                  <span className="button-text">ΝΕΑ ΔΙΑΤΡΟΦΗ</span>
+                </Button>
+              </ButtonWraper>
+            </Box>
+            <BoxToolbar
+              onAdd={handleAdd}
+              onDelete={handleDelete}
+              onSave={handleSave}
+              selectedItem={selectedBox}
+              isEdditVisible={false}
+              addText={'ΝΕΟ BOX'}
+              deleteText="ΔΙΑΓΡΑΦΗ ΒΟΧ"
+              saveText="ΑΠΟΘΗΚΕΥΣΗ ΔΙΑΤΡΟΦΗΣ"
+            />
+          </>
+        )}
         {boxes.length > 0 && (
           <>
             <Box
@@ -158,7 +166,7 @@ const NutritionContainer = () => {
                 justifyContent: 'space-between'
               }}
             >
-              <NutritionDates />
+              <NutritionDates readOnly={!isAdmin} />
 
               <Box>
                 <TextField
@@ -182,6 +190,9 @@ const NutritionContainer = () => {
                   value={parseInt(caloriesLimit)}
                   color={setWarning().color}
                   focused={setWarning().focused}
+                  InputProps={{
+                    readOnly: !isAdmin
+                  }}
                   // multiline
                   // maxRows={4}
                 />

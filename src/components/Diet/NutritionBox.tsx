@@ -16,6 +16,7 @@ import BoxToolbar from './BoxToolbar';
 import { NutritionContext } from 'src/context/nutrition/NutritionContext';
 import Products from 'src/content/applications/Users/accounts/Products';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { AppContext } from 'src/context/AppContext';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -44,7 +45,11 @@ const cols = [
 const box = { name: '', data: [] };
 
 const NutritionBox = ({ data, index }) => {
-  console.log('DATAAAAAA', data);
+  const { selectedRow } = React.useContext(AppContext);
+
+  const { role } = selectedRow;
+
+  const isAdmin = role === 'admin';
   const { handleSaveBox } = React.useContext(NutritionContext);
 
   const [boxData, setData] = React.useState<any>([]);
@@ -136,6 +141,9 @@ const NutritionBox = ({ data, index }) => {
                 value={boxName}
                 onChange={handleInputChange}
                 size="small"
+                InputProps={{
+                  readOnly: true
+                }}
               />
             </Box>
             <Box sx={{ maxWidth: '150px' }}>
@@ -146,7 +154,7 @@ const NutritionBox = ({ data, index }) => {
                 onChange={handleInputChange}
                 size="small"
                 InputProps={{
-                  readOnly: true
+                  readOnly: !isAdmin
                 }}
               />
             </Box>
@@ -162,21 +170,25 @@ const NutritionBox = ({ data, index }) => {
               justifyContent: 'space-between'
             }}
           >
-            <Box sx={{ flexGrow: 1 }}>
-              <BoxToolbar
-                isEdditVisible={false}
-                onAdd={() => setNutritionVisible(true)}
-                onSave={handleSave}
-                // onEddit={() => setNutritionVisible(true)}
-                addText={'ΤΡΟΦΗΜΑ ΓΙΑ ' + boxName}
-                saveText={'ΚΛΕΙΣΙΜΟ ΤΡΟΦΗΜΑ '}
-              />
-            </Box>
+            {isAdmin && (
+              <Box sx={{ flexGrow: 1 }}>
+                <BoxToolbar
+                  isEdditVisible={false}
+                  onAdd={() => setNutritionVisible(true)}
+                  onSave={handleSave}
+                  // onEddit={() => setNutritionVisible(true)}
+                  addText={'ΤΡΟΦΗΜΑ ΓΙΑ ' + boxName}
+                  saveText={'ΚΛΕΙΣΙΜΟ ΤΡΟΦΗΜΑ '}
+                />
+              </Box>
+            )}
           </Box>
 
           <MultyTable
             hideAddButton={true}
             hideSearchButton={true}
+            hideEditButton={!isAdmin}
+            hideDeleteButton={!isAdmin}
             data={boxData}
             title={`ΤΡΟΦΙΜΑ ` + boxName}
             onRecordSave={handleSaveRecord}

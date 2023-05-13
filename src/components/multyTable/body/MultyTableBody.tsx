@@ -1,4 +1,7 @@
 import { TableBody, TableRow, TableCell, Checkbox, Box } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
 import React, { useContext } from 'react';
 import TableContext from '../TableContext';
 
@@ -70,6 +73,10 @@ const MultyTableBody = () => {
     cols
   } = useContext(TableContext);
 
+  const theme = useTheme();
+
+  const matches = useMediaQuery(() => theme.breakpoints.down('sm'));
+
   // // TO DO dynamic search options
   const fixedData = stableSort(data, getComparator(order, orderBy))
     .filter((row: any) =>
@@ -112,20 +119,22 @@ rows.sort(getComparator(order, orderBy)).slice() */}
                 />
               </TableCell>
             )}
-            {cols.map((key, i) => {
-              if (excloudedFields.includes(key.name)) return;
-              return (
-                <TableCell
-                  sx={{ fontSize: '12px' }}
-                  key={i + key}
-                  // component="th"
-                  id={labelId}
-                  scope="row"
-                >
-                  {row[key.name] || ''}
-                </TableCell>
-              );
-            })}
+            {matches
+              ? 'micro'
+              : cols.map((key, i) => {
+                  if (excloudedFields.includes(key.name)) return;
+                  return (
+                    <TableCell
+                      sx={{ fontSize: '12px' }}
+                      key={i + key}
+                      // component="th"
+                      id={labelId}
+                      scope="row"
+                    >
+                      {row[key.name] || ''}
+                    </TableCell>
+                  );
+                })}
           </TableRow>
         );
       })}

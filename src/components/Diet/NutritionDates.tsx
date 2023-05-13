@@ -8,9 +8,9 @@ import moment from 'moment';
 import { NutritionContext } from 'src/context/nutrition/NutritionContext';
 import { formatDate } from 'src/utils/heplers';
 
-type Props = {};
+type Props = { readOnly?: boolean };
 
-const NutritionDates = (props: Props) => {
+const NutritionDates = ({ readOnly = false }: Props) => {
   const { handleAddDuration, store } = React.useContext(NutritionContext);
   const [value, setValue] = React.useState<any | null>(null);
   const [valueΤο, setValueΤο] = React.useState<any | null>(null);
@@ -35,6 +35,7 @@ const NutritionDates = (props: Props) => {
       <Box sx={{ marginBottom: '10px', marginRight: '4px', maxWidth: '150px' }}>
         <LocalizationProvider dateAdapter={AdapterMoment}>
           <DatePicker
+            disabled={readOnly}
             label="ΑΠΟ"
             inputFormat="DD/MM/YY"
             value={value}
@@ -46,11 +47,14 @@ const NutritionDates = (props: Props) => {
       <Box sx={{ maxWidth: '150px' }}>
         <LocalizationProvider dateAdapter={AdapterMoment}>
           <DesktopDatePicker
+            disabled={readOnly}
             label="ΕΩΣ"
             inputFormat="DD/MM/YY"
             value={valueΤο}
             onChange={handleChangeΤο}
-            renderInput={(params) => <TextField size="small" {...params} />}
+            renderInput={(params) => (
+              <TextField size="small" {...params} focused />
+            )}
           />
         </LocalizationProvider>
       </Box>

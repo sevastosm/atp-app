@@ -127,6 +127,10 @@ const UserAccount = ({ mode = '' }) => {
   const [value, setValue] = React.useState<any | null>([]);
   const [selectValue, setSelectValue] = React.useState('');
 
+  const { role } = selectedRow;
+
+  const isAdmin = role === 'admin';
+
   // if (selectedRow && mode !== 'add') return null;
 
   // const handleChange = (newValue: any | null) => {
@@ -239,6 +243,7 @@ const UserAccount = ({ mode = '' }) => {
                               onSave={handleSaveUser}
                               data={mode !== 'add' ? value : ''}
                               onError={setMessage}
+                              readOnly={!isAdmin}
                             />
                           </Grid>
                         </Box>
@@ -281,6 +286,7 @@ const UserAccount = ({ mode = '' }) => {
                                   value?.metrics[value?.metrics?.length - 1]
                                 : ''
                             }
+                            readOnly={!isAdmin}
                           />
                         </Grid>
                       </Box>
@@ -300,6 +306,7 @@ const UserAccount = ({ mode = '' }) => {
                           : ''
                       }
                       onError={setMessage}
+                      readOnly={!isAdmin}
                     />
                   </TabPanel>
                   <TabPanel value={tabValue} index={3}>
