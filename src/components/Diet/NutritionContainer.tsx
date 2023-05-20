@@ -72,7 +72,7 @@ const NutritionContainer = () => {
     () =>
       boxes?.reduce((acc, curr) => {
         curr.data.forEach((obj) => {
-          acc += (parseInt(obj.energy) * parseInt(obj.qi)) / obj.by;
+          acc += (parseFloat(obj.energy) * parseFloat(obj.qi)) / obj.by;
         });
         return acc;
       }, 0),
@@ -82,7 +82,7 @@ const NutritionContainer = () => {
     () =>
       boxes?.reduce((acc, curr) => {
         curr.data.forEach((obj) => {
-          acc += (parseInt(obj.protein) * parseInt(obj.qi)) / obj.by;
+          acc += ((parseFloat(obj.protein) * parseFloat(obj.qi)) / obj.by) * 4;
         });
         return acc;
       }, 0),
@@ -92,7 +92,7 @@ const NutritionContainer = () => {
     () =>
       boxes?.reduce((acc, curr) => {
         curr.data.forEach((obj) => {
-          acc += (parseInt(obj.carbs) * parseInt(obj.qi)) / obj.by;
+          acc += ((parseFloat(obj.carbs) * parseFloat(obj.qi)) / obj.by) * 4;
         });
         return acc;
       }, 0),
@@ -102,7 +102,7 @@ const NutritionContainer = () => {
     () =>
       boxes?.reduce((acc, curr) => {
         curr.data.forEach((obj) => {
-          acc += (parseInt(obj.fat) * parseInt(obj.qi)) / obj.by;
+          acc += ((parseFloat(obj.fat) * parseFloat(obj.qi)) / obj.by) * 9;
         });
         return acc;
       }, 0),
@@ -136,14 +136,14 @@ const NutritionContainer = () => {
   }, [selectedRow]);
 
   const setWarning: any = () => {
-    if (parseInt(caloriesLimit) < parseInt(caloriesSum)) {
+    if (parseFloat(caloriesLimit) < parseFloat(caloriesSum)) {
       return {
         color: 'error',
         focused: true
       };
     } else if (
-      parseInt(caloriesLimit) - (caloriesLimit * 30) / 100 <
-      parseInt(caloriesSum)
+      parseFloat(caloriesLimit) - (caloriesLimit * 30) / 100 <
+      parseFloat(caloriesSum)
     ) {
       return {
         color: 'warning',
@@ -205,7 +205,7 @@ const NutritionContainer = () => {
                   id="outlined-multiline-flexible"
                   label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ"
                   onChange={handleAddLimit}
-                  value={parseInt(caloriesSum)}
+                  value={parseFloat(caloriesSum)}
                   InputProps={{
                     readOnly: true
                   }}
@@ -218,7 +218,7 @@ const NutritionContainer = () => {
                   id="outlined-multiline-flexible"
                   label="ΣΥΝΟΛΟ ΠΡΩΤΕΙΝΗ"
                   onChange={handleAddLimit}
-                  value={parseInt(caloriesProtein)}
+                  value={parseFloat(caloriesProtein)}
                   InputProps={{
                     readOnly: true
                   }}
@@ -230,7 +230,7 @@ const NutritionContainer = () => {
                   id="outlined-multiline-flexible"
                   label="ΣΥΝΟΛΟ ΥΔΑΤΑ"
                   onChange={handleAddLimit}
-                  value={parseInt(caloriesCarbs)}
+                  value={parseFloat(caloriesCarbs)}
                   InputProps={{
                     readOnly: true
                   }}
@@ -242,7 +242,7 @@ const NutritionContainer = () => {
                   id="outlined-multiline-flexible"
                   label="ΣΥΝΟΛΟ ΛΥΠΑΡΑ"
                   onChange={handleAddLimit}
-                  value={parseInt(caloriesFat)}
+                  value={parseFloat(caloriesFat)}
                   InputProps={{
                     readOnly: true
                   }}
@@ -254,7 +254,7 @@ const NutritionContainer = () => {
                   id="outlined-multiline-flexible"
                   label="ΟΡΙΟ"
                   onChange={handleAddLimit}
-                  value={parseInt(caloriesFat)}
+                  value={parseFloat(caloriesFat)}
                   color={setWarning().color}
                   focused={setWarning().focused}
                   // InputProps={{

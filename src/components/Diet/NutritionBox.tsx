@@ -27,13 +27,17 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const cols = [
-  { name: 'by', label: 'Ανα' },
   { name: 'name', label: 'Προιον', width: '300', required: true },
+  { name: 'by', label: 'Ανα' },
+  {
+    name: 'count_unit',
+    label: 'Μέτρηση σε'
+  },
+  { name: 'energy', label: 'Ενέργεια (kcal)' },
   { name: 'protein', label: 'Πρωτεϊνη (γρ.))' },
   { name: 'fat', label: 'Λιπαρά (γρ)' },
   { name: 'carbs', label: 'Υδατάνθρακες (γρ.)' },
   { name: 'saturated_fat', label: 'Κορεσμένα (γρ.)' },
-  { name: 'energy', label: 'Ενέργεια (kcal)' },
   // { name: 'sugar', label: 'Σάκχαρα (γρ.)' },
   // { name: 'edible', label: 'Εδώδιμες ίνες  (γρ.)' },
   // { name: 'salt', label: 'Αλάτι (γρ.)' },
@@ -93,25 +97,44 @@ const NutritionBox = ({ data, index }) => {
       index
     );
   };
+
+  function calculatePercentageDifference(a, b) {
+    const difference = Math.abs(a - b);
+    const percentage = (difference / b) * 100;
+    return percentage.toFixed(); // Round to 2 decimal places
+  }
+
   const sumWithInitial = boxData.reduce(
     (sum, li) =>
-      sum + (parseInt(li.energy) * parseInt(li.qi)) / parseInt(li.by),
+      sum + (parseFloat(li.energy) * parseFloat(li.qi)) / parseFloat(li.by),
     0
   );
   const sumWithInitialProtein = boxData.reduce(
     (sum, li) =>
-      sum + (parseInt(li.protein) * parseInt(li.qi)) / parseInt(li.by),
-    0
-  );
-  const sumWithInitialCarbs = boxData.reduce(
-    (sum, li) => sum + (parseInt(li.carbs) * parseInt(li.qi)) / parseInt(li.by),
-    0
-  );
-  const sumWithInitialFat = boxData.reduce(
-    (sum, li) => sum + (parseInt(li.fat) * parseInt(li.qi)) / parseInt(li.by),
+      sum +
+      ((parseFloat(li.protein) * parseFloat(li.qi)) / parseFloat(li.by)) * 4,
     0
   );
 
+  const sumWithInitialProteinPrecentage =
+    (sumWithInitialProtein * 100) / sumWithInitial;
+
+  const sumWithInitialCarbs = boxData.reduce(
+    (sum, li) =>
+      sum +
+      ((parseFloat(li.carbs) * parseFloat(li.qi)) / parseFloat(li.by)) * 4,
+    0
+  );
+  const sumWithInitialCarbsPrecentage =
+    (sumWithInitialCarbs * 100) / sumWithInitial;
+
+  const sumWithInitialFat = boxData.reduce(
+    (sum, li) =>
+      sum + ((parseFloat(li.fat) * parseFloat(li.qi)) / parseFloat(li.by)) * 9,
+    0
+  );
+  const sumWithInitialFatPrecentage =
+    (sumWithInitialFat * 100) / sumWithInitial;
   const handleDeleteRecord = (record) => {
     const updatedList = boxData.filter((d) => d._id !== record._id);
     setData(updatedList);
@@ -176,7 +199,13 @@ const NutritionBox = ({ data, index }) => {
               <TextField
                 id={'boxName'}
                 label="ΠΡΩΤΕΙΝΗ"
-                value={boxData?.length && sumWithInitialProtein}
+                value={
+                  boxData?.length &&
+                  sumWithInitialProtein.toFixed(2) +
+                    ' | ' +
+                    sumWithInitialProteinPrecentage.toFixed(2) +
+                    '%'
+                }
                 onChange={handleInputChange}
                 size="small"
                 InputProps={{
@@ -188,7 +217,13 @@ const NutritionBox = ({ data, index }) => {
               <TextField
                 id={'boxName'}
                 label="ΥΔΑΤΑΘΡΑΚΕΣ"
-                value={boxData?.length && sumWithInitialCarbs}
+                value={
+                  boxData?.length &&
+                  sumWithInitialCarbs.toFixed(2) +
+                    ' | ' +
+                    sumWithInitialCarbsPrecentage.toFixed(2) +
+                    '%'
+                }
                 onChange={handleInputChange}
                 size="small"
                 InputProps={{
@@ -200,7 +235,13 @@ const NutritionBox = ({ data, index }) => {
               <TextField
                 id={'boxName'}
                 label="ΛΥΠΑΡΑ"
-                value={boxData?.length && sumWithInitialFat}
+                value={
+                  boxData?.length &&
+                  sumWithInitialFat.toFixed(2) +
+                    ' | ' +
+                    sumWithInitialFatPrecentage.toFixed(2) +
+                    '%'
+                }
                 onChange={handleInputChange}
                 size="small"
                 InputProps={{
