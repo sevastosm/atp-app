@@ -27,19 +27,19 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const cols = [
+  { name: 'by', label: 'Ανα' },
   { name: 'name', label: 'Προιον', width: '300', required: true },
-  // { name: 'by', label: 'Ανα' },
+  { name: 'protein', label: 'Πρωτεϊνη (γρ.))' },
+  { name: 'fat', label: 'Λιπαρά (γρ)' },
+  { name: 'carbs', label: 'Υδατάνθρακες (γρ.)' },
+  { name: 'saturated_fat', label: 'Κορεσμένα (γρ.)' },
   { name: 'energy', label: 'Ενέργεια (kcal)' },
-  // { name: 'fat', label: 'Λιπαρά (kcal)' },
-  // { name: 'saturated_fat', label: 'Κορεσμένα (γρ.)' },
-  // { name: 'carbs', label: 'Υδατάνθρακες (γρ.)' },
   // { name: 'sugar', label: 'Σάκχαρα (γρ.)' },
   // { name: 'edible', label: 'Εδώδιμες ίνες  (γρ.)' },
-  // { name: 'protein', label: 'Πρωτεϊνη (γρ.))' },
   // { name: 'salt', label: 'Αλάτι (γρ.)' },
   // { name: 'category', label: 'Κωδικός -Κατηγοριας', required: true },
-  { name: 'qi', label: 'Ποσότητα', required: true, inputType: 'number' },
-  { name: 'notes', label: 'Σημιώσεις', required: true }
+  { name: 'qi', label: 'Ποσότητα (γρ.)', required: true, inputType: 'number' },
+  { name: 'notes', label: 'Σημιώσεις' }
 ];
 
 const box = { name: '', data: [] };
@@ -49,7 +49,7 @@ const NutritionBox = ({ data, index }) => {
 
   const { role } = selectedRow;
 
-  const isAdmin = role === 'admin';
+  const isAdmin = role === 'admin' || false;
   const { handleSaveBox } = React.useContext(NutritionContext);
 
   const [boxData, setData] = React.useState<any>([]);
@@ -94,7 +94,21 @@ const NutritionBox = ({ data, index }) => {
     );
   };
   const sumWithInitial = boxData.reduce(
-    (sum, li) => sum + parseInt(li.energy) * parseInt(li.qi),
+    (sum, li) =>
+      sum + (parseInt(li.energy) * parseInt(li.qi)) / parseInt(li.by),
+    0
+  );
+  const sumWithInitialProtein = boxData.reduce(
+    (sum, li) =>
+      sum + (parseInt(li.protein) * parseInt(li.qi)) / parseInt(li.by),
+    0
+  );
+  const sumWithInitialCarbs = boxData.reduce(
+    (sum, li) => sum + (parseInt(li.carbs) * parseInt(li.qi)) / parseInt(li.by),
+    0
+  );
+  const sumWithInitialFat = boxData.reduce(
+    (sum, li) => sum + (parseInt(li.fat) * parseInt(li.qi)) / parseInt(li.by),
     0
   );
 
@@ -141,9 +155,9 @@ const NutritionBox = ({ data, index }) => {
                 value={boxName}
                 onChange={handleInputChange}
                 size="small"
-                InputProps={{
-                  readOnly: true
-                }}
+                // InputProps={{
+                //   readOnly: true
+                // }}
               />
             </Box>
             <Box sx={{ maxWidth: '150px' }}>
@@ -151,6 +165,42 @@ const NutritionBox = ({ data, index }) => {
                 id={'boxName'}
                 label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ"
                 value={boxData?.length && sumWithInitial}
+                onChange={handleInputChange}
+                size="small"
+                InputProps={{
+                  readOnly: !isAdmin
+                }}
+              />
+            </Box>
+            <Box sx={{ maxWidth: '150px' }}>
+              <TextField
+                id={'boxName'}
+                label="ΠΡΩΤΕΙΝΗ"
+                value={boxData?.length && sumWithInitialProtein}
+                onChange={handleInputChange}
+                size="small"
+                InputProps={{
+                  readOnly: !isAdmin
+                }}
+              />
+            </Box>
+            <Box sx={{ maxWidth: '150px' }}>
+              <TextField
+                id={'boxName'}
+                label="ΥΔΑΤΑΘΡΑΚΕΣ"
+                value={boxData?.length && sumWithInitialCarbs}
+                onChange={handleInputChange}
+                size="small"
+                InputProps={{
+                  readOnly: !isAdmin
+                }}
+              />
+            </Box>
+            <Box sx={{ maxWidth: '150px' }}>
+              <TextField
+                id={'boxName'}
+                label="ΛΥΠΑΡΑ"
+                value={boxData?.length && sumWithInitialFat}
                 onChange={handleInputChange}
                 size="small"
                 InputProps={{
@@ -170,25 +220,25 @@ const NutritionBox = ({ data, index }) => {
               justifyContent: 'space-between'
             }}
           >
-            {isAdmin && (
-              <Box sx={{ flexGrow: 1 }}>
-                <BoxToolbar
-                  isEdditVisible={false}
-                  onAdd={() => setNutritionVisible(true)}
-                  onSave={handleSave}
-                  // onEddit={() => setNutritionVisible(true)}
-                  addText={'ΤΡΟΦΗΜΑ ΓΙΑ ' + boxName}
-                  saveText={'ΚΛΕΙΣΙΜΟ ΤΡΟΦΗΜΑ '}
-                />
-              </Box>
-            )}
+            {/* {isAdmin && ( */}
+            <Box sx={{ flexGrow: 1 }}>
+              <BoxToolbar
+                isEdditVisible={false}
+                onAdd={() => setNutritionVisible(true)}
+                onSave={handleSave}
+                // onEddit={() => setNutritionVisible(true)}
+                addText={'ΤΡΟΦΗΜΑ ΓΙΑ ' + boxName}
+                saveText={'ΚΛΕΙΣΙΜΟ ΤΡΟΦΗΜΑ '}
+              />
+            </Box>
+            {/* )} */}
           </Box>
 
           <MultyTable
             hideAddButton={true}
             hideSearchButton={true}
-            hideEditButton={!isAdmin}
-            hideDeleteButton={!isAdmin}
+            hideEditButton={isAdmin}
+            hideDeleteButton={isAdmin}
             data={boxData}
             title={`ΤΡΟΦΙΜΑ ` + boxName}
             onRecordSave={handleSaveRecord}

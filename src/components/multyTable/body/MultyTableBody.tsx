@@ -131,7 +131,10 @@ rows.sort(getComparator(order, orderBy)).slice() */}
                       id={labelId}
                       scope="row"
                     >
-                      {row[key.name] || ''}
+                      {key?.options
+                        ? key?.options.find((p) => p.value === row[key.name])
+                            ?.label
+                        : row[key.name] || ''}
                     </TableCell>
                   );
                 })}

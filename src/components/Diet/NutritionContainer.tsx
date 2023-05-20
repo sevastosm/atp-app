@@ -72,13 +72,42 @@ const NutritionContainer = () => {
     () =>
       boxes?.reduce((acc, curr) => {
         curr.data.forEach((obj) => {
-          acc += parseInt(obj.energy) * parseInt(obj.qi);
+          acc += (parseInt(obj.energy) * parseInt(obj.qi)) / obj.by;
         });
         return acc;
       }, 0),
     [store]
   );
-
+  const caloriesProtein = React.useMemo(
+    () =>
+      boxes?.reduce((acc, curr) => {
+        curr.data.forEach((obj) => {
+          acc += (parseInt(obj.protein) * parseInt(obj.qi)) / obj.by;
+        });
+        return acc;
+      }, 0),
+    [store]
+  );
+  const caloriesCarbs = React.useMemo(
+    () =>
+      boxes?.reduce((acc, curr) => {
+        curr.data.forEach((obj) => {
+          acc += (parseInt(obj.carbs) * parseInt(obj.qi)) / obj.by;
+        });
+        return acc;
+      }, 0),
+    [store]
+  );
+  const caloriesFat = React.useMemo(
+    () =>
+      boxes?.reduce((acc, curr) => {
+        curr.data.forEach((obj) => {
+          acc += (parseInt(obj.fat) * parseInt(obj.qi)) / obj.by;
+        });
+        return acc;
+      }, 0),
+    [store]
+  );
   const ButtonWraper = styled(Box)(
     ({ theme }) => `
 
@@ -101,7 +130,7 @@ const NutritionContainer = () => {
   );
   React.useEffect(() => {
     //Add lassr nutriton
-    return selectedRow?.nutrition
+    return selectedRow?.nutrition?.length
       ? handleSetStore(selectedRow.nutrition[selectedRow.nutrition.length - 1])
       : null;
   }, [selectedRow]);
@@ -131,33 +160,33 @@ const NutritionContainer = () => {
   return (
     <Box>
       <Stack spacing={1}>
-        {isAdmin && (
-          <>
-            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
-              <ButtonWraper>
-                <Button
-                  onClick={handleAddNewNutririon}
-                  size="small"
-                  variant="contained"
-                  startIcon={<AddBoxIcon />}
-                >
-                  <span className="button-text">ΝΕΑ ΔΙΑΤΡΟΦΗ</span>
-                </Button>
-              </ButtonWraper>
-            </Box>
-            <BoxToolbar
-              onAdd={handleAdd}
-              onDelete={handleDelete}
-              onSave={handleSave}
-              selectedItem={selectedBox}
-              isEdditVisible={false}
-              addText={'ΝΕΟ BOX'}
-              deleteText="ΔΙΑΓΡΑΦΗ ΒΟΧ"
-              saveText="ΑΠΟΘΗΚΕΥΣΗ ΔΙΑΤΡΟΦΗΣ"
-            />
-          </>
-        )}
-        {boxes.length > 0 && (
+        {/* {isAdmin && ( */}
+        <>
+          <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+            <ButtonWraper>
+              <Button
+                onClick={handleAddNewNutririon}
+                size="small"
+                variant="contained"
+                startIcon={<AddBoxIcon />}
+              >
+                <span className="button-text">ΝΕΑ ΔΙΑΤΡΟΦΗ</span>
+              </Button>
+            </ButtonWraper>
+          </Box>
+          <BoxToolbar
+            onAdd={handleAdd}
+            onDelete={handleDelete}
+            onSave={handleSave}
+            selectedItem={selectedBox}
+            isEdditVisible={false}
+            addText={'ΝΕΟ BOX'}
+            deleteText="ΔΙΑΓΡΑΦΗ ΒΟΧ"
+            saveText="ΑΠΟΘΗΚΕΥΣΗ ΔΙΑΤΡΟΦΗΣ"
+          />
+        </>
+        {/* )} */}
+        {boxes?.length > 0 && (
           <>
             <Box
               sx={{
@@ -166,33 +195,71 @@ const NutritionContainer = () => {
                 justifyContent: 'space-between'
               }}
             >
-              <NutritionDates readOnly={!isAdmin} />
+              <NutritionDates />
 
               <Box>
                 <TextField
-                  sx={{ marginRight: '5px' }}
+                  sx={{ marginRight: '5px', maxWidth: '135px' }}
                   type="number"
                   size="small"
                   id="outlined-multiline-flexible"
-                  label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ ΔΙΑΤΡΟΦΗΣ"
+                  label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ"
                   onChange={handleAddLimit}
                   value={parseInt(caloriesSum)}
                   InputProps={{
                     readOnly: true
                   }}
                 />
+
                 <TextField
+                  sx={{ marginRight: '5px', maxWidth: '135px' }}
                   type="number"
                   size="small"
                   id="outlined-multiline-flexible"
-                  label="ΟΡΙΟ ΘΕΡΜΙΔΩΝ"
+                  label="ΣΥΝΟΛΟ ΠΡΩΤΕΙΝΗ"
                   onChange={handleAddLimit}
-                  value={parseInt(caloriesLimit)}
+                  value={parseInt(caloriesProtein)}
+                  InputProps={{
+                    readOnly: true
+                  }}
+                />
+                <TextField
+                  sx={{ marginRight: '5px', maxWidth: '135px' }}
+                  type="number"
+                  size="small"
+                  id="outlined-multiline-flexible"
+                  label="ΣΥΝΟΛΟ ΥΔΑΤΑ"
+                  onChange={handleAddLimit}
+                  value={parseInt(caloriesCarbs)}
+                  InputProps={{
+                    readOnly: true
+                  }}
+                />
+                <TextField
+                  sx={{ marginRight: '5px', maxWidth: '135px' }}
+                  type="number"
+                  size="small"
+                  id="outlined-multiline-flexible"
+                  label="ΣΥΝΟΛΟ ΛΥΠΑΡΑ"
+                  onChange={handleAddLimit}
+                  value={parseInt(caloriesFat)}
+                  InputProps={{
+                    readOnly: true
+                  }}
+                />
+                <TextField
+                  sx={{ marginRight: '5px', maxWidth: '135px' }}
+                  type="number"
+                  size="small"
+                  id="outlined-multiline-flexible"
+                  label="ΟΡΙΟ"
+                  onChange={handleAddLimit}
+                  value={parseInt(caloriesFat)}
                   color={setWarning().color}
                   focused={setWarning().focused}
-                  InputProps={{
-                    readOnly: !isAdmin
-                  }}
+                  // InputProps={{
+                  //   readOnly: !isAdmin
+                  // }}
                   // multiline
                   // maxRows={4}
                 />
