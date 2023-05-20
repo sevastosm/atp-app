@@ -70,7 +70,6 @@ const LogoSignInner = styled(Box)(
         height: 16px;
         position: absolute;
         top: 12px;
-        left: 12px;
         z-index: 5;
         border-radius: ${theme.general.borderRadiusSm};
         background: ${theme.header.background};

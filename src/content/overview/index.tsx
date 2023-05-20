@@ -18,12 +18,12 @@ const OverviewWrapper = styled(Box)(
 
 function Overview() {
   return (
-    <OverviewWrapper>
+    <OverviewWrapper sx={{ background: '#11192a' }}>
       <Helmet>
         <title>ATP-app</title>
       </Helmet>
 
-      <Container maxWidth="lg" sx={{ alignItems: 'center' }}>
+      <Container maxWidth="sm" sx={{ alignItems: 'center' }}>
         <Box
           sx={{ mb: 5 }}
           display="flex"
@@ -32,9 +32,9 @@ function Overview() {
         >
           <Logo />
         </Box>
-        <Card sx={{ p: 10, mb: 10, borderRadius: 4 }}>
+        <Box sx={{ p: 10, mb: 10, borderRadius: 4, background: '#fff' }}>
           <Hero />
-        </Card>
+        </Box>
       </Container>
     </OverviewWrapper>
   );
