@@ -13,6 +13,16 @@ import {
 
 const cols = [
   { name: 'name', label: 'Προιον', width: '300', required: true },
+  {
+    name: 'count_unit',
+    label: 'Μέτρηση σε',
+    required: true,
+    options: [
+      { value: 'gr', label: 'γραμμάρια' },
+      { value: 'ml', label: 'μλ' },
+      { value: 'piece', label: 'τεμάχιο' }
+    ]
+  },
   { name: 'by', label: 'Ανα' },
   { name: 'energy', label: 'Ενέργεια (kcal)' },
   { name: 'fat', label: 'Λιπαρά (kcal)' },
@@ -26,12 +36,13 @@ const cols = [
     name: 'category',
     label: 'Κωδικός -Κατηγοριας',
     required: true,
-    width: '200'
+    width: '200',
+    options: productCategories
   }
 ];
 
-const getCategoryName = (data) =>
-  productCategories.find((p) => p.value === data);
+const getLabel = (data, name) =>
+  cols.find((c) => c.name === name).options.find((p) => p.value === data);
 
 const filters = [
   {
@@ -82,7 +93,11 @@ export default function Products({
   };
 
   const data = products.map((p) => {
-    return { ...p, category: getCategoryName(p.category)?.label };
+    return {
+      ...p
+      // count_unit: getLabel(p.count_unit, 'count_unit')?.label,
+      // category: getLabel(p.category, 'category')?.label
+    };
   });
 
   return (
