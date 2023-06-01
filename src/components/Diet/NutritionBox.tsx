@@ -8,7 +8,9 @@ import {
   Card,
   Accordion,
   AccordionDetails,
-  AccordionSummary
+  AccordionSummary,
+  FormControlLabel,
+  Checkbox
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import MultyTable from '../multyTable';
@@ -17,6 +19,8 @@ import { NutritionContext } from 'src/context/nutrition/NutritionContext';
 import Products from 'src/content/applications/Users/accounts/Products';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { AppContext } from 'src/context/AppContext';
+import { margin, spacing } from '@mui/system';
+import { calculateBoxMacros } from './helpers';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -58,10 +62,17 @@ const NutritionBox = ({ data, index }) => {
 
   const [boxData, setData] = React.useState<any>([]);
   const [boxName, setBoxName] = React.useState('');
+  const [boxNotes, setBoxNotes] = React.useState('');
+  const [expanded, setExapnded] = React.useState(true);
+  const [active, setActive] = React.useState(true);
+
   const [nutritionVisible, setNutritionVisible] = React.useState(false);
 
   const handleInputChange = (e) => {
     setBoxName(e.target.value);
+  };
+  const handleBoxNotesInputChange = (e) => {
+    setBoxNotes(e.target.value);
   };
 
   const getData: any = (data) => {
@@ -69,14 +80,29 @@ const NutritionBox = ({ data, index }) => {
     if (!included) setData([...boxData, data]);
   };
 
+  const hanndleCheck = (check) => {
+    setActive(check);
+    handleSaveBox(
+      {
+        name: boxName,
+        data: boxData,
+        boxNotes: boxNotes,
+        active: check
+      },
+      index
+    );
+  };
+
   const handleSave = () => {
-    // handleSaveBox(
-    //   {
-    //     name: boxName,
-    //     data: boxData
-    //   },
-    //   index
-    // );
+    handleSaveBox(
+      {
+        name: boxName,
+        data: boxData,
+        boxNotes: boxNotes,
+        active: active
+      },
+      index
+    );
     setNutritionVisible(false);
   };
 
@@ -92,7 +118,9 @@ const NutritionBox = ({ data, index }) => {
     handleSaveBox(
       {
         name: boxName,
-        data: updatedList
+        data: updatedList,
+        boxNotes: boxNotes,
+        active: active
       },
       index
     );
@@ -104,37 +132,17 @@ const NutritionBox = ({ data, index }) => {
     return percentage.toFixed(); // Round to 2 decimal places
   }
 
-  const sumWithInitial = boxData.reduce(
-    (sum, li) =>
-      sum + (parseFloat(li.energy) * parseFloat(li.qi)) / parseFloat(li.by),
-    0
-  );
-  const sumWithInitialProtein = boxData.reduce(
-    (sum, li) =>
-      sum +
-      ((parseFloat(li.protein) * parseFloat(li.qi)) / parseFloat(li.by)) * 4,
-    0
-  );
-
+  const sumWithInitial = calculateBoxMacros(boxData, 'energy');
+  const sumWithInitialProtein = calculateBoxMacros(boxData, 'protein');
+  const sumWithInitialCarbs = calculateBoxMacros(boxData, 'carbs');
+  const sumWithInitialFat = calculateBoxMacros(boxData, 'fat');
   const sumWithInitialProteinPrecentage =
     (sumWithInitialProtein * 100) / sumWithInitial;
-
-  const sumWithInitialCarbs = boxData.reduce(
-    (sum, li) =>
-      sum +
-      ((parseFloat(li.carbs) * parseFloat(li.qi)) / parseFloat(li.by)) * 4,
-    0
-  );
   const sumWithInitialCarbsPrecentage =
     (sumWithInitialCarbs * 100) / sumWithInitial;
-
-  const sumWithInitialFat = boxData.reduce(
-    (sum, li) =>
-      sum + ((parseFloat(li.fat) * parseFloat(li.qi)) / parseFloat(li.by)) * 9,
-    0
-  );
   const sumWithInitialFatPrecentage =
     (sumWithInitialFat * 100) / sumWithInitial;
+
   const handleDeleteRecord = (record) => {
     const updatedList = boxData.filter((d) => d._id !== record._id);
     setData(updatedList);
@@ -147,111 +155,138 @@ const NutritionBox = ({ data, index }) => {
     );
   };
 
+  const NutritionValues = () => (
+    <div onClick={(e) => e.stopPropagation()}>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          gap: '10px',
+          marginRight: '2px'
+        }}
+      >
+        <Box>
+          {/* <FormControlLabel
+                control={<Checkbox checked={true} />}
+                label="Active"
+              /> */}
+          <Checkbox
+            checked={active}
+            onChange={(e, check) => hanndleCheck(check)}
+          />
+        </Box>
+        <Box>
+          <TextField
+            name={'name'}
+            id={'boxName'}
+            label="Ονομασία Box"
+            value={boxName}
+            onChange={handleInputChange}
+            size="small"
+          />
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '10px'
+          }}
+        >
+          <TextField
+            id={'boxName'}
+            label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ"
+            value={boxData?.length && sumWithInitial}
+            onChange={handleInputChange}
+            size="small"
+            InputProps={{
+              readOnly: true
+            }}
+          />
+
+          <Box sx={{ maxWidth: '150px' }}>
+            <TextField
+              id={'boxName'}
+              label="ΠΡΩΤΕΙΝΗ"
+              value={
+                boxData?.length &&
+                sumWithInitialProtein.toFixed(2) +
+                  ' | ' +
+                  sumWithInitialProteinPrecentage.toFixed(2) +
+                  '%'
+              }
+              onChange={handleInputChange}
+              size="small"
+              InputProps={{
+                readOnly: true
+              }}
+            />
+          </Box>
+          <Box sx={{ maxWidth: '150px' }}>
+            <TextField
+              id={'boxName'}
+              label="ΥΔΑΤΑΘΡΑΚΕΣ"
+              value={
+                boxData?.length &&
+                sumWithInitialCarbs.toFixed(2) +
+                  ' | ' +
+                  sumWithInitialCarbsPrecentage.toFixed(2) +
+                  '%'
+              }
+              onChange={handleInputChange}
+              size="small"
+              InputProps={{
+                readOnly: true
+              }}
+            />
+          </Box>
+          <Box sx={{ maxWidth: '150px' }}>
+            <TextField
+              id={'boxName'}
+              label="ΛΥΠΑΡΑ"
+              value={
+                boxData?.length &&
+                sumWithInitialFat.toFixed(2) +
+                  ' | ' +
+                  sumWithInitialFatPrecentage.toFixed(2) +
+                  '%'
+              }
+              onChange={handleInputChange}
+              size="small"
+              InputProps={{
+                readOnly: true
+              }}
+            />
+          </Box>
+        </Box>
+      </Box>
+    </div>
+  );
+
   React.useEffect(() => {
     //Add lassr nutriton
     setBoxName(data.name);
+    setBoxNotes(data.boxNotes);
     setData(data.data);
   }, [data]);
 
   return (
     <Item sx={{ position: 'relative' }}>
-      <Accordion id={'Accordion' + index}>
+      <Accordion
+        id={'Accordion' + index}
+        expanded={expanded}
+        onChange={(e, exp) => setExapnded(exp)}
+      >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={
+            <Box sx={{ marginRight: 2 }}>
+              <ExpandMoreIcon />
+            </Box>
+          }
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Box
-            sx={{
-              width: '100%',
-
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'space-between'
-            }}
-          >
-            <Box>
-              <TextField
-                name={'name'}
-                id={'boxName'}
-                label="Ονομασία Box"
-                value={boxName}
-                onChange={handleInputChange}
-                size="small"
-                // InputProps={{
-                //   readOnly: true
-                // }}
-              />
-            </Box>
-            <Box sx={{ maxWidth: '150px' }}>
-              <TextField
-                id={'boxName'}
-                label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ"
-                value={boxData?.length && sumWithInitial}
-                onChange={handleInputChange}
-                size="small"
-                InputProps={{
-                  readOnly: !isAdmin
-                }}
-              />
-            </Box>
-            <Box sx={{ maxWidth: '150px' }}>
-              <TextField
-                id={'boxName'}
-                label="ΠΡΩΤΕΙΝΗ"
-                value={
-                  boxData?.length &&
-                  sumWithInitialProtein.toFixed(2) +
-                    ' | ' +
-                    sumWithInitialProteinPrecentage.toFixed(2) +
-                    '%'
-                }
-                onChange={handleInputChange}
-                size="small"
-                InputProps={{
-                  readOnly: !isAdmin
-                }}
-              />
-            </Box>
-            <Box sx={{ maxWidth: '150px' }}>
-              <TextField
-                id={'boxName'}
-                label="ΥΔΑΤΑΘΡΑΚΕΣ"
-                value={
-                  boxData?.length &&
-                  sumWithInitialCarbs.toFixed(2) +
-                    ' | ' +
-                    sumWithInitialCarbsPrecentage.toFixed(2) +
-                    '%'
-                }
-                onChange={handleInputChange}
-                size="small"
-                InputProps={{
-                  readOnly: !isAdmin
-                }}
-              />
-            </Box>
-            <Box sx={{ maxWidth: '150px' }}>
-              <TextField
-                id={'boxName'}
-                label="ΛΥΠΑΡΑ"
-                value={
-                  boxData?.length &&
-                  sumWithInitialFat.toFixed(2) +
-                    ' | ' +
-                    sumWithInitialFatPrecentage.toFixed(2) +
-                    '%'
-                }
-                onChange={handleInputChange}
-                size="small"
-                InputProps={{
-                  readOnly: !isAdmin
-                }}
-              />
-            </Box>
-          </Box>
+          <NutritionValues />
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ padding: 'inherit' }}>
           <Box
             sx={{
               marginLeft: '30px',
@@ -262,7 +297,7 @@ const NutritionBox = ({ data, index }) => {
             }}
           >
             {/* {isAdmin && ( */}
-            <Box sx={{ flexGrow: 1 }}>
+            <Box sx={{ flexGrow: 1, display: 'flex' }}>
               <BoxToolbar
                 isEdditVisible={false}
                 onAdd={() => setNutritionVisible(true)}
@@ -271,6 +306,16 @@ const NutritionBox = ({ data, index }) => {
                 addText={'ΤΡΟΦΗΜΑ ΓΙΑ ' + boxName}
                 saveText={'ΚΛΕΙΣΙΜΟ ΤΡΟΦΗΜΑ '}
               />
+              <Box>
+                <TextField
+                  id={'boxNotes'}
+                  label="ΣΗΜΕΙΩΣΕΙΣ"
+                  name="boxNotes"
+                  value={boxNotes}
+                  onChange={handleBoxNotesInputChange}
+                  size="small"
+                />
+              </Box>
             </Box>
             {/* )} */}
           </Box>

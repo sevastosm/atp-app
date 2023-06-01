@@ -22,6 +22,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import { AppContext } from 'src/context/AppContext';
 import { addDiet } from 'src/api/users';
 import { number } from 'prop-types';
+import { calulateTotalMacros } from './helpers';
 
 type Props = {};
 
@@ -68,46 +69,14 @@ const NutritionContainer = () => {
       }
     );
   };
-  const caloriesSum = React.useMemo(
-    () =>
-      boxes?.reduce((acc, curr) => {
-        curr.data.forEach((obj) => {
-          acc += (parseFloat(obj.energy) * parseFloat(obj.qi)) / obj.by;
-        });
-        return acc;
-      }, 0),
-    [store]
-  );
-  const caloriesProtein = React.useMemo(
-    () =>
-      boxes?.reduce((acc, curr) => {
-        curr.data.forEach((obj) => {
-          acc += ((parseFloat(obj.protein) * parseFloat(obj.qi)) / obj.by) * 4;
-        });
-        return acc;
-      }, 0),
-    [store]
-  );
-  const caloriesCarbs = React.useMemo(
-    () =>
-      boxes?.reduce((acc, curr) => {
-        curr.data.forEach((obj) => {
-          acc += ((parseFloat(obj.carbs) * parseFloat(obj.qi)) / obj.by) * 4;
-        });
-        return acc;
-      }, 0),
-    [store]
-  );
-  const caloriesFat = React.useMemo(
-    () =>
-      boxes?.reduce((acc, curr) => {
-        curr.data.forEach((obj) => {
-          acc += ((parseFloat(obj.fat) * parseFloat(obj.qi)) / obj.by) * 9;
-        });
-        return acc;
-      }, 0),
-    [store]
-  );
+  const caloriesSum = calulateTotalMacros(boxes, 'energy');
+  const caloriesProtein = calulateTotalMacros(boxes, 'protein');
+  const caloriesCarbs = calulateTotalMacros(boxes, 'carbs');
+  const caloriesFat = calulateTotalMacros(boxes, 'fat');
+  const sumWithInitialProteinPrecentage = (caloriesProtein * 100) / caloriesSum;
+  const sumWithInitialCarbsPrecentage = (caloriesCarbs * 100) / caloriesSum;
+  const sumWithInitialFatPrecentage = (caloriesFat * 100) / caloriesSum;
+
   const ButtonWraper = styled(Box)(
     ({ theme }) => `
 
@@ -129,33 +98,33 @@ const NutritionContainer = () => {
 `
   );
   React.useEffect(() => {
-    //Add lassr nutriton
+    //Add last nutriton
     return selectedRow?.nutrition?.length
       ? handleSetStore(selectedRow.nutrition[selectedRow.nutrition.length - 1])
       : null;
   }, [selectedRow]);
 
-  const setWarning: any = () => {
-    if (parseFloat(caloriesLimit) < parseFloat(caloriesSum)) {
-      return {
-        color: 'error',
-        focused: true
-      };
-    } else if (
-      parseFloat(caloriesLimit) - (caloriesLimit * 30) / 100 <
-      parseFloat(caloriesSum)
-    ) {
-      return {
-        color: 'warning',
-        focused: true
-      };
-    } else {
-      return {
-        color: 'success',
-        focused: true
-      };
-    }
-  };
+  // const setWarning: any = () => {
+  //   if (parseFloat(caloriesLimit) < parseFloat(caloriesSum)) {
+  //     return {
+  //       color: 'error',
+  //       focused: true
+  //     };
+  //   } else if (
+  //     parseFloat(caloriesLimit) - (caloriesLimit * 30) / 100 <
+  //     parseFloat(caloriesSum)
+  //   ) {
+  //     return {
+  //       color: 'warning',
+  //       focused: true
+  //     };
+  //   } else {
+  //     return {
+  //       color: 'success',
+  //       focused: true
+  //     };
+  //   }
+  // };
 
   return (
     <Box>
@@ -205,48 +174,66 @@ const NutritionContainer = () => {
                   id="outlined-multiline-flexible"
                   label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ"
                   onChange={handleAddLimit}
-                  value={parseFloat(caloriesSum)}
+                  value={caloriesSum}
                   InputProps={{
                     readOnly: true
                   }}
                 />
-
-                <TextField
-                  sx={{ marginRight: '5px', maxWidth: '135px' }}
-                  type="number"
-                  size="small"
-                  id="outlined-multiline-flexible"
-                  label="ΣΥΝΟΛΟ ΠΡΩΤΕΙΝΗ"
-                  onChange={handleAddLimit}
-                  value={parseFloat(caloriesProtein)}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                />
-                <TextField
-                  sx={{ marginRight: '5px', maxWidth: '135px' }}
-                  type="number"
-                  size="small"
-                  id="outlined-multiline-flexible"
-                  label="ΣΥΝΟΛΟ ΥΔΑΤΑ"
-                  onChange={handleAddLimit}
-                  value={parseFloat(caloriesCarbs)}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                />
-                <TextField
-                  sx={{ marginRight: '5px', maxWidth: '135px' }}
-                  type="number"
-                  size="small"
-                  id="outlined-multiline-flexible"
-                  label="ΣΥΝΟΛΟ ΛΥΠΑΡΑ"
-                  onChange={handleAddLimit}
-                  value={parseFloat(caloriesFat)}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                />
+                {caloriesProtein && (
+                  <TextField
+                    sx={{ marginRight: '5px', maxWidth: '135px' }}
+                    size="small"
+                    id="outlined-multiline-flexible"
+                    label="ΣΥΝΟΛΟ ΠΡΩΤΕΙΝΗ"
+                    onChange={handleAddLimit}
+                    // value={parseFloat(caloriesProtein)}
+                    value={
+                      caloriesProtein.toFixed(2) +
+                      ' | ' +
+                      sumWithInitialProteinPrecentage.toFixed(2) +
+                      '%'
+                    }
+                    InputProps={{
+                      readOnly: true
+                    }}
+                  />
+                )}
+                {caloriesCarbs && (
+                  <TextField
+                    sx={{ marginRight: '5px', maxWidth: '155px' }}
+                    size="small"
+                    id="outlined-multiline-flexible"
+                    label="ΣΥΝΟΛΟ ΥΔΑΤΑ"
+                    onChange={handleAddLimit}
+                    value={
+                      caloriesCarbs.toFixed(2) +
+                      ' | ' +
+                      sumWithInitialCarbsPrecentage.toFixed(2) +
+                      '%'
+                    }
+                    InputProps={{
+                      readOnly: true
+                    }}
+                  />
+                )}
+                {caloriesFat && (
+                  <TextField
+                    sx={{ marginRight: '5px', maxWidth: '135px' }}
+                    size="small"
+                    id="outlined-multiline-flexible"
+                    label="ΣΥΝΟΛΟ ΛΥΠΑΡΑ"
+                    onChange={handleAddLimit}
+                    value={
+                      caloriesFat.toFixed(2) +
+                      ' | ' +
+                      sumWithInitialFatPrecentage.toFixed(2) +
+                      '%'
+                    }
+                    InputProps={{
+                      readOnly: true
+                    }}
+                  />
+                )}
                 <TextField
                   sx={{ marginRight: '5px', maxWidth: '135px' }}
                   type="number"
@@ -254,9 +241,9 @@ const NutritionContainer = () => {
                   id="outlined-multiline-flexible"
                   label="ΟΡΙΟ"
                   onChange={handleAddLimit}
-                  value={parseFloat(caloriesFat)}
-                  color={setWarning().color}
-                  focused={setWarning().focused}
+                  value={caloriesFat}
+                  // color={setWarning().color}
+                  // focused={setWarning().focused}
                   // InputProps={{
                   //   readOnly: !isAdmin
                   // }}
