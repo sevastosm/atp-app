@@ -9,6 +9,8 @@ import SuspenseLoader from 'src/components/SuspenseLoader';
 import Products from './content/applications/Users/accounts/Products';
 import Accounts from './content/applications/Users/accounts/Accounts';
 import UserAccount from './content/applications/Users/accounts/userDetails/UserAccount';
+import Metrics from './content/applications/Users/profile/Metrics';
+import Nutrition from './content/applications/Users/profile/Nutrition';
 
 const Loader = (Component) => (props) =>
   (
@@ -33,9 +35,9 @@ const Overview = Loader(lazy(() => import('src/content/overview')));
 // const Transactions = Loader(
 //   lazy(() => import('src/content/applications/Transactions'))
 // );
-// const UserProfile = Loader(
-//   lazy(() => import('src/content/applications/Users/profile'))
-// );
+const UserProfile = Loader(
+  lazy(() => import('src/content/applications/Users/profile'))
+);
 // const UserAccounts = Loader(
 //   lazy(() => import('src/content/applications/Users/accounts'))
 // );
@@ -147,6 +149,24 @@ const routes: RouteObject[] = [
       //   path: 'settings',
       //   element: <UserSettings />
       // }
+    ]
+  },
+  {
+    path: '/profile',
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: '',
+        element: <Navigate to="profile" replace />
+      },
+      {
+        path: 'metrics',
+        element: <UserProfile />
+      },
+      {
+        path: 'nutrition',
+        element: <Nutrition />
+      }
     ]
   },
   {

@@ -8,14 +8,15 @@ import {
   Hidden,
   lighten,
   Popover,
-  Typography
+  Typography,
+  useMediaQuery
 } from '@mui/material';
 
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import { AppContext } from 'src/context/AppContext';
-import { User } from 'src/models/user';
+// import { User } from 'src/models/user';
 
 const UserBoxButton = styled(Button)(
   ({ theme }) => `
@@ -53,9 +54,12 @@ const UserBoxDescription = styled(Typography)(
 );
 
 function HeaderUserbox() {
-  const { activeUser } = useContext(AppContext);
+  const theme = useTheme();
 
-  const user: User = activeUser;
+  const { selectedRow } = useContext(AppContext);
+  const matches = useMediaQuery(() => theme.breakpoints.down('sm'));
+
+  const user: any = selectedRow;
 
   if (!user) return null;
   const ref = useRef<any>(null);
@@ -72,23 +76,26 @@ function HeaderUserbox() {
   return (
     <Box sx={{ flex: '1', display: 'flex', alignItems: 'center' }}>
       <Box sx={{ flex: '1', alignItems: 'center', textAlign: 'center' }}>
-        Next date {user.nextApoitment}
+        <Typography variant={matches ? 'h5' : 'h3'}>
+          Επόμενο ραντεβού {user.nextApoitment}
+        </Typography>
       </Box>
+
       <UserBoxButton color="secondary" ref={ref} onClick={handleOpen}>
-        <Avatar variant="rounded" alt={user.name} />
+        <Avatar variant="rounded" alt={user.firstName} />
         <Hidden mdDown>
           <UserBoxText>
-            <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
+            <UserBoxLabel variant="body1">{user.firstName}</UserBoxLabel>
           </UserBoxText>
           <UserBoxText>
-            <UserBoxLabel variant="body2">{user.surname}</UserBoxLabel>
+            <UserBoxLabel variant="body2">{user.lastName}</UserBoxLabel>
           </UserBoxText>
         </Hidden>
         <Hidden smDown>
           <ExpandMoreTwoToneIcon sx={{ ml: 1 }} />
         </Hidden>
       </UserBoxButton>
-      <Popover
+      {/* <Popover
         anchorEl={ref.current}
         onClose={handleClose}
         open={isOpen}
@@ -100,16 +107,16 @@ function HeaderUserbox() {
           vertical: 'top',
           horizontal: 'right'
         }}
-      >
-        <MenuUserBox sx={{ minWidth: 210 }} display="flex">
-          <Avatar variant="rounded" alt={user.name} />
-          <UserBoxText>
-            <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
-            <UserBoxLabel variant="body2">{user.surname}</UserBoxLabel>
-          </UserBoxText>
-        </MenuUserBox>
-        <Divider sx={{ mb: 0 }} />
-        {/* <List sx={{ p: 1 }} component="nav">
+      > */}
+      {/* <MenuUserBox sx={{ minWidth: 210 }} display="flex">
+        <Avatar variant="rounded" alt={user.name} />
+        <UserBoxText>
+          <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
+          <UserBoxLabel variant="body2">{user.surname}</UserBoxLabel>
+        </UserBoxText>
+      </MenuUserBox> */}
+      {/* <Divider sx={{ mb: 0 }} /> */}
+      {/* <List sx={{ p: 1 }} component="nav">
           <ListItem button to="/management/profile/details" component={NavLink}>
             <AccountBoxTwoToneIcon fontSize="small" />
             <ListItemText primary="My Profile" />
@@ -127,14 +134,14 @@ function HeaderUserbox() {
             <ListItemText primary="Account Settings" />
           </ListItem>
         </List> */}
-        <Divider />
-        <Box sx={{ m: 1 }}>
+      {/* <Divider /> */}
+      {/* <Box sx={{ m: 1 }}>
           <Button color="primary" fullWidth>
             <LockOpenTwoToneIcon sx={{ mr: 1 }} />
             Sign out
           </Button>
-        </Box>
-      </Popover>
+        </Box> */}
+      {/* </Popover> */}
     </Box>
   );
 }

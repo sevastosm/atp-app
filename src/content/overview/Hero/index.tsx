@@ -104,7 +104,7 @@ function Hero() {
       if (response.data.user.role === 'admin') {
         navigate('/management/accounts', { replace: false });
       } else {
-        navigate('/management/user', { replace: false });
+        navigate('/profile/nutrition', { replace: false });
       }
     });
   };

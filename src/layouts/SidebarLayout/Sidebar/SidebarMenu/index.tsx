@@ -15,6 +15,7 @@ import { SidebarContext } from 'src/context/SidebarContext';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import SettingsIcon from '@mui/icons-material/Settings';
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import DisplaySettingsTwoToneIcon from '@mui/icons-material/DisplaySettingsTwoTone';
 import { AppContext } from 'src/context/AppContext';
 
@@ -168,144 +169,153 @@ function SidebarMenu() {
   const navigate = useNavigate();
 
   const role = logedInUser?.role || null;
-  if (!auth && !role) navigate('/', { replace: false });
 
   const handleLogout = async () => {
     await localStorage.removeItem('token');
     setAuth(false);
     setLogedInUser(null);
   };
+  const AdminMenu = () => (
+    <MenuWrapper>
+      <List
+        component="div"
+        subheader={
+          <ListSubheader component="div" disableSticky>
+            {role === 'admin' && 'Accounts'}
+          </ListSubheader>
+        }
+      >
+        <SubMenuWrapper>
+          <List component="div">
+            <ListItem component="div">
+              <Button
+                disableRipple
+                component={RouterLink}
+                onClick={closeSidebar}
+                to="/management/accounts"
+                startIcon={
+                  <>
+                    <AccountCircleTwoToneIcon />
+                    <AccountCircleTwoToneIcon />
+                  </>
+                }
+              >
+                ΠΕΛΑΤΕΣ
+              </Button>
+            </ListItem>
+          </List>
+        </SubMenuWrapper>
+      </List>
+      <SubMenuWrapper>
+        <List
+          component="div"
+          subheader={
+            <ListSubheader component="div" disableSticky>
+              ΤΡΟΦΗΜΑ
+            </ListSubheader>
+          }
+        >
+          <ListItem component="div">
+            <Button
+              disableRipple
+              component={RouterLink}
+              onClick={closeSidebar}
+              to="/nutrition/"
+              startIcon={
+                <>
+                  <FastfoodIcon />
+                </>
+              }
+            >
+              ΤΡΟΦΙΜΑ
+            </Button>
+          </ListItem>
+        </List>
+      </SubMenuWrapper>
+    </MenuWrapper>
+  );
+
+  const UserMenu = () => (
+    <SubMenuWrapper>
+      <List
+        component="div"
+        subheader={
+          <ListSubheader component="div" disableSticky>
+            ΡΥΘΜΙΣΕΙΣ
+          </ListSubheader>
+        }
+      >
+        <ListItem component="div">
+          <Button
+            disableRipple
+            component={RouterLink}
+            onClick={closeSidebar}
+            to="/profile/nutrition"
+            startIcon={<LocalDiningIcon />}
+          >
+            ΔΙΑΤΡΟΦΗ
+          </Button>
+        </ListItem>
+        <ListItem component="div">
+          <Button
+            disableRipple
+            component={RouterLink}
+            onClick={closeSidebar}
+            to="/profile/metrics"
+            startIcon={
+              <>
+                <AccountCircleTwoToneIcon />
+                <AccountCircleTwoToneIcon />
+              </>
+            }
+          >
+            ΜΕΤΡΙΣΕΙΣ
+          </Button>
+        </ListItem>
+        {/* <ListItem component="div">
+          <Button
+            disableRipple
+            component={RouterLink}
+            onClick={closeSidebar}
+            to="/management/accounts"
+            startIcon={
+              <>
+                <AccountCircleTwoToneIcon />
+                <AccountCircleTwoToneIcon />
+              </>
+            }
+          >
+            ΛΟΓΑΡΙΑΣΜΟΣ
+          </Button>
+        </ListItem> */}
+      </List>
+    </SubMenuWrapper>
+  );
 
   // if (!activeUser) return null;
 
   return (
     <>
       <MenuWrapper>
-        <List
-          component="div"
-          subheader={
-            <ListSubheader component="div" disableSticky>
-              {role === 'admin' && 'Accounts'}
-            </ListSubheader>
-          }
-        >
+        {role === 'admin' ? <AdminMenu /> : <UserMenu />}
+        <Box sx={{ position: 'absolute', bottom: 0 }}>
           <SubMenuWrapper>
             <List component="div">
-              {role === 'admin' && (
-                <ListItem component="div">
-                  <Button
-                    disableRipple
-                    component={RouterLink}
-                    onClick={closeSidebar}
-                    to="/management/accounts"
-                    startIcon={
-                      <>
-                        <AccountCircleTwoToneIcon />
-                        <AccountCircleTwoToneIcon />
-                      </>
-                    }
-                  >
-                    ΠΕΛΑΤΕΣ
-                  </Button>
-                </ListItem>
-              )}
-              {/* <ListItem component="div">
+              <ListItem component="div">
                 <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/management/user"
-                  startIcon={<AccountCircleTwoToneIcon />}
+                  onClick={handleLogout}
+                  startIcon={
+                    <>
+                      <SettingsIcon />
+                    </>
+                  }
                 >
-                  ΠΡΟΦΙΛ ΧΡΗΣΤΗ
+                  Log out
                 </Button>
-              </ListItem> */}
+              </ListItem>
             </List>
           </SubMenuWrapper>
-        </List>
-        {role === 'admin' ? (
-          <>
-            <SubMenuWrapper>
-              <List
-                component="div"
-                subheader={
-                  <ListSubheader component="div" disableSticky>
-                    ΤΡΟΦΗΜΑ
-                  </ListSubheader>
-                }
-              >
-                <ListItem component="div">
-                  <Button
-                    disableRipple
-                    component={RouterLink}
-                    onClick={closeSidebar}
-                    to="/nutrition/"
-                    startIcon={
-                      <>
-                        <FastfoodIcon />
-                      </>
-                    }
-                  >
-                    ΤΡΟΦΙΜΑ
-                  </Button>
-                </ListItem>
-              </List>
-            </SubMenuWrapper>
-            <Box sx={{ position: 'absolute', bottom: 0 }}>
-              <SubMenuWrapper>
-                <List
-                  component="div"
-                  subheader={
-                    <ListSubheader component="div" disableSticky>
-                      ΡΥΘΜΙΣΕΙΣ
-                    </ListSubheader>
-                  }
-                ></List>
-                <List component="div">
-                  <ListItem component="div">
-                    <Button
-                      onClick={handleLogout}
-                      startIcon={
-                        <>
-                          <SettingsIcon />
-                        </>
-                      }
-                    >
-                      Log out
-                    </Button>
-                  </ListItem>
-                </List>
-              </SubMenuWrapper>
-            </Box>
-          </>
-        ) : (
-          <Box sx={{ position: 'absolute', bottom: 0 }}>
-            <SubMenuWrapper>
-              <List
-                component="div"
-                subheader={
-                  <ListSubheader component="div" disableSticky>
-                    ΡΥΘΜΙΣΕΙΣ
-                  </ListSubheader>
-                }
-              ></List>
-              <List component="div">
-                <ListItem component="div">
-                  <Button
-                    onClick={handleLogout}
-                    startIcon={
-                      <>
-                        <SettingsIcon />
-                      </>
-                    }
-                  >
-                    Log out
-                  </Button>
-                </ListItem>
-              </List>
-            </SubMenuWrapper>
-          </Box>
-        )}
+        </Box>
       </MenuWrapper>
     </>
   );

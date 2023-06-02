@@ -21,6 +21,7 @@ export const NutritionContextProvider: FC = ({ children }) => {
   const [selectedBox, setSelectedBox] = useState(null);
 
   function handleSetStore(data) {
+    console.log('DATA ??', data);
     dispatch({
       type: 'set',
       payload: data

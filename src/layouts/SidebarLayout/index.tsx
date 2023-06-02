@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { Box, alpha, lighten, useTheme, Alert, Snackbar } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Header from './Header';
@@ -13,7 +13,12 @@ interface SidebarLayoutProps {
 
 const SidebarLayout: FC<SidebarLayoutProps> = () => {
   const theme = useTheme();
-  const { message, setMessage } = React.useContext(AppContext);
+  const { message, setMessage, auth, logedInUser } =
+    React.useContext(AppContext);
+  const navigate = useNavigate();
+
+  const role = logedInUser?.role || null;
+  if (!auth && !role) navigate('/', { replace: false });
 
   const [open, setOpen] = React.useState(false);
 

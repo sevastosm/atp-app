@@ -7,7 +7,9 @@ import {
   Box,
   Card,
   Button,
-  TextField
+  TextField,
+  Select,
+  MenuItem
 } from '@mui/material';
 import { de, el } from 'date-fns/locale';
 import BasicTable from './Table';
@@ -49,9 +51,9 @@ const NutritionContainer = () => {
   const { selectedRow, setMessage, setUsers, setSelectedRow } =
     React.useContext(AppContext);
 
-  const { role } = selectedRow;
+  // const { role } = selectedRow;
 
-  const isAdmin = role === 'admin';
+  // const isAdmin = role === 'admin';
 
   const { boxes, caloriesLimit, nutrition } = store;
 
@@ -126,11 +128,36 @@ const NutritionContainer = () => {
   //   }
   // };
 
+  const handleChangeNutrition = (i) => {
+    handleSetStore(selectedRow.nutrition[i]);
+  };
+
   return (
     <Box>
       <Stack spacing={1}>
         {/* {isAdmin && ( */}
         <>
+          {selectedRow.nutrition && (
+            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+              <ButtonWraper>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={
+                    selectedRow[nutrition?.length - 1]?.duration.from || ''
+                  }
+                  label="Age"
+                  onChange={(e) => handleChangeNutrition(e.target.value)}
+                >
+                  {selectedRow.nutrition.map((n, i) => (
+                    <MenuItem key={i} value={i}>
+                      {n.duration.from}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </ButtonWraper>
+            </Box>
+          )}
           <Box sx={{ display: 'flex', justifyContent: 'end' }}>
             <ButtonWraper>
               <Button
