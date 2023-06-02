@@ -32,8 +32,10 @@ function Overview() {
         >
           <Logo />
         </Box>
-        <Box sx={{ p: 10, mb: 10, borderRadius: 4, background: '#fff' }}>
-          <Hero />
+        <Box>
+          <Card sx={{ padding: 1, maxWidth: '300px', margin: '0 auto' }}>
+            <Hero />
+          </Card>
         </Box>
       </Container>
     </OverviewWrapper>

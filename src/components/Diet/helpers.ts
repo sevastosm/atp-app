@@ -1,7 +1,7 @@
 export const calulateTotalMacros = (list, macro) =>
   list?.reduce((acc, curr) => {
-    if (curr.active) {
-      curr.data.forEach((obj) => {
+    curr.data.forEach((obj) => {
+      if (curr.active) {
         const macroValue = macro === 'fat' ? 9 : 4;
         if (macro === 'energy') {
           acc +=
@@ -12,9 +12,9 @@ export const calulateTotalMacros = (list, macro) =>
         }
         acc +=
           ((parseFloat(obj[macro]) * parseFloat(obj.qi)) / obj.by) * macroValue;
-      });
-      return parseFloat(acc);
-    }
+      }
+    });
+    return parseFloat(acc);
   }, 0);
 
 export const calculateBoxMacros = (boxData, macro) => {

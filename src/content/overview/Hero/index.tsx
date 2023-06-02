@@ -119,9 +119,7 @@ function Hero() {
       >
         <Grid item xs={12} mx="auto">
           {/* <LabelWrapper color="success">Version 0.0.0</LabelWrapper> */}
-          <Typography sx={{ mb: 2 }} variant="h1">
-            ATP-app
-          </Typography>
+          <Typography sx={{ mb: 2 }} variant="h1"></Typography>
           <TextField
             required
             id="email"

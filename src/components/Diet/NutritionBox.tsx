@@ -71,7 +71,7 @@ const NutritionBox = ({ data, index }) => {
   const handleInputChange = (e) => {
     setBoxName(e.target.value);
   };
-  const handleBoxNotesInputChange = (e) => {
+  const handleBoxNotesInputChange = (e, index) => {
     setBoxNotes(e.target.value);
   };
 
@@ -166,25 +166,17 @@ const NutritionBox = ({ data, index }) => {
         }}
       >
         <Box>
-          {/* <FormControlLabel
-                control={<Checkbox checked={true} />}
-                label="Active"
-              /> */}
-          <Checkbox
-            checked={active}
-            onChange={(e, check) => hanndleCheck(check)}
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={active}
+                onChange={(e, check) => hanndleCheck(check)}
+              />
+            }
+            label={boxName}
           />
         </Box>
-        <Box>
-          <TextField
-            name={'name'}
-            id={'boxName'}
-            label="Ονομασία Box"
-            value={boxName}
-            onChange={handleInputChange}
-            size="small"
-          />
-        </Box>
+
         <Box
           sx={{
             display: 'flex',
@@ -195,7 +187,6 @@ const NutritionBox = ({ data, index }) => {
             id={'boxName'}
             label="ΣΥΝΟΛΟ ΘΕΡΜΙΔΩΝ"
             value={boxData?.length && sumWithInitial}
-            onChange={handleInputChange}
             size="small"
             InputProps={{
               readOnly: true
@@ -213,7 +204,6 @@ const NutritionBox = ({ data, index }) => {
                   sumWithInitialProteinPrecentage.toFixed(2) +
                   '%'
               }
-              onChange={handleInputChange}
               size="small"
               InputProps={{
                 readOnly: true
@@ -231,7 +221,6 @@ const NutritionBox = ({ data, index }) => {
                   sumWithInitialCarbsPrecentage.toFixed(2) +
                   '%'
               }
-              onChange={handleInputChange}
               size="small"
               InputProps={{
                 readOnly: true
@@ -249,7 +238,6 @@ const NutritionBox = ({ data, index }) => {
                   sumWithInitialFatPrecentage.toFixed(2) +
                   '%'
               }
-              onChange={handleInputChange}
               size="small"
               InputProps={{
                 readOnly: true
@@ -296,26 +284,36 @@ const NutritionBox = ({ data, index }) => {
               justifyContent: 'space-between'
             }}
           >
-            {/* {isAdmin && ( */}
-            <Box sx={{ flexGrow: 1, display: 'flex' }}>
-              <BoxToolbar
-                isEdditVisible={false}
-                onAdd={() => setNutritionVisible(true)}
-                onSave={handleSave}
-                // onEddit={() => setNutritionVisible(true)}
-                addText={'ΤΡΟΦΗΜΑ ΓΙΑ ' + boxName}
-                saveText={'ΚΛΕΙΣΙΜΟ ΤΡΟΦΗΜΑ '}
-              />
+            <Box sx={{ flexGrow: 1, display: 'flex', gap: 2 }}>
+              <Box>
+                <TextField
+                  name={'name'}
+                  id={'boxName'}
+                  label="Ονομασία Box"
+                  value={boxName}
+                  onChange={handleInputChange}
+                  size="small"
+                />
+              </Box>
+              {/* {isAdmin && ( */}
               <Box>
                 <TextField
                   id={'boxNotes'}
                   label="ΣΗΜΕΙΩΣΕΙΣ"
                   name="boxNotes"
                   value={boxNotes}
-                  onChange={handleBoxNotesInputChange}
+                  onChange={(e) => handleBoxNotesInputChange}
                   size="small"
                 />
               </Box>
+              <BoxToolbar
+                isEdditVisible={false}
+                onAdd={() => setNutritionVisible(true)}
+                onSave={handleSave}
+                // onEddit={() => setNutritionVisible(true)}
+                addText={'ΤΡΟΦΗΜΑ'}
+                saveText={'ΑΠΘΗΚΕΥΣΗ'}
+              />
             </Box>
             {/* )} */}
           </Box>

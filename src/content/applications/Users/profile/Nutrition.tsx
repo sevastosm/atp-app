@@ -18,7 +18,8 @@ import {
   ListItemText,
   ListSubheader,
   useTheme,
-  List
+  List,
+  useMediaQuery
 } from '@mui/material';
 import {
   NutritionContext,
@@ -44,7 +45,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Nutrition = () => {
   const { selectedRow } = React.useContext(AppContext);
+
   const theme = useTheme();
+  const matches = useMediaQuery(() => theme.breakpoints.down('sm'));
   // const { role } = selectedRow;
 
   // const isAdmin = role === 'admin';
@@ -58,14 +61,6 @@ const Nutrition = () => {
   );
 
   const boxes = selectedRow?.nutrition || [];
-
-  const caloriesSum = calulateTotalMacros(boxes, 'energy');
-  const caloriesProtein = calulateTotalMacros(boxes, 'protein');
-  const caloriesCarbs = calulateTotalMacros(boxes, 'carbs');
-  const caloriesFat = calulateTotalMacros(boxes, 'fat');
-  const sumWithInitialProteinPrecentage = (caloriesProtein * 100) / caloriesSum;
-  const sumWithInitialCarbsPrecentage = (caloriesCarbs * 100) / caloriesSum;
-  const sumWithInitialFatPrecentage = (caloriesFat * 100) / caloriesSum;
 
   const ButtonWraper = styled(Box)(
     ({ theme }) => `
@@ -120,7 +115,10 @@ const Nutrition = () => {
     <Box>
       {boxes?.length > 0 && (
         <Card sx={{ margin: 2, background: '#c1c3d169' }}>
-          <Typography variant="h3" sx={{ textAlign: 'center', marginTop: 3 }}>
+          <Typography
+            variant={matches ? 'h4' : 'h3'}
+            sx={{ textAlign: 'center', marginTop: 3 }}
+          >
             Η διατροφή μου
           </Typography>
           <Paper elevation={8} sx={{ margin: 2 }}></Paper>
