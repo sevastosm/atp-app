@@ -45,7 +45,8 @@ const NutritionContainer = () => {
     handleDeleteBox,
     handleSetStore,
     handleAddNewNutririon,
-    handleAddLimit
+    handleAddLimit,
+    handleSaveAll
   } = React.useContext(NutritionContext);
 
   const { selectedRow, setMessage, setUsers, setSelectedRow } =
@@ -289,7 +290,7 @@ const NutritionContainer = () => {
                   // border: 'solid 1px'
                 }}
               >
-                <NutritionBox data={box} index={i} />
+                <NutritionBox data={box} index={i} handleSaveAll={handleSave} />
               </Card>
             ))}
           </>

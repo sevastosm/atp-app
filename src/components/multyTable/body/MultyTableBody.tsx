@@ -91,6 +91,13 @@ const MultyTableBody = () => {
     })
     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
+  const fillRequiredField: any = (row, key) => {
+    if (key.name !== 'qi') return;
+    if (key.name === 'qi' && !row[key.name]) {
+      return { background: 'yellow', width: '30px', height: '20px' };
+    }
+  };
+
   return (
     <TableBody>
       {/* if you don't need to support IE11, you can replace the `stableSort` call with:
@@ -131,8 +138,7 @@ rows.sort(getComparator(order, orderBy)).slice() */}
                       id={labelId}
                       scope="row"
                     >
-                      <div>
-                        {' '}
+                      <div style={fillRequiredField(row, key)}>
                         {key?.options
                           ? key?.options.find((p) => p.value === row[key.name])
                               ?.label

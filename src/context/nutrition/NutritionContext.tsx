@@ -1,4 +1,5 @@
 import React, { FC, useState, createContext, useReducer } from 'react';
+import { addDiet } from 'src/api/users';
 
 import { users } from 'src/mocks/users';
 import { AppContext } from '../AppContext';
@@ -20,8 +21,10 @@ export const NutritionContextProvider: FC = ({ children }) => {
   const [store, dispatch] = useReducer(nutritionReducer, initialStore);
   const [selectedBox, setSelectedBox] = useState(null);
 
+  const { selectedRow, setMessage, setUsers, setSelectedRow } =
+    React.useContext(AppContext);
+
   function handleSetStore(data) {
-    console.log('DATA ??', data);
     dispatch({
       type: 'set',
       payload: data
@@ -47,6 +50,7 @@ export const NutritionContextProvider: FC = ({ children }) => {
       payload: data,
       index: index
     });
+    console.log('handleSaveBox', store);
   }
 
   function handleDeleteBox(data) {
@@ -76,6 +80,14 @@ export const NutritionContextProvider: FC = ({ children }) => {
       payload: e.target.value
     });
   }
+  const handleSaveAll = () => {
+    addDiet(store, setMessage, selectedRow._id, store._id).then(
+      (response: any) => {
+        setSelectedRow(response.data.user);
+        setUsers(response.data.users);
+      }
+    );
+  };
 
   console.log('NUTRITION_STORE', store);
   console.log('SELECTED_BOX', selectedBox);
@@ -94,7 +106,8 @@ export const NutritionContextProvider: FC = ({ children }) => {
         selectedBox,
         setSelectedBox,
         saveBoxName,
-        handleSaveBox
+        handleSaveBox,
+        handleSaveAll
       }}
     >
       {children}

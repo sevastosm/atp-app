@@ -112,6 +112,14 @@ export default function FormFields({
       const dd: any = moment(new Date(), 'DD/MM/YYYY');
       setDate(dd);
     }
+    if (data?.date) {
+      const dd: any = moment(data.date, 'DD/MM/YYYY');
+
+      setDate(dd);
+    } else {
+      const dd: any = moment(new Date(), 'DD/MM/YYYY');
+      setDate(dd);
+    }
     setValue(data);
   }, [data]);
 
@@ -202,9 +210,9 @@ export default function FormFields({
                             <TextField
                               size="small"
                               {...params}
-                              InputProps={{
-                                readOnly: readOnly
-                              }}
+                              // InputProps={{
+                              //   readOnly: readOnly
+                              // }}
                             />
                           )}
                         />

@@ -32,6 +32,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const cols = [
   { name: 'name', label: 'Προιον', width: '300', required: true },
+  { name: 'qi', label: 'Ποσότητα (γρ.)', required: true, inputType: 'number' },
   { name: 'by', label: 'Ανα' },
   {
     name: 'count_unit',
@@ -46,13 +47,12 @@ const cols = [
   // { name: 'edible', label: 'Εδώδιμες ίνες  (γρ.)' },
   // { name: 'salt', label: 'Αλάτι (γρ.)' },
   // { name: 'category', label: 'Κωδικός -Κατηγοριας', required: true },
-  { name: 'qi', label: 'Ποσότητα (γρ.)', required: true, inputType: 'number' },
   { name: 'notes', label: 'Σημιώσεις' }
 ];
 
 const box = { name: '', data: [] };
 
-const NutritionBox = ({ data, index }) => {
+const NutritionBox = ({ data, index, handleSaveAll }) => {
   const { selectedRow } = React.useContext(AppContext);
 
   const { role } = selectedRow;
@@ -71,7 +71,7 @@ const NutritionBox = ({ data, index }) => {
   const handleInputChange = (e) => {
     setBoxName(e.target.value);
   };
-  const handleBoxNotesInputChange = (e, index) => {
+  const handleBoxNotesInputChange = (e) => {
     setBoxNotes(e.target.value);
   };
 
@@ -292,6 +292,7 @@ const NutritionBox = ({ data, index }) => {
                   label="Ονομασία Box"
                   value={boxName}
                   onChange={handleInputChange}
+                  onBlur={() => handleSave()}
                   size="small"
                 />
               </Box>
@@ -302,7 +303,8 @@ const NutritionBox = ({ data, index }) => {
                   label="ΣΗΜΕΙΩΣΕΙΣ"
                   name="boxNotes"
                   value={boxNotes}
-                  onChange={(e) => handleBoxNotesInputChange}
+                  onChange={handleBoxNotesInputChange}
+                  onBlur={() => handleSave()}
                   size="small"
                 />
               </Box>

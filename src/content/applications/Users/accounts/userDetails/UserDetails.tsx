@@ -31,6 +31,7 @@ import Notes from './Notes';
 import FormFields from 'src/components/general/Form';
 import axios from 'axios';
 import { getUserDiet, postUser } from 'src/api/users';
+import UserMerics from './UserMerics';
 
 type Props = {};
 interface IProfileFields {
@@ -272,19 +273,10 @@ const UserDetails = ({
                           direction="row"
                           alignItems="start"
                         >
-                          {console.log('MeTRICS', value?.metrics)}
-                          <FormFields
-                            fields={[
-                              ...metricsFieldsLeft,
-                              ...metricsFieldsRight
-                            ]}
-                            onSave={handleSaveUserMetrics}
-                            data={
-                              mode !== 'add'
-                                ? value?.metrics?.length &&
-                                  value?.metrics[value?.metrics?.length - 1]
-                                : ''
-                            }
+                          <UserMerics
+                            data={value.metrics}
+                            mode={mode}
+                            updateData={handleSaveUserMetrics}
                           />
                         </Grid>
                       </Box>
