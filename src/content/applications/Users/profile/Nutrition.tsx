@@ -122,121 +122,130 @@ const Nutrition = () => {
             Η διατροφή μου
           </Typography>
           <Paper elevation={8} sx={{ margin: 2 }}></Paper>
-          {boxes[0].boxes.map((box, i) => (
-            <>
-              <Paper key={i} elevation={8} sx={{ margin: 2 }}>
-                <Card sx={{ height: '100%' }}>
-                  <Typography variant="h4" sx={{ margin: 1 }}>
-                    {box.name}
-                  </Typography>
-                  <Divider />
-                  {box.data.map((box, i) => (
-                    <ListWrapper key={i} disablePadding>
-                      <ListItem
-                        key={i}
-                        sx={{
-                          color: `${theme.colors.primary.main}`,
-                          '&:hover': { color: `${theme.colors.primary.dark}` }
-                        }}
-                        button
-                      >
-                        {/* <ListItemText primary="Είδος:" /> */}
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            flexGrow: '1',
-                            alignItems: 'baseline'
-                          }}
-                        >
-                          <ListItemText
-                            sx={{ marginRight: 1 }}
-                            primaryTypographyProps={{
-                              variant: 'h5',
-                              color: `${theme.colors.alpha.black[100]}`
-                            }}
-                            primary="Είδος"
-                          />
-                          <ListItemText primary={box.name} />
-                        </Box>
-                      </ListItem>
+          {boxes[0].boxes.map(
+            (box, i) =>
+              box.active && (
+                <>
+                  <Paper key={i} elevation={8} sx={{ margin: 2 }}>
+                    <Card sx={{ height: '100%' }}>
+                      <Typography variant="h4" sx={{ margin: 1 }}>
+                        {box.name}
+                      </Typography>
                       <Divider />
-                      <ListItem
-                        key={i}
-                        sx={{
-                          color: `${theme.colors.primary.main}`,
-                          '&:hover': { color: `${theme.colors.primary.dark}` }
-                        }}
-                        button
-                      >
-                        <ListItemText
-                          primaryTypographyProps={{
-                            variant: 'h5',
-                            color: `${theme.colors.alpha.black[100]}`
-                          }}
-                          primary="Ποσότητα"
-                        />
-                        <ListItemText
-                          primary={`${box.qi} ${
-                            box.count_unit === 'piece'
-                              ? 'τεμάχιο'
-                              : box.count_unit
-                          }`}
-                        />
-                      </ListItem>
-                      <Divider />
-                      <ListItem
-                        key={i}
-                        sx={{
-                          color: `${theme.colors.primary.main}`,
-                          '&:hover': { color: `${theme.colors.primary.dark}` }
-                        }}
-                        button
-                      >
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            flexGrow: '1',
-                            alignItems: 'baseline'
-                          }}
-                        >
-                          <ListItemText
-                            sx={{ marginRight: 1 }}
-                            primaryTypographyProps={{
-                              variant: 'h5',
-                              color: `${theme.colors.alpha.black[100]}`
+                      {box.data.map((box, i) => (
+                        <ListWrapper key={i} disablePadding>
+                          <ListItem
+                            key={i}
+                            sx={{
+                              color: `${theme.colors.primary.main}`,
+                              '&:hover': {
+                                color: `${theme.colors.primary.dark}`
+                              }
                             }}
-                            primary="Σημιώσεις"
-                          />
+                            button
+                          >
+                            {/* <ListItemText primary="Είδος:" /> */}
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                flexGrow: '1',
+                                alignItems: 'baseline'
+                              }}
+                            >
+                              <ListItemText
+                                sx={{ marginRight: 1 }}
+                                primaryTypographyProps={{
+                                  variant: 'h5',
+                                  color: `${theme.colors.alpha.black[100]}`
+                                }}
+                                primary="Είδος"
+                              />
+                              <ListItemText primary={box.name} />
+                            </Box>
+                          </ListItem>
                           <Divider />
-                          <ListItemText primary={box?.notes} />
-                        </Box>
-                      </ListItem>
-                    </ListWrapper>
-                  ))}
-                </Card>
-                <Divider />
-              </Paper>
-              <Paper elevation={8} sx={{ margin: 2 }}>
-                <Card sx={{ height: '100%' }}>
-                  <CardHeader title="Γενικές σημιώσεις" />
-                  <Divider />
-                  <ListWrapper disablePadding>
-                    <ListItem
-                      sx={{
-                        color: `${theme.colors.primary.main}`,
-                        '&:hover': { color: `${theme.colors.primary.dark}` }
-                      }}
-                      button
-                    >
-                      <ListItemText primary={box?.boxNotes} />
-                    </ListItem>
-                  </ListWrapper>
-                </Card>
-              </Paper>
-            </>
-          ))}
+                          <ListItem
+                            key={i}
+                            sx={{
+                              color: `${theme.colors.primary.main}`,
+                              '&:hover': {
+                                color: `${theme.colors.primary.dark}`
+                              }
+                            }}
+                            button
+                          >
+                            <ListItemText
+                              primaryTypographyProps={{
+                                variant: 'h5',
+                                color: `${theme.colors.alpha.black[100]}`
+                              }}
+                              primary="Ποσότητα"
+                            />
+                            <ListItemText
+                              primary={`${box.qi} ${
+                                box.count_unit === 'piece'
+                                  ? 'τεμάχιο'
+                                  : box.count_unit
+                              }`}
+                            />
+                          </ListItem>
+                          <Divider />
+                          <ListItem
+                            key={i}
+                            sx={{
+                              color: `${theme.colors.primary.main}`,
+                              '&:hover': {
+                                color: `${theme.colors.primary.dark}`
+                              }
+                            }}
+                            button
+                          >
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                flexGrow: '1',
+                                alignItems: 'baseline'
+                              }}
+                            >
+                              <ListItemText
+                                sx={{ marginRight: 1 }}
+                                primaryTypographyProps={{
+                                  variant: 'h5',
+                                  color: `${theme.colors.alpha.black[100]}`
+                                }}
+                                primary="Σημιώσεις"
+                              />
+                              <Divider />
+                              <ListItemText primary={box?.notes} />
+                            </Box>
+                          </ListItem>
+                        </ListWrapper>
+                      ))}
+                    </Card>
+                    <Divider />
+                  </Paper>
+                  <Paper elevation={8} sx={{ margin: 2 }}>
+                    <Card sx={{ height: '100%' }}>
+                      <CardHeader title="Γενικές σημιώσεις" />
+                      <Divider />
+                      <ListWrapper disablePadding>
+                        <ListItem
+                          sx={{
+                            color: `${theme.colors.primary.main}`,
+                            '&:hover': { color: `${theme.colors.primary.dark}` }
+                          }}
+                          button
+                        >
+                          <ListItemText primary={box?.boxNotes} />
+                        </ListItem>
+                      </ListWrapper>
+                    </Card>
+                  </Paper>
+                </>
+              )
+          )}
         </Card>
       )}
     </Box>

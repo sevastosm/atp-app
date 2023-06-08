@@ -25,7 +25,6 @@ const NutritionDates = ({ readOnly = false }: Props) => {
   };
 
   React.useEffect(() => {
-    //Add lassr nutriton
     setValue(moment(store.duration.from, 'DD/MM/YYYY'));
     setValueΤο(moment(store.duration.to, 'DD/MM/YYYY'));
   }, [store.duration]);

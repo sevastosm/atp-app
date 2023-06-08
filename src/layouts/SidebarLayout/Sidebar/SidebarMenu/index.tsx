@@ -265,11 +265,25 @@ function SidebarMenu() {
             startIcon={
               <>
                 <AccountCircleTwoToneIcon />
-                <AccountCircleTwoToneIcon />
               </>
             }
           >
             ΜΕΤΡΙΣΕΙΣ
+          </Button>
+        </ListItem>
+        <ListItem component="div">
+          <Button
+            disableRipple
+            component={RouterLink}
+            onClick={closeSidebar}
+            to="/profile/metrics"
+            startIcon={
+              <>
+                <AccountCircleTwoToneIcon />
+              </>
+            }
+          >
+            ΣΗΜΕΙΩΣΕΙΣ
           </Button>
         </ListItem>
         {/* <ListItem component="div">

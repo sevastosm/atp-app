@@ -58,7 +58,11 @@ const NutritionContainer = () => {
 
   const { boxes, caloriesLimit, nutrition } = store;
 
-  const handleAdd = () => handleAddBox({ name: '', data: [] });
+  const handleAdd = () =>
+    handleAddBox({
+      name: '',
+      data: []
+    });
   const handleDelete = () => {
     handleDeleteBox(selectedBox);
     setSelectedBox(null);
@@ -138,21 +142,19 @@ const NutritionContainer = () => {
       <Stack spacing={1}>
         {/* {isAdmin && ( */}
         <>
-          {selectedRow.nutrition && (
+          {selectedRow.nutrition.length > 0 && (
             <Box sx={{ display: 'flex', justifyContent: 'end' }}>
               <ButtonWraper>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={
-                    selectedRow[nutrition?.length - 1]?.duration.from || ''
-                  }
+                  value={0}
                   label="Age"
                   onChange={(e) => handleChangeNutrition(e.target.value)}
                 >
                   {selectedRow.nutrition.map((n, i) => (
                     <MenuItem key={i} value={i}>
-                      {n.duration.from}
+                      {n?.duration?.from}
                     </MenuItem>
                   ))}
                 </Select>
@@ -262,7 +264,7 @@ const NutritionContainer = () => {
                     }}
                   />
                 )}
-                <TextField
+                {/* <TextField
                   sx={{ marginRight: '5px', maxWidth: '135px' }}
                   type="number"
                   size="small"
@@ -277,7 +279,7 @@ const NutritionContainer = () => {
                   // }}
                   // multiline
                   // maxRows={4}
-                />
+                /> */}
               </Box>
             </Box>
             {boxes.map((box, i) => (

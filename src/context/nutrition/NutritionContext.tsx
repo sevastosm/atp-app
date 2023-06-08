@@ -12,8 +12,8 @@ export const NutritionContext = createContext<any>({});
 export const NutritionContextProvider: FC = ({ children }) => {
   const initialStore = {
     duration: {
-      from: null,
-      to: null
+      from: new Date(),
+      to: new Date()
     },
     caloriesLimit: '',
     boxes: [{ name: '', data: [] }]

@@ -161,7 +161,7 @@ const routes: RouteObject[] = [
       },
       {
         path: 'metrics',
-        element: <UserProfile />
+        element: <Metrics />
       },
       {
         path: 'nutrition',

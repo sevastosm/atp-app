@@ -43,7 +43,8 @@ export default function FormFields({
   const [requireMessage, setRequireMessage] = React.useState<any>(false);
   const [pickerDate, setDate] = React.useState('');
 
-  console.log('FORM--DATA', value);
+  console.log('FORM--DATA', data);
+  console.log('Fields', fields);
 
   /*Get required fields*/
   const requiredFileds = fields
@@ -92,38 +93,42 @@ export default function FormFields({
   };
 
   useEffect(() => {
-    if (data?.date) {
-      const dd: any = moment(data.date, 'DD/MM/YYYY');
-
-      setDate(dd);
-    } else {
-      const dd: any = moment(new Date(), 'DD/MM/YYYY');
-      setDate(dd);
+    if (
+      fields.some(
+        (obj) => obj.hasOwnProperty('name') && obj['name'] === 'nextApoitment'
+      )
+    ) {
+      if (data?.nextApoitment) {
+        const dd: any = moment(data.nextApoitment, 'DD/MM/YYYY');
+        setDate(dd);
+        return setValue(data);
+      } else {
+        const dd: any = moment(new Date(), 'DD/MM/YYYY');
+        setDate(dd);
+        // handleInputChange(moment(dd).format('DD/MM/YY'), 'nextApoitment');
+        return setValue({
+          ...data,
+          nextApoitment: moment(dd).format('DD/MM/YY')
+        });
+      }
+    }
+    if ((obj) => obj.hasOwnProperty('name') && obj['name'] === 'date') {
+      if (data?.date) {
+        const dd: any = moment(data.date, 'DD/MM/YYYY');
+        setDate(dd);
+        return setValue(data);
+      } else {
+        const dd: any = moment(new Date(), 'DD/MM/YYYY');
+        return setValue({
+          ...data,
+          date: moment(dd).format('DD/MM/YY')
+        });
+      }
     }
     setValue(data);
   }, [data]);
 
-  useEffect(() => {
-    if (data?.nextApoitment) {
-      const dd: any = moment(data.nextApoitment, 'DD/MM/YYYY');
-
-      setDate(dd);
-    } else {
-      const dd: any = moment(new Date(), 'DD/MM/YYYY');
-      setDate(dd);
-    }
-    if (data?.date) {
-      const dd: any = moment(data.date, 'DD/MM/YYYY');
-
-      setDate(dd);
-    } else {
-      const dd: any = moment(new Date(), 'DD/MM/YYYY');
-      setDate(dd);
-    }
-    setValue(data);
-  }, [data]);
-
-  // const fd = formatDate(value?.date);
+  useEffect(() => {}, [data]);
 
   return (
     <>

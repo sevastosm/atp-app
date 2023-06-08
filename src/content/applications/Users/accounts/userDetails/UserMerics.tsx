@@ -130,6 +130,7 @@ const UserMerics = ({ data, updateData, mode }) => {
 
   const [metrics, setMetrics] = React.useState<any | null>('');
   const [index, setIndex] = React.useState<any | null>('');
+  const [value, setValue] = React.useState<any | null>('');
 
   // if (!selectedRow && mode !== 'add') return null;
 
@@ -167,38 +168,62 @@ const UserMerics = ({ data, updateData, mode }) => {
   const newMetrics = () => {};
 
   const handleSaveUserMetrics = (d) => {
-    updateData(
-      data.map((t, i) => {
+    let newData;
+
+    if (data.length > 0) {
+      newData = data.map((t, i) => {
         if (i === index) {
           return d;
         } else {
           return t;
         }
-      })
-    );
+      });
+    } else {
+      newData = d;
+    }
+
+    updateData(newData);
+  };
+  const handleChangeDate = (i) => {
+    // handleSetStore(selectedRow.nutrition[i]);
+    setIndex(i);
+    setValue(data[i].date);
   };
 
   React.useEffect(() => {
-    debugger;
     // setMetrics(data && { ...data[data?.length - 1] });
-    setIndex(data?.length - 1);
+    setIndex(data?.length > 0 ? data.length - 1 : 0);
   }, [data]);
 
   return (
     <>
-      <ButtonWraper>
-        <Button
-          size="small"
-          variant="contained"
-          onClick={() => updateData([...data, ''])}
-          startIcon={<AddBoxIcon />}
-        ></Button>
-      </ButtonWraper>
+      {value}
+      <Box sx={{ display: 'flex', width: '100%' }}>
+        <ButtonWraper>
+          <Button
+            size="small"
+            variant="contained"
+            onClick={() => updateData([...data, ''])}
+            startIcon={<AddBoxIcon />}
+          ></Button>
+        </ButtonWraper>
+        <Select
+          id="select-metrics"
+          value={value}
+          onChange={(e) => handleChangeDate(e.target.value)}
+        >
+          {data.map((n, i) => (
+            <MenuItem key={i} value={i}>
+              {n?.date}
+            </MenuItem>
+          ))}
+        </Select>
+      </Box>
       <FormFields
         fields={[...metricsFieldsLeft, ...metricsFieldsRight]}
         onSave={handleSaveUserMetrics}
         data={(data && data[index]) || ''}
-        readOnly={true}
+        // readOnly={true}
       />
     </>
   );

@@ -7,7 +7,8 @@ export default function nutritionReducer(store, action) {
     }
     case 'set': {
       return {
-        ...action.payload
+        ...action.payload,
+        index: action.index
       };
     }
     case 'added': {

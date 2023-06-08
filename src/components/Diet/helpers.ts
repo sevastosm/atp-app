@@ -6,12 +6,13 @@ export const calulateTotalMacros = (list, macro) =>
         if (macro === 'energy') {
           acc +=
             obj.count_unit === 'piece'
-              ? parseFloat(obj[macro]) * parseFloat(obj.qi)
-              : (parseFloat(obj[macro]) * parseFloat(obj.qi)) / obj.by;
+              ? parseFloat(obj[macro] || 0) * parseFloat(obj.qi)
+              : (parseFloat(obj[macro] || 0) * parseFloat(obj.qi)) / obj.by;
           return parseFloat(acc);
         }
         acc +=
-          ((parseFloat(obj[macro]) * parseFloat(obj.qi)) / obj.by) * macroValue;
+          ((parseFloat(obj[macro] || 0) * parseFloat(obj.qi)) / obj.by) *
+          macroValue;
       }
     });
     return parseFloat(acc);
@@ -23,16 +24,18 @@ export const calculateBoxMacros = (boxData, macro) => {
     return boxData.reduce(
       (sum, li) =>
         li.count_unit === 'piece'
-          ? sum + parseFloat(li[macro]) * parseFloat(li.qi)
+          ? sum + parseFloat(li[macro] || 0) * parseFloat(li.qi)
           : sum +
-            (parseFloat(li[macro]) * parseFloat(li.qi)) / parseFloat(li.by),
+            (parseFloat(li[macro] || 0) * parseFloat(li.qi)) /
+              parseFloat(li.by),
       0
     );
   }
   return (
     boxData.reduce(
       (sum, li) =>
-        sum + (parseFloat(li[macro]) * parseFloat(li.qi)) / parseFloat(li.by),
+        sum +
+        (parseFloat(li[macro] || 0) * parseFloat(li.qi)) / parseFloat(li.by),
       0
     ) * macroValue
   );
