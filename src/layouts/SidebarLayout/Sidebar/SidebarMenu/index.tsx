@@ -268,7 +268,7 @@ function SidebarMenu() {
               </>
             }
           >
-            ΜΕΤΡΙΣΕΙΣ
+            ΜΕΤΡΗΣΕΙΣ
           </Button>
         </ListItem>
         <ListItem component="div">
@@ -276,7 +276,7 @@ function SidebarMenu() {
             disableRipple
             component={RouterLink}
             onClick={closeSidebar}
-            to="/profile/metrics"
+            to="/profile/notes"
             startIcon={
               <>
                 <AccountCircleTwoToneIcon />

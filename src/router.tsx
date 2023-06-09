@@ -11,6 +11,7 @@ import Accounts from './content/applications/Users/accounts/Accounts';
 import UserAccount from './content/applications/Users/accounts/userDetails/UserAccount';
 import Metrics from './content/applications/Users/profile/Metrics';
 import Nutrition from './content/applications/Users/profile/Nutrition';
+import Notes from './content/applications/Users/profile/Notes';
 
 const Loader = (Component) => (props) =>
   (
@@ -162,6 +163,10 @@ const routes: RouteObject[] = [
       {
         path: 'metrics',
         element: <Metrics />
+      },
+      {
+        path: 'notes',
+        element: <Notes />
       },
       {
         path: 'nutrition',
