@@ -165,15 +165,17 @@ const SubMenuWrapper = styled(Box)(
 
 function SidebarMenu() {
   const { closeSidebar } = useContext(SidebarContext);
-  const { setAuth, auth, setLogedInUser, logedInUser } = useContext(AppContext);
+  const { setAuth, auth, setLogedInUser, logedInUser, setSelectedRow } =
+    useContext(AppContext);
   const navigate = useNavigate();
 
-  const role = logedInUser?.role || null;
+  const role = logedInUser || null;
 
   const handleLogout = async () => {
     await localStorage.removeItem('token');
     setAuth(false);
     setLogedInUser(null);
+    setSelectedRow(null);
   };
   const AdminMenu = () => (
     <MenuWrapper>

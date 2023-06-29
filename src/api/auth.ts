@@ -1,8 +1,8 @@
 import { axiosInstance, createMessage } from './helpers';
 
-const host = 'http://localhost:6001/auth';
+import { host } from '../config';
 
 export const login = (data, setMessage) => {
   createMessage(setMessage);
-  return axiosInstance.post(host + '/login', data);
+  return axiosInstance.post(host + '/auth/login', data);
 };

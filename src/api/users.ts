@@ -1,17 +1,16 @@
 import { axiosInstance, createMessage } from './helpers';
-
-const host = 'http://localhost:6001/users';
+import { host } from '../config';
 
 const fetchUsers = async () => {
-  return axiosInstance.get(host);
+  return axiosInstance.get(host + '/users');
 };
 
 const postUser = (data, setMessage, id = null) => {
   createMessage(setMessage);
   if (id) {
-    return axiosInstance.patch(host + '/' + id, data);
+    return axiosInstance.patch(host + '/users/' + id, data);
   }
-  return axiosInstance.post(host + '/new', data);
+  return axiosInstance.post(host + '/users/new', data);
 };
 
 const deleteUser = (id, setMessage = null) => {
@@ -19,19 +18,17 @@ const deleteUser = (id, setMessage = null) => {
   return axiosInstance.delete(host + '/' + id);
 };
 
-const hostDiet = 'http://localhost:6001/diet';
-
 const addDiet = (data, setMessage, id = null, dietId = null) => {
   createMessage(setMessage);
   if (dietId) {
-    return axiosInstance.patch(hostDiet + `/${id}/${dietId}`, data);
+    return axiosInstance.patch(host + `/diet/${id}/${dietId}`, data);
   }
-  return axiosInstance.post(hostDiet + '/new/' + id, data);
+  return axiosInstance.post(host + '/diet/new/' + id, data);
 };
 
 const getUserDiet = (id = null, setMessage = null) => {
   createMessage(setMessage);
-  return axiosInstance.get(hostDiet + '/' + id);
+  return axiosInstance.get(host + '/users/' + id);
 };
 
 export { postUser, fetchUsers, deleteUser, addDiet, getUserDiet };

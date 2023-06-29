@@ -92,13 +92,13 @@ function Hero() {
     setCredentials({ ...credentials, [name]: value });
   };
 
-  const handleLogin = (e) => {
-    login(credentials, setMessage).then(async (response) => {
+  const handleLogin = async (e) => {
+    await login(credentials, setMessage).then(async (response) => {
       console.log('handleLogin', response);
 
-      localStorage.setItem('token', response.data.token);
+      await localStorage.setItem('token', response.data.token);
       setAuth(true);
-      setLogedInUser(response.data.user);
+      setLogedInUser(response.data.user.role);
       setSelectedRow(response.data.user);
 
       if (response.data.user.role === 'admin') {

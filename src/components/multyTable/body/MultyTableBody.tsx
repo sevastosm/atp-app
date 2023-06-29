@@ -85,7 +85,11 @@ const MultyTableBody = () => {
         .includes(search.toLocaleLowerCase())
     )
     // TO DO add more than one filter
+
     .filter((row: any) => {
+      // console.log('row', row);
+      // console.log('selectedFilters', selectedFilters);
+
       if (!selectedFilters || selectedFilters.value === '0') return row;
       return row[selectedFilters?.filter] === selectedFilters.value;
     })
@@ -126,27 +130,25 @@ rows.sort(getComparator(order, orderBy)).slice() */}
                 />
               </TableCell>
             )}
-            {matches
-              ? 'micro'
-              : cols.map((key, i) => {
-                  if (excloudedFields.includes(key.name)) return;
-                  return (
-                    <TableCell
-                      sx={{ fontSize: '12px' }}
-                      key={i + key}
-                      // component="th"
-                      id={labelId}
-                      scope="row"
-                    >
-                      <div style={fillRequiredField(row, key)}>
-                        {key?.options
-                          ? key?.options.find((p) => p.value === row[key.name])
-                              ?.label
-                          : row[key.name] || ''}
-                      </div>
-                    </TableCell>
-                  );
-                })}
+            {cols.map((key, i) => {
+              if (excloudedFields.includes(key.name)) return;
+              return (
+                <TableCell
+                  sx={{ fontSize: '12px' }}
+                  key={i + key}
+                  // component="th"
+                  id={labelId}
+                  scope="row"
+                >
+                  <div style={fillRequiredField(row, key)}>
+                    {key?.options
+                      ? key?.options.find((p) => p.value === row[key.name])
+                          ?.label
+                      : row[key.name] || ''}
+                  </div>
+                </TableCell>
+              );
+            })}
           </TableRow>
         );
       })}

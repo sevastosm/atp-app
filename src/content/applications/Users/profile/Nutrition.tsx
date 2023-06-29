@@ -122,7 +122,7 @@ const Nutrition = () => {
             Η διατροφή μου
           </Typography>
           <Paper elevation={8} sx={{ margin: 2 }}></Paper>
-          {boxes[0].boxes.map(
+          {boxes[0]?.boxes.map(
             (box, i) =>
               box.active && (
                 <>

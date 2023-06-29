@@ -71,7 +71,7 @@ const metricsFieldsRight = [
   { name: 'chest', label: 'ΘΩΡΑΚΑΣ' },
   { name: 'pelvis', label: 'ΜΕΣΗ' },
   { name: 'belly', label: 'ΚΟΙΛΙΑ' },
-  { name: 'thigh', label: 'ΜΟΙΡΟΣ' },
+  { name: 'thigh', label: 'ΜΗΡΟΣ' },
   { name: 'calves', label: 'ΓΑΜΠΑ' },
   { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' }
 ];

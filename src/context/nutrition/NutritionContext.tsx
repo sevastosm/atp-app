@@ -38,6 +38,22 @@ export const NutritionContextProvider: FC = ({ children }) => {
     });
   }
 
+  function handleCopyNutririon(data) {
+    const newNutrition: any = data;
+    delete newNutrition._id;
+
+    dispatch({
+      type: 'new',
+      payload: {
+        ...newNutrition,
+        duration: {
+          from: new Date(),
+          to: new Date()
+        }
+      }
+    });
+  }
+
   function handleAddBox(data) {
     dispatch({
       type: 'added',
@@ -98,6 +114,7 @@ export const NutritionContextProvider: FC = ({ children }) => {
         store,
         handleAddBox,
         handleAddNewNutririon,
+        handleCopyNutririon,
         handleAddDuration,
         handleAddLimit,
         handleSetStore,

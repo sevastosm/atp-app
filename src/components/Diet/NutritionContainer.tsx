@@ -45,6 +45,7 @@ const NutritionContainer = () => {
     handleDeleteBox,
     handleSetStore,
     handleAddNewNutririon,
+    handleCopyNutririon,
     handleAddLimit,
     handleSaveAll
   } = React.useContext(NutritionContext);
@@ -148,7 +149,9 @@ const NutritionContainer = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={0}
+                  value={
+                    selectedRow[nutrition?.length - 1]?.duration.from || ''
+                  }
                   label="Age"
                   onChange={(e) => handleChangeNutrition(e.target.value)}
                 >
@@ -170,6 +173,16 @@ const NutritionContainer = () => {
                 startIcon={<AddBoxIcon />}
               >
                 <span className="button-text">ΝΕΑ ΔΙΑΤΡΟΦΗ</span>
+              </Button>
+            </ButtonWraper>
+            <ButtonWraper>
+              <Button
+                onClick={() => handleCopyNutririon(store)}
+                size="small"
+                variant="contained"
+                startIcon={<AddBoxIcon />}
+              >
+                <span className="button-text">ΑΝΤΙΓΡΑΦΗ</span>
               </Button>
             </ButtonWraper>
           </Box>

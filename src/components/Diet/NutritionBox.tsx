@@ -314,7 +314,7 @@ const NutritionBox = ({ data, index, handleSaveAll }) => {
                 onSave={handleSave}
                 // onEddit={() => setNutritionVisible(true)}
                 addText={'ΤΡΟΦΗΜΑ'}
-                saveText={'ΑΠΘΗΚΕΥΣΗ'}
+                saveText={'ΑΠΟΘΗΚΕΥΣΗ'}
               />
             </Box>
             {/* )} */}

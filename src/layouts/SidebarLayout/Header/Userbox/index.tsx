@@ -56,10 +56,10 @@ const UserBoxDescription = styled(Typography)(
 function HeaderUserbox() {
   const theme = useTheme();
 
-  const { selectedRow } = useContext(AppContext);
+  const { logedInUser } = useContext(AppContext);
   const matches = useMediaQuery(() => theme.breakpoints.down('sm'));
 
-  const user: any = selectedRow;
+  const user: any = logedInUser;
 
   if (!user) return null;
   const ref = useRef<any>(null);
@@ -76,9 +76,11 @@ function HeaderUserbox() {
   return (
     <Box sx={{ flex: '1', display: 'flex', alignItems: 'center' }}>
       <Box sx={{ flex: '1', alignItems: 'center', textAlign: 'center' }}>
-        <Typography variant={matches ? 'h5' : 'h3'}>
-          Επόμενο ραντεβού {user.nextApoitment}
-        </Typography>
+        {logedInUser === 'user' && (
+          <Typography variant={matches ? 'h5' : 'h3'}>
+            Επόμενο ραντεβού {user.nextApoitment}
+          </Typography>
+        )}
       </Box>
 
       <UserBoxButton color="secondary" ref={ref} onClick={handleOpen}>

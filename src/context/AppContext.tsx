@@ -22,7 +22,9 @@ export const AppContextProvider: FC = ({ children }) => {
   const [auth, setAuth] = useState(false);
   const [logedInUser, setLogedInUser] = useState(null);
 
+  console.log('logedInUser-APP', logedInUser);
   console.log('selectedRow-APP', selectedRow);
+
   return (
     <AppContext.Provider
       value={{

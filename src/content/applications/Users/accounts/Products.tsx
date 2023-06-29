@@ -49,7 +49,7 @@ const filters = [
     name: 'ΚΑΤΗΓΟΡΙΕΣ',
     column: 'category',
     values: productCategories.map((p) => {
-      return { ...p, value: p.label };
+      return { ...p, value: p.value };
     })
   }
 ];

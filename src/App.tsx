@@ -9,6 +9,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { CssBaseline } from '@mui/material';
 import ThemeProvider from './theme/ThemeProvider';
 import AppNotification from './components/general/AppNotification';
+console.log(process.env);
 
 function App() {
   const content = useRoutes(router);
