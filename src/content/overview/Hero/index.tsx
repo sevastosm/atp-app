@@ -102,9 +102,11 @@ function Hero() {
       setSelectedRow(response.data.user);
 
       if (response.data.user.role === 'admin') {
-        navigate('/management/accounts', { replace: false });
-      } else {
-        navigate('/profile/nutrition', { replace: false });
+        return navigate('/management/accounts', { replace: false });
+      }
+
+      if (response.data.user.role === 'user') {
+        return navigate('/profile/nutrition', { replace: false });
       }
     });
   };
