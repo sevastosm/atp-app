@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/atp-app/static/css/main.d0aa35e2.css",
-    "main.js": "/atp-app/static/js/main.d02732ea.js",
-    "static/js/198.ece22d0f.chunk.js": "/atp-app/static/js/198.ece22d0f.chunk.js",
+    "main.js": "/atp-app/static/js/main.b5e7bb48.js",
+    "static/js/198.3b750123.chunk.js": "/atp-app/static/js/198.3b750123.chunk.js",
     "static/js/116.6f17cd89.chunk.js": "/atp-app/static/js/116.6f17cd89.chunk.js",
     "static/js/602.39522508.chunk.js": "/atp-app/static/js/602.39522508.chunk.js",
     "static/js/699.f9c9e01e.chunk.js": "/atp-app/static/js/699.f9c9e01e.chunk.js",
@@ -11,8 +11,8 @@
     "static/js/389.f744747a.chunk.js": "/atp-app/static/js/389.f744747a.chunk.js",
     "index.html": "/atp-app/index.html",
     "main.d0aa35e2.css.map": "/atp-app/static/css/main.d0aa35e2.css.map",
-    "main.d02732ea.js.map": "/atp-app/static/js/main.d02732ea.js.map",
-    "198.ece22d0f.chunk.js.map": "/atp-app/static/js/198.ece22d0f.chunk.js.map",
+    "main.b5e7bb48.js.map": "/atp-app/static/js/main.b5e7bb48.js.map",
+    "198.3b750123.chunk.js.map": "/atp-app/static/js/198.3b750123.chunk.js.map",
     "116.6f17cd89.chunk.js.map": "/atp-app/static/js/116.6f17cd89.chunk.js.map",
     "602.39522508.chunk.js.map": "/atp-app/static/js/602.39522508.chunk.js.map",
     "699.f9c9e01e.chunk.js.map": "/atp-app/static/js/699.f9c9e01e.chunk.js.map",
@@ -22,6 +22,6 @@
   },
   "entrypoints": [
     "static/css/main.d0aa35e2.css",
-    "static/js/main.d02732ea.js"
+    "static/js/main.b5e7bb48.js"
   ]
 }
