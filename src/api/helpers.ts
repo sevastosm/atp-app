@@ -1,10 +1,13 @@
 import axios from 'axios';
 
-const appToken = () => localStorage.getItem('token');
+export const getToken = () =>
+  localStorage.getItem('token') ? localStorage.getItem('token') : null;
+
+export const getAuthorizationHeader = () => `Bearer ${getToken()}`;
 
 const axiosInstance = axios.create({
   headers: {
-    Authorization: 'Bearer ' + appToken()
+    Authorization: getAuthorizationHeader()
   }
 });
 
