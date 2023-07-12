@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import 'nprogress/nprogress.css';
 import App from 'src/App';
@@ -11,11 +11,11 @@ import { AppContextProvider } from './context/AppContext';
 ReactDOM.render(
   <HelmetProvider>
     <SidebarProvider>
-      <HashRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <AppContextProvider>
           <App />
         </AppContextProvider>
-      </HashRouter>
+      </BrowserRouter>
     </SidebarProvider>
   </HelmetProvider>,
   document.getElementById('root')
