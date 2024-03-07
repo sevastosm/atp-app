@@ -7,38 +7,16 @@ import {
   Divider,
   CardContent,
   Box,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  SelectChangeEvent,
   Container,
-  Typography,
-  Stack,
-  Paper
+  Typography
 } from '@mui/material';
-import { LocalizationProvider, DesktopDatePicker } from '@mui/x-date-pickers';
-import moment from 'moment';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import DietCalculator from 'src/components/DietCalculator';
-import { users } from 'src/mocks/users';
 import { AppContext } from 'src/context/AppContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Nutrition from 'src/components/Diet';
-import Notes from './Notes';
 import FormFields from 'src/components/general/Form';
-import axios from 'axios';
-import { getUserDiet, postUser } from 'src/api/users';
+import { postUser } from 'src/api/users';
 
-type Props = {};
-interface IProfileFields {
-  name: string;
-  label: string;
-  type?: string;
-  inputType?: string;
-}
 const profileFields = [
   { name: 'firstName', label: 'ΟΝΟΜΑ', required: true },
   { name: 'lastName', label: 'ΕΠΩΝΥΜΟ', required: true },
@@ -77,9 +55,6 @@ const notesFilelds = [
   { name: 'notes', label: 'ΣΗΜΕΙΩΣΕΣ - ΠΑΡΑΤΗΡΗΣΕΙΣ' }
 ];
 
-const TITLE = 'ΣΤΟΙΧΕΙΑ ΧΡΗΣΤΗ';
-const MERRICS = 'ΜΕΤΡΗΣΕΙΣ';
-
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
@@ -113,15 +88,8 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const UserAccount = ({ mode = '' }) => {
-  const {
-    selectedRow,
-    setSelectedRow,
-    setUsers,
-    customers,
-    setActiveUser,
-    activeUser,
-    setMessage
-  } = React.useContext(AppContext);
+  const { selectedRow, setSelectedRow, setUsers, setMessage } =
+    React.useContext(AppContext);
 
   const [state, setState] = useState<any>({});
   const [value, setValue] = React.useState<any | null>([]);
@@ -168,10 +136,6 @@ const UserAccount = ({ mode = '' }) => {
   React.useEffect(() => {
     setValue(selectedRow);
   }, [selectedRow]);
-
-  const handleSaveNutrition = (data) => {
-    addUpdateUser({ ...selectedRow, nutrition: data });
-  };
 
   console.log('USER DETAILS', value);
   return (
@@ -273,21 +237,23 @@ const UserAccount = ({ mode = '' }) => {
                           direction="row"
                           alignItems="start"
                         >
-                          {console.log('MeTRICS', value?.metrics)}
-                          <FormFields
-                            fields={[
-                              ...metricsFieldsLeft,
-                              ...metricsFieldsRight
-                            ]}
-                            onSave={handleSaveUserMetrics}
-                            data={
-                              mode !== 'add'
-                                ? value?.metrics?.length &&
-                                  value?.metrics[value?.metrics?.length - 1]
-                                : ''
-                            }
-                            readOnly={!isAdmin}
-                          />
+                          <>
+                            {console.log('MeTRICS', value?.metrics)}
+                            <FormFields
+                              fields={[
+                                ...metricsFieldsLeft,
+                                ...metricsFieldsRight
+                              ]}
+                              onSave={handleSaveUserMetrics}
+                              data={
+                                mode !== 'add'
+                                  ? value?.metrics?.length &&
+                                    value?.metrics[value?.metrics?.length - 1]
+                                  : ''
+                              }
+                              readOnly={!isAdmin}
+                            />
+                          </>
                         </Grid>
                       </Box>
                       {/* </CardContent>

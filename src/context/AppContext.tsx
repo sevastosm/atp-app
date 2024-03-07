@@ -1,4 +1,4 @@
-import { FC, useState, createContext } from 'react';
+import { useState, createContext } from 'react';
 type AppContext = {
   selectedRow: any;
   setSelectedRow: any;
@@ -8,10 +8,9 @@ type AppContext = {
 
 // import { users } from 'src/mocks/users';
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const AppContext = createContext<any>({});
 
-export const AppContextProvider: FC = ({ children }) => {
+export const AppContextProvider: any = ({ children }) => {
   const [customers, setUsers] = useState(null);
   const [products, setProducts] = useState(null);
 

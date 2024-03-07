@@ -58,22 +58,23 @@ const profileFields = [
 const metricsFieldsLeft = [
   // ----------------------
   { name: 'date', label: 'ΗΜ/ΝΙΑ', type: 'date' },
-  { name: 'weight', label: 'ΒΑΡΟΣ', inputType: 'number' },
-  { name: 'height', label: 'ΥΨΟΣ', inputType: 'number' },
-  { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ', inputType: 'number' },
-  { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ', inputType: 'number' },
-  { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ', inputType: 'number' },
+  { name: 'weight', label: 'ΒΑΡΟΣ kg', inputType: 'number' },
+  { name: 'height', label: 'ΥΨΟΣ cm', inputType: 'number' },
+  { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ gr', inputType: 'number' },
+  { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ gr', inputType: 'number' },
+  { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ gr', inputType: 'number' },
   { name: 'bmi', label: 'BMI', inputType: 'number' },
   { name: 'metabolicAge', label: 'ΜΕΤΑΒΟΛΙΚΗ ΗΛΙΚΙΑ', inputType: 'number' },
-  { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ', inputType: 'number' }
+  { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ %', inputType: 'number' }
 ];
 const metricsFieldsRight = [
-  { name: 'chest', label: 'ΘΩΡΑΚΑΣ' },
-  { name: 'pelvis', label: 'ΜΕΣΗ' },
-  { name: 'belly', label: 'ΚΟΙΛΙΑ' },
-  { name: 'thigh', label: 'ΜΗΡΟΣ' },
-  { name: 'calves', label: 'ΓΑΜΠΑ' },
-  { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' }
+  { name: 'chest', label: 'ΘΩΡΑΚΑΣ cm' },
+  { name: 'pelvis', label: 'ΜΕΣΗ ccm' },
+  { name: 'belly', label: 'ΚΟΙΛΙΑ cm' },
+  { name: 'thigh', label: 'ΜΗΡΟΣ cm' },
+  { name: 'calves', label: 'ΓΑΜΠΑ cm' },
+  { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ cm' },
+  { name: 'lekani', label: 'ΛΕΚΑΝΗ cm' }
 ];
 
 const notesFilelds = [
@@ -212,7 +213,7 @@ const UserMerics = ({ data, updateData, mode }) => {
           value={value}
           onChange={(e) => handleChangeDate(e.target.value)}
         >
-          {data.map((n, i) => (
+          {data?.map((n, i) => (
             <MenuItem key={i} value={i}>
               {n?.date}
             </MenuItem>

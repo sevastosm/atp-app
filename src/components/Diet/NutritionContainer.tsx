@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import {
   Stack,
@@ -9,7 +9,9 @@ import {
   Button,
   TextField,
   Select,
-  MenuItem
+  MenuItem,
+  InputLabel,
+  FormControl
 } from '@mui/material';
 import { de, el } from 'date-fns/locale';
 import BasicTable from './Table';
@@ -50,9 +52,10 @@ const NutritionContainer = () => {
     handleSaveAll
   } = React.useContext(NutritionContext);
 
-  const { selectedRow, setMessage, setUsers, setSelectedRow } =
+  const { selectedRow, setMessage, setUsers, setSelectedRow, customers } =
     React.useContext(AppContext);
 
+  const [selectedUser, setSelectedUser] = useState<any>(null);
   // const { role } = selectedRow;
 
   // const isAdmin = role === 'admin';
@@ -105,12 +108,19 @@ const NutritionContainer = () => {
 
 `
   );
+
   React.useEffect(() => {
     //Add last nutriton
     return selectedRow?.nutrition?.length
-      ? handleSetStore(selectedRow.nutrition[selectedRow.nutrition.length - 1])
+      ? handleSetStore(
+          selectedRow?.nutrition[selectedRow?.nutrition.length - 1]
+        )
       : null;
   }, [selectedRow]);
+
+  useEffect(() => {
+    setSelectedUser(selectedRow);
+  }, [selectedRow, customers]);
 
   // const setWarning: any = () => {
   //   if (parseFloat(caloriesLimit) < parseFloat(caloriesSum)) {
@@ -135,33 +145,57 @@ const NutritionContainer = () => {
   // };
 
   const handleChangeNutrition = (i) => {
-    handleSetStore(selectedRow.nutrition[i]);
+    handleSetStore(selectedRow?.nutrition[i]);
   };
 
+  console.log('TESTS---', selectedUser);
   return (
     <Box>
       <Stack spacing={1}>
         {/* {isAdmin && ( */}
         <>
-          {selectedRow.nutrition.length > 0 && (
-            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+          {selectedUser?.nutrition.length > 0 && (
+            <Box
+              sx={{
+                display: 'flex',
+                gap: '20px',
+                width: '100%',
+                alignItems: 'center'
+              }}
+            >
               <ButtonWraper>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={
-                    selectedRow[nutrition?.length - 1]?.duration.from || ''
-                  }
-                  label="Age"
-                  onChange={(e) => handleChangeNutrition(e.target.value)}
-                >
-                  {selectedRow.nutrition.map((n, i) => (
-                    <MenuItem key={i} value={i}>
-                      {n?.duration?.from}
-                    </MenuItem>
-                  ))}
-                </Select>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="3">ΔΙΑΤΡΟΦΕΣ</InputLabel>
+                  <Select
+                    labelId="3"
+                    value={
+                      (selectedUser &&
+                        selectedUser[nutrition?.length - 1]?.duration.from) ||
+                      ''
+                    }
+                    label="Age"
+                    onChange={(e) => handleChangeNutrition(e.target.value)}
+                  >
+                    {selectedUser?.nutrition.map((n, i) => (
+                      <MenuItem key={i} value={i}>
+                        {n?.duration?.from}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
               </ButtonWraper>
+              <TextField
+                sx={{ marginRight: '5px', width: '500px' }}
+                type="text"
+                size="small"
+                id="outlined-multiline-flexible"
+                label="ΣΗΜΕΙΩΣΕΙΣ ΠΕΛΑΤΗ"
+                // onChange={handleAddLimit}
+                value={selectedUser.notes[0].notes}
+                InputProps={{
+                  readOnly: true
+                }}
+              />
             </Box>
           )}
           <Box sx={{ display: 'flex', justifyContent: 'end' }}>

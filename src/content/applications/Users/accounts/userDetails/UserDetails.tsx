@@ -44,7 +44,7 @@ const profileFields = [
   { name: 'firstName', label: 'ΟΝΟΜΑ', required: true },
   { name: 'lastName', label: 'ΕΠΩΝΥΜΟ', required: true },
   { name: 'gender', label: 'ΦΥΛΟ', type: 'select', values: [''] },
-  { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ', inputType: 'number' },
+  // { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ', inputType: 'number' },
   { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true, inputType: 'number' },
   { name: 'email', label: 'EMAIL', inputType: 'email' },
   { name: 'age', label: 'ΗΛΙΚΙΑ', inputType: 'number' },
@@ -69,7 +69,8 @@ const metricsFieldsRight = [
   { name: 'belly', label: 'ΚΟΙΛΙΑ' },
   { name: 'thigh', label: 'ΜΗΡΟΣ' },
   { name: 'calves', label: 'ΓΑΜΠΑ' },
-  { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' }
+  { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' },
+  { name: 'biseps', label: 'ΛΕΚΑΝΗ' }
 ];
 
 const notesFilelds = [
@@ -148,10 +149,10 @@ const UserDetails = ({
   };
 
   const addUpdateUser = async (data) => {
-    const request = await postUser(data, setMessage, data._id || null);
-
-    setUsers(request.data.users);
-    setSelectedRow(request.data.user);
+    await postUser(data, setMessage, data._id || null).then((request) => {
+      setUsers(request.data.users);
+      setSelectedRow(request.data.user);
+    });
   };
 
   const handleSaveUser = (data) => {

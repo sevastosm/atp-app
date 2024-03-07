@@ -12,7 +12,8 @@ export const productCategories = [
   { value: '11', label: 'ΦΡΟΥΤΑ' },
   { value: '12', label: 'ΛΑΧΑΝΚΙΑ' },
   { value: '13', label: 'ΣΥΜΠΛΗΡΩΜΑΤΑ' },
-  { value: '14', label: 'ΑΛΕΙΜΜΑΤΑ-ΠΑΣΤΕΣ' }
+  { value: '14', label: 'ΑΛΕΙΜΜΑΤΑ-ΠΑΣΤΕΣ' },
+  { value: '15', label: 'ΕΛΑΙΑ' }
 ];
 
 export const productFilters = [

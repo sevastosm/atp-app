@@ -10,9 +10,9 @@ import { fetchUsers, deleteUser } from 'src/api/users';
 const cols = [
   { name: 'firstName', label: 'ΟΝΟΜΑ' },
   { name: 'lastName', label: 'ΕΠΙΘΕΤΟ' },
-  { name: 'gender', label: 'ΦΙΛΟ' },
+  { name: 'gender', label: 'ΦΥΛΟ' },
   { name: 'age', label: 'ΗΛΙΚΙΑ' },
-  { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
+  // { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ' },
   { name: 'mobile', label: 'ΚΙΝΗΤΟ', width: '75' },
   { name: 'email', label: 'EMAIL' },
   { name: 'nextApoitment', label: 'EΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ' }

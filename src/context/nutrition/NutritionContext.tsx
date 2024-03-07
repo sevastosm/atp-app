@@ -7,9 +7,8 @@ import nutritionReducer from './reducer';
 
 const initialBoxes = [];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const NutritionContext = createContext<any>({});
-export const NutritionContextProvider: FC = ({ children }) => {
+export const NutritionContextProvider: any = ({ children }) => {
   const initialStore = {
     duration: {
       from: new Date(),
