@@ -26,8 +26,7 @@ export default function Accounts() {
   const [viewDetails, setViewDetails] = React.useState(false);
 
   const getUsers = async () => {
-    const users: any = await fetchUsers();
-    setUsers(users.data);
+    await fetchUsers().then((users) => setUsers(users.data));
   };
 
   useEffect(() => {

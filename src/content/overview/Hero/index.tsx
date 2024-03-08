@@ -93,10 +93,10 @@ function Hero() {
   };
 
   const handleLogin = async (e) => {
-    await login(credentials, setMessage).then(async (response) => {
+    await login(credentials, setMessage).then((response) => {
       console.log('handleLogin', response);
 
-      await localStorage.setItem('token', response.data.token);
+      localStorage.setItem('token', response.data.token);
       setAuth(true);
       setLogedInUser(response.data.user.role);
       setSelectedRow(response.data.user);

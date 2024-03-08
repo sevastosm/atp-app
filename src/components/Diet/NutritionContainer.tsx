@@ -191,7 +191,7 @@ const NutritionContainer = () => {
                 id="outlined-multiline-flexible"
                 label="ΣΗΜΕΙΩΣΕΙΣ ΠΕΛΑΤΗ"
                 // onChange={handleAddLimit}
-                value={selectedUser.notes[0].notes}
+                value={selectedUser?.notes[0]?.notes}
                 InputProps={{
                   readOnly: true
                 }}
