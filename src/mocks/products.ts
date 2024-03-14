@@ -7,13 +7,14 @@ export const productCategories = [
   { value: '6', label: 'ΑΛΛΑΝΤΙΚΑ' },
   { value: '7', label: 'ΤΥΡΙΑ' },
   { value: '8', label: 'ΔΗΜΗΤΡΙΑΚΑ' },
-  { value: '9', label: 'ΣΙΤΗΡΑ' },
+  { value: '9', label: 'ΞΗΡΟΙ ΚΑΡΠΟΙ - ΣΠΟΡΟΙ - SUPERFOODS' },
   { value: '10', label: 'ΣΝΑΚΣ' },
   { value: '11', label: 'ΦΡΟΥΤΑ' },
   { value: '12', label: 'ΛΑΧΑΝΚΙΑ' },
-  { value: '13', label: 'ΣΥΜΠΛΗΡΩΜΑΤΑ' },
-  { value: '14', label: 'ΑΛΕΙΜΜΑΤΑ-ΠΑΣΤΕΣ' },
-  { value: '15', label: 'ΕΛΑΙΑ' }
+  { value: '13', label: 'ΑΡΤΟΣΚΕΥΑΣΜΑΤΑ' },
+  { value: '14', label: 'ΣΥΜΠΛΗΡΩΜΑΤΑ' },
+  { value: '15', label: 'ΑΛΕΙΜΜΑΤΑ-ΠΑΣΤΕΣ' },
+  { value: '16', label: 'ΕΛΑΙΑ' }
 ];
 
 export const productFilters = [
