@@ -173,7 +173,7 @@ const NutritionContainer = () => {
                         selectedUser[nutrition?.length - 1]?.duration.from) ||
                       ''
                     }
-                    label="Age"
+                    label="ΔΙΑΤΡΟΦΕΣ"
                     onChange={(e) => handleChangeNutrition(e.target.value)}
                   >
                     {selectedUser?.nutrition.map((n, i) => (
@@ -188,9 +188,9 @@ const NutritionContainer = () => {
                 sx={{ marginRight: '5px', width: '500px' }}
                 type="text"
                 size="small"
+                multiline
                 id="outlined-multiline-flexible"
                 label="ΣΗΜΕΙΩΣΕΙΣ ΠΕΛΑΤΗ"
-                // onChange={handleAddLimit}
                 value={selectedUser?.notes[0]?.notes}
                 InputProps={{
                   readOnly: true

@@ -16,6 +16,7 @@ import Tab from '@mui/material/Tab';
 import Nutrition from 'src/components/Diet';
 import FormFields from 'src/components/general/Form';
 import { postUser } from 'src/api/users';
+import { metricsFieldsLeft, metricsFieldsRight } from 'src/content/data';
 
 const profileFields = [
   { name: 'firstName', label: 'ΟΝΟΜΑ', required: true },
@@ -26,27 +27,6 @@ const profileFields = [
   { name: 'email', label: 'EMAIL', inputType: 'email' },
   { name: 'age', label: 'ΗΛΙΚΙΑ', inputType: 'number' },
   { name: 'nextApoitment', label: 'ΕΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ', type: 'date' }
-];
-
-const metricsFieldsLeft = [
-  // ----------------------
-  { name: 'date', label: 'ΗΜ/ΝΙΑ', type: 'date' },
-  { name: 'weight', label: 'ΒΑΡΟΣ', inputType: 'number' },
-  { name: 'height', label: 'ΥΨΟΣ', inputType: 'number' },
-  { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ', inputType: 'number' },
-  { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ', inputType: 'number' },
-  { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ', inputType: 'number' },
-  { name: 'bmi', label: 'BMI', inputType: 'number' },
-  { name: 'metabolicAge', label: 'ΜΕΤΑΒΟΛΙΚΗ ΗΛΙΚΙΑ', inputType: 'number' },
-  { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ', inputType: 'number' }
-];
-const metricsFieldsRight = [
-  { name: 'chest', label: 'ΘΩΡΑΚΑΣ' },
-  { name: 'pelvis', label: 'ΜΕΣΗ' },
-  { name: 'belly', label: 'ΚΟΙΛΙΑ' },
-  { name: 'thigh', label: 'ΜΗΡΟΣ' },
-  { name: 'calves', label: 'ΓΑΜΠΑ' },
-  { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' }
 ];
 
 const notesFilelds = [

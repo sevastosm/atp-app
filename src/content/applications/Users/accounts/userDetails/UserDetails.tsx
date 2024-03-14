@@ -7,80 +7,18 @@ import {
   Divider,
   CardContent,
   Box,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  SelectChangeEvent,
   Container,
-  Typography,
-  Stack,
-  Paper
+  Typography
 } from '@mui/material';
-import { LocalizationProvider, DesktopDatePicker } from '@mui/x-date-pickers';
 import moment from 'moment';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import DietCalculator from 'src/components/DietCalculator';
-import { users } from 'src/mocks/users';
 import { AppContext } from 'src/context/AppContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Nutrition from 'src/components/Diet';
-import Notes from './Notes';
 import FormFields from 'src/components/general/Form';
-import axios from 'axios';
-import { getUserDiet, postUser } from 'src/api/users';
+import { postUser } from 'src/api/users';
 import UserMerics from './UserMerics';
-
-type Props = {};
-interface IProfileFields {
-  name: string;
-  label: string;
-  type?: string;
-  inputType?: string;
-}
-const profileFields = [
-  { name: 'firstName', label: 'ΟΝΟΜΑ', required: true },
-  { name: 'lastName', label: 'ΕΠΩΝΥΜΟ', required: true },
-  { name: 'gender', label: 'ΦΥΛΟ', type: 'select', values: [''] },
-  // { name: 'phone', label: 'ΤΗΛΕΦΩΝΟ', inputType: 'number' },
-  { name: 'mobile', label: 'ΚΙΝΗΤΟ', required: true, inputType: 'number' },
-  { name: 'email', label: 'EMAIL', inputType: 'email' },
-  { name: 'age', label: 'ΗΛΙΚΙΑ', inputType: 'number' },
-  { name: 'nextApoitment', label: 'ΕΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ', type: 'date' }
-];
-
-const metricsFieldsLeft = [
-  // ----------------------
-  { name: 'date', label: 'ΗΜ/ΝΙΑ', type: 'date' },
-  { name: 'weight', label: 'ΒΑΡΟΣ', inputType: 'number' },
-  { name: 'height', label: 'ΥΨΟΣ', inputType: 'number' },
-  { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ', inputType: 'number' },
-  { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ', inputType: 'number' },
-  { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ', inputType: 'number' },
-  { name: 'bmi', label: 'BMI', inputType: 'number' },
-  { name: 'metabolicAge', label: 'ΜΕΤΑΒΟΛΙΚΗ ΗΛΙΚΙΑ', inputType: 'number' },
-  { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ', inputType: 'number' }
-];
-const metricsFieldsRight = [
-  { name: 'chest', label: 'ΘΩΡΑΚΑΣ' },
-  { name: 'pelvis', label: 'ΜΕΣΗ' },
-  { name: 'belly', label: 'ΚΟΙΛΙΑ' },
-  { name: 'thigh', label: 'ΜΗΡΟΣ' },
-  { name: 'calves', label: 'ΓΑΜΠΑ' },
-  { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' },
-  { name: 'biseps', label: 'ΛΕΚΑΝΗ' }
-];
-
-const notesFilelds = [
-  { name: 'activity', label: 'ΠΡΟΠΟΝΗΣΗ (ΕΙΔΟΣ,ΣΥΧΝΟΤΗΤΑ,ΩΡΕΣ Κ.Λ.Π)' },
-  { name: 'allergies', label: 'ΔΙΑΦΟΡΕΣ ΠΑΘΗΣΕΙΣ - ΑΛΕΡΓΙΕΣ Κ.Α' },
-  { name: 'notes', label: 'ΣΗΜΕΙΩΣΕΣ - ΠΑΡΑΤΗΡΗΣΕΙΣ' }
-];
-
-const TITLE = 'ΣΤΟΙΧΕΙΑ ΧΡΗΣΤΗ';
-const MERRICS = 'ΜΕΤΡΗΣΕΙΣ';
+import { profileFields, notesFilelds } from 'src/content/data';
 
 function a11yProps(index: number) {
   return {
@@ -123,9 +61,6 @@ const UserDetails = ({
     // selectedRow,
     // setSelectedRow,
     setUsers,
-    customers,
-    setActiveUser,
-    activeUser,
     setMessage
   } = React.useContext(AppContext);
 
@@ -170,10 +105,6 @@ const UserDetails = ({
   React.useEffect(() => {
     setValue(selectedRow);
   }, [selectedRow]);
-
-  const handleSaveNutrition = (data) => {
-    addUpdateUser({ ...selectedRow, nutrition: data });
-  };
 
   console.log('USER DETAILS', value);
   return (

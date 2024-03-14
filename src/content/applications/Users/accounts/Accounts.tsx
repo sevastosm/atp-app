@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import { Container, Grid } from '@mui/material';
-import UserDetails from './userDetails/UserDetails';
 import MultyTable from 'src/components/multyTable';
 import { AppContext } from 'src/context/AppContext';
 import SimpleDialog from 'src/components/general/SimpleDialog';
 import { fetchUsers, deleteUser } from 'src/api/users';
+import UserDetails from './userDetails/UserDetails';
 
 const cols = [
   { name: 'firstName', label: 'ΟΝΟΜΑ' },

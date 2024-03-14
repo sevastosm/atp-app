@@ -36,6 +36,7 @@ import Notes from './Notes';
 import FormFields from 'src/components/general/Form';
 import axios from 'axios';
 import { getUserDiet, postUser } from 'src/api/users';
+import { metricsFieldsLeft, metricsFieldsRight } from 'src/content/data';
 
 type Props = {};
 interface IProfileFields {
@@ -53,28 +54,6 @@ const profileFields = [
   { name: 'email', label: 'EMAIL', inputType: 'email' },
   { name: 'age', label: 'ΗΛΙΚΙΑ', inputType: 'number' },
   { name: 'nextApoitment', label: 'ΕΠΟΜΕΝΟ ΡΑΝΤΕΒΟΥ', type: 'date' }
-];
-
-const metricsFieldsLeft = [
-  // ----------------------
-  { name: 'date', label: 'ΗΜ/ΝΙΑ', type: 'date' },
-  { name: 'weight', label: 'ΒΑΡΟΣ kg', inputType: 'number' },
-  { name: 'height', label: 'ΥΨΟΣ cm', inputType: 'number' },
-  { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ gr', inputType: 'number' },
-  { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ gr', inputType: 'number' },
-  { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ gr', inputType: 'number' },
-  { name: 'bmi', label: 'BMI', inputType: 'number' },
-  { name: 'metabolicAge', label: 'ΜΕΤΑΒΟΛΙΚΗ ΗΛΙΚΙΑ', inputType: 'number' },
-  { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ %', inputType: 'number' }
-];
-const metricsFieldsRight = [
-  { name: 'chest', label: 'ΘΩΡΑΚΑΣ cm' },
-  { name: 'pelvis', label: 'ΜΕΣΗ ccm' },
-  { name: 'belly', label: 'ΚΟΙΛΙΑ cm' },
-  { name: 'thigh', label: 'ΜΗΡΟΣ cm' },
-  { name: 'calves', label: 'ΓΑΜΠΑ cm' },
-  { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ cm' },
-  { name: 'lekani', label: 'ΛΕΚΑΝΗ cm' }
 ];
 
 const notesFilelds = [
@@ -199,7 +178,14 @@ const UserMerics = ({ data, updateData, mode }) => {
   return (
     <>
       {value}
-      <Box sx={{ display: 'flex', width: '100%' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'baseline',
+          marginBottom: '20px'
+        }}
+      >
         <ButtonWraper>
           <Button
             size="small"
@@ -208,17 +194,20 @@ const UserMerics = ({ data, updateData, mode }) => {
             startIcon={<AddBoxIcon />}
           ></Button>
         </ButtonWraper>
-        <Select
-          id="select-metrics"
-          value={value}
-          onChange={(e) => handleChangeDate(e.target.value)}
-        >
-          {data?.map((n, i) => (
-            <MenuItem key={i} value={i}>
-              {n?.date}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl sx={{ width: '185px' }}>
+          <InputLabel id="history">Ημ/νια ΜΕΤΡΗΣΗΣ</InputLabel>
+          <Select
+            id="history"
+            value={value}
+            onChange={(e) => handleChangeDate(e.target.value)}
+          >
+            {data?.map((n, i) => (
+              <MenuItem key={i} value={i}>
+                {n?.date}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </Box>
       <FormFields
         fields={[...metricsFieldsLeft, ...metricsFieldsRight]}

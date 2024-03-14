@@ -224,6 +224,31 @@ export default function FormFields({
                       </LocalizationProvider>
                     </Grid>
                   );
+                case 'textArea':
+                  return (
+                    <Grid item key={i}>
+                      <TextField
+                        // type={field?.inputType}
+
+                        multiline
+                        name={field.name}
+                        key={field.name}
+                        required={field?.required}
+                        id={field.name}
+                        label={field.label}
+                        value={value[field?.name] || ''}
+                        disabled={false}
+                        onChange={(e) =>
+                          handleInputChange(e.target.value, field.name)
+                        }
+                        inputProps={{
+                          type: field?.inputType,
+                          readOnly: readOnly
+                        }}
+                        size="small"
+                      />
+                    </Grid>
+                  );
                 default:
                   return (
                     <Grid item key={i}>

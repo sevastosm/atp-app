@@ -14,6 +14,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { AppContext } from 'src/context/AppContext';
+import { notesFilelds } from 'src/content/data';
 
 type Props = {};
 
@@ -65,33 +66,6 @@ const Notes = () => {
 `
   );
 
-  const metricsFieldsLeft = [
-    // ----------------------
-    { name: 'date', label: 'ΗΜ/ΝΙΑ', type: 'date' },
-    { name: 'weight', label: 'ΒΑΡΟΣ', inputType: 'number' },
-    { name: 'height', label: 'ΥΨΟΣ', inputType: 'number' },
-    { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ', inputType: 'number' },
-    { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ', inputType: 'number' },
-    { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ', inputType: 'number' },
-    { name: 'bmi', label: 'BMI', inputType: 'number' },
-    { name: 'metabolicAge', label: 'ΜΕΤΑΒΟΛΙΚΗ ΗΛΙΚΙΑ', inputType: 'number' },
-    { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ', inputType: 'number' }
-  ];
-  const metricsFieldsRight = [
-    { name: 'chest', label: 'ΘΩΡΑΚΑΣ' },
-    { name: 'pelvis', label: 'ΜΕΣΗ' },
-    { name: 'belly', label: 'ΚΟΙΛΙΑ' },
-    { name: 'thigh', label: 'ΜΗΡΟΣ' },
-    { name: 'calves', label: 'ΓΑΜΠΑ' },
-    { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' }
-  ];
-
-  const fields = [
-    // { name: 'activity', label: 'ΠΡΟΠΟΝΗΣΗ (ΕΙΔΟΣ,ΣΥΧΝΟΤΗΤΑ,ΩΡΕΣ Κ.Λ.Π)' },
-    // { name: 'allergies', label: 'ΔΙΑΦΟΡΕΣ ΠΑΘΗΣΕΙΣ - ΑΛΕΡΓΙΕΣ Κ.Α' },
-    { name: 'notes', label: 'ΣΗΜΕΙΩΣΕΙΣ - ΠΑΡΑΤΗΡΗΣΕΙΣ' }
-  ];
-
   return (
     <Box>
       {notes?.length > 0 && (
@@ -103,7 +77,7 @@ const Notes = () => {
             Οι μετρήσεις μου
           </Typography>
           <Paper elevation={8} sx={{ margin: 2 }}></Paper>
-          {fields.map((field, i) => (
+          {notesFilelds.map((field, i) => (
             <>
               <Paper key={i} elevation={8} sx={{ margin: 2 }}>
                 <Card sx={{ height: '100%' }}>

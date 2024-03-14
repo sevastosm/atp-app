@@ -5,8 +5,6 @@ import { users } from 'src/mocks/users';
 import { AppContext } from '../AppContext';
 import nutritionReducer from './reducer';
 
-const initialBoxes = [];
-
 export const NutritionContext = createContext<any>({});
 export const NutritionContextProvider: any = ({ children }) => {
   const initialStore = {

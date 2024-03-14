@@ -14,6 +14,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { AppContext } from 'src/context/AppContext';
+import { metricsFieldsLeft, metricsFieldsRight } from 'src/content/data';
 
 type Props = {};
 
@@ -64,27 +65,6 @@ const Metrics = () => {
 
 `
   );
-
-  const metricsFieldsLeft = [
-    // ----------------------
-    { name: 'date', label: 'ΗΜ/ΝΙΑ', type: 'date' },
-    { name: 'weight', label: 'ΒΑΡΟΣ', inputType: 'number' },
-    { name: 'height', label: 'ΥΨΟΣ', inputType: 'number' },
-    { name: 'bodyFat', label: 'ΠΟΣΟΣΤΟ ΛΙΠΟΥΣ', inputType: 'number' },
-    { name: 'nonFatMass', label: 'ΑΛΙΠΗ ΜΥΙΚΗ ΜΑΖΑ', inputType: 'number' },
-    { name: 'boneMass', label: 'ΩΣΤΙΚΗ ΜΑΖΑ', inputType: 'number' },
-    { name: 'bmi', label: 'BMI', inputType: 'number' },
-    { name: 'metabolicAge', label: 'ΜΕΤΑΒΟΛΙΚΗ ΗΛΙΚΙΑ', inputType: 'number' },
-    { name: 'bodyWater', label: 'ΠΟΣΟΣΤΟ ΝΕΡΟΥ', inputType: 'number' }
-  ];
-  const metricsFieldsRight = [
-    { name: 'chest', label: 'ΘΩΡΑΚΑΣ' },
-    { name: 'pelvis', label: 'ΜΕΣΗ' },
-    { name: 'belly', label: 'ΚΟΙΛΙΑ' },
-    { name: 'thigh', label: 'ΜΗΡΟΣ' },
-    { name: 'calves', label: 'ΓΑΜΠΑ' },
-    { name: 'biseps', label: 'ΔΙΚΕΦΑΛΟΣ' }
-  ];
 
   const fields = [...metricsFieldsLeft, ...metricsFieldsRight];
 
