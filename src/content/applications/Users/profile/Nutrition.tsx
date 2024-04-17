@@ -82,39 +82,11 @@ const Nutrition = () => {
 
 `
   );
-  // React.useEffect(() => {
-  //   //Add last nutriton
-  //   return selectedRow?.nutrition?.length
-  //     ? handleSetStore(selectedRow.nutrition[selectedRow.nutrition.length - 1])
-  //     : null;
-  // }, [selectedRow]);
-
-  // const setWarning: any = () => {
-  //   if (parseFloat(caloriesLimit) < parseFloat(caloriesSum)) {
-  //     return {
-  //       color: 'error',
-  //       focused: true
-  //     };
-  //   } else if (
-  //     parseFloat(caloriesLimit) - (caloriesLimit * 30) / 100 <
-  //     parseFloat(caloriesSum)
-  //   ) {
-  //     return {
-  //       color: 'warning',
-  //       focused: true
-  //     };
-  //   } else {
-  //     return {
-  //       color: 'success',
-  //       focused: true
-  //     };
-  //   }
-  // };
 
   return (
     <Box>
       {boxes?.length > 0 && (
-        <Card sx={{ margin: 2, background: '#c1c3d169' }}>
+        <Card sx={{ margin: 2 }}>
           <Typography
             variant={matches ? 'h4' : 'h3'}
             sx={{ textAlign: 'center', marginTop: 3 }}
@@ -127,22 +99,28 @@ const Nutrition = () => {
               box.active && (
                 <>
                   <Paper key={i} elevation={8} sx={{ margin: 2 }}>
-                    <Card sx={{ height: '100%' }}>
-                      <Typography variant="h4" sx={{ margin: 1 }}>
+                    <Card sx={{ height: '100%', background: '#55c3f5' }}>
+                      <Typography
+                        variant="h4"
+                        sx={{ margin: 1, color: '#fff' }}
+                      >
                         {box.name}
                       </Typography>
                       <Divider />
                       {box.data.map((box, i) => (
-                        <ListWrapper key={i} disablePadding>
+                        <ListWrapper
+                          sx={{ background: '#fff' }}
+                          key={i}
+                          disablePadding
+                        >
                           <ListItem
                             key={i}
                             sx={{
-                              color: `${theme.colors.primary.main}`,
+                              color: `#000`,
                               '&:hover': {
                                 color: `${theme.colors.primary.dark}`
                               }
                             }}
-                            button
                           >
                             {/* <ListItemText primary="Είδος:" /> */}
                             <Box
@@ -157,7 +135,7 @@ const Nutrition = () => {
                                 sx={{ marginRight: 1 }}
                                 primaryTypographyProps={{
                                   variant: 'h5',
-                                  color: `${theme.colors.alpha.black[100]}`
+                                  color: `#000`
                                 }}
                                 primary="Είδος"
                               />
@@ -168,12 +146,11 @@ const Nutrition = () => {
                           <ListItem
                             key={i}
                             sx={{
-                              color: `${theme.colors.primary.main}`,
+                              color: `#000`,
                               '&:hover': {
                                 color: `${theme.colors.primary.dark}`
                               }
                             }}
-                            button
                           >
                             <ListItemText
                               primaryTypographyProps={{
@@ -191,36 +168,37 @@ const Nutrition = () => {
                             />
                           </ListItem>
                           <Divider />
-                          <ListItem
-                            key={i}
-                            sx={{
-                              color: `${theme.colors.primary.main}`,
-                              '&:hover': {
-                                color: `${theme.colors.primary.dark}`
-                              }
-                            }}
-                            button
-                          >
-                            <Box
+                          {box?.notes && (
+                            <ListItem
+                              key={i}
                               sx={{
-                                display: 'flex',
-                                flexWrap: 'wrap',
-                                flexGrow: '1',
-                                alignItems: 'baseline'
+                                color: `#000`,
+                                '&:hover': {
+                                  color: `${theme.colors.primary.dark}`
+                                }
                               }}
                             >
-                              <ListItemText
-                                sx={{ marginRight: 1 }}
-                                primaryTypographyProps={{
-                                  variant: 'h5',
-                                  color: `${theme.colors.alpha.black[100]}`
+                              <Box
+                                sx={{
+                                  display: 'flex',
+                                  flexWrap: 'wrap',
+                                  flexGrow: '1',
+                                  alignItems: 'baseline'
                                 }}
-                                primary="Σημιώσεις"
-                              />
-                              <Divider />
-                              <ListItemText primary={box?.notes} />
-                            </Box>
-                          </ListItem>
+                              >
+                                <ListItemText
+                                  sx={{ marginRight: 1 }}
+                                  primaryTypographyProps={{
+                                    variant: 'h5',
+                                    color: `#000`
+                                  }}
+                                  primary="Σημιώσεις"
+                                />
+                                <Divider />
+                                <ListItemText primary={box?.notes} />
+                              </Box>
+                            </ListItem>
+                          )}
                         </ListWrapper>
                       ))}
                     </Card>
@@ -233,10 +211,9 @@ const Nutrition = () => {
                       <ListWrapper disablePadding>
                         <ListItem
                           sx={{
-                            color: `${theme.colors.primary.main}`,
+                            color: `#000`,
                             '&:hover': { color: `${theme.colors.primary.dark}` }
                           }}
-                          button
                         >
                           <ListItemText primary={box?.boxNotes} />
                         </ListItem>

@@ -69,19 +69,19 @@ const Notes = () => {
   return (
     <Box>
       {notes?.length > 0 && (
-        <Card sx={{ margin: 2, background: '#c1c3d169' }}>
+        <Card sx={{ margin: 2 }}>
           <Typography
             variant={matches ? 'h4' : 'h3'}
             sx={{ textAlign: 'center', marginTop: 3 }}
           >
-            Οι μετρήσεις μου
+            Οι σημειώσεις μου
           </Typography>
           <Paper elevation={8} sx={{ margin: 2 }}></Paper>
           {notesFilelds.map((field, i) => (
             <>
               <Paper key={i} elevation={8} sx={{ margin: 2 }}>
-                <Card sx={{ height: '100%' }}>
-                  <Typography variant="h4" sx={{ margin: 1 }}>
+                <Card sx={{ height: '100%', background: '#55c3f5' }}>
+                  <Typography variant="h4" sx={{ margin: 1, color: '#fff' }}>
                     {field?.label}
                   </Typography>
 
@@ -89,10 +89,9 @@ const Notes = () => {
                   <ListWrapper disablePadding>
                     <ListItem
                       sx={{
-                        color: `${theme.colors.primary.main}`,
-                        '&:hover': { color: `${theme.colors.primary.dark}` }
+                        background: '#fff',
+                        color: `#000`
                       }}
-                      button
                     >
                       {<ListItemText primary={notes[0][field?.name] || ''} />}
                     </ListItem>

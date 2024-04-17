@@ -55,8 +55,22 @@ function Sidebar() {
         }}
       >
         <Scrollbar>
-          <Box mt={3}>
-            <Box>
+          <Box
+            mt={3}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            dfd
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
               <Logo />
             </Box>
           </Box>
@@ -93,7 +107,9 @@ function Sidebar() {
               <Box
                 mx={2}
                 sx={{
-                  width: 52
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 <Logo />
