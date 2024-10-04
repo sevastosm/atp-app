@@ -18,7 +18,7 @@ const OverviewWrapper = styled(Box)(
 
 function Overview() {
   return (
-    <OverviewWrapper sx={{ background: '#11192a' }}>
+    <OverviewWrapper sx={{ background: '#151613eb' }}>
       <Helmet>
         <title>ATP-app</title>
       </Helmet>
